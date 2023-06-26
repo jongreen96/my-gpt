@@ -4,16 +4,12 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: true }));
+app.use(cors());
 
 const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-	res.json({ message: 'My-GPT Backend' });
-});
-
 const chatRouter = require('./routes/chat');
-app.use('/chat', chatRouter);
+app.use('/api/chat', chatRouter);
 
 app.listen(port, () => {
 	console.log(`Server is running on port: ${port}`);

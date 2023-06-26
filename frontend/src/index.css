@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active > :first-child > :first-child {
+	@apply fill-teal-600;
+}

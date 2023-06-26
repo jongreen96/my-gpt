@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import Conversations from './Conversations';
 import NavFooter from './NavFooter';
 import Login from './Login';

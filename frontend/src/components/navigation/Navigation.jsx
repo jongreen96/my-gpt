@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Icons from '../../assets/Icons';
 import { Conversations, NavFooter, SideMenu } from './';
 import Login from './Login';
@@ -35,7 +34,3 @@ export default function Navigation({ authenticated }) {
 		</>
 	);
 }
-
-Navigation.propTypes = {
-	authenticated: PropTypes.bool.isRequired,
-};

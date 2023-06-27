@@ -12,17 +12,18 @@ const conversationsSlice = createSlice({
 			state.selectedConversation = action.payload;
 		},
 	},
-	extraReducers: {
-		[fetchConversations.fulfilled]: (state, action) => {
-			state.conversations = action.payload;
-		},
-		[updateConversation.fulfilled]: (state, action) => {
-			const updatedConversation = action.payload;
-			const index = state.conversations.findIndex(
-				(conversation) => conversation.id === updatedConversation.id
-			);
-			state.conversations[index] = updatedConversation;
-		},
+	extraReducers: (builder) => {
+		builder
+			.addCase(fetchConversations.fulfilled, (state, action) => {
+				state.conversations = action.payload;
+			})
+			.addCase(updateConversation.fulfilled, (state, action) => {
+				const updatedConversation = action.payload;
+				const index = state.conversations.findIndex(
+					(conversation) => conversation.id === updatedConversation.id
+				);
+				state.conversations[index] = updatedConversation;
+			});
 	},
 });
 

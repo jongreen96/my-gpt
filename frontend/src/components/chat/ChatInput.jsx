@@ -1,23 +1,33 @@
 import React, { useState } from 'react';
 import Icons from '../../assets/Icons';
 import { generateResponse } from '../../utils/ChatUtils';
+import { useDispatch } from 'react-redux';
 
-export const ChatInput = ({ conversation, setConversation }) => {
+export const ChatInput = ({ conversations, activeConversation }) => {
+	const dispatch = useDispatch();
 	const [userInput, setUserInput] = useState('');
+
+	const conversation = conversations.find(
+		(conversation) => conversation.id === activeConversation
+	);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
 		if (userInput === '') return;
+
 		const newMessage = {
 			role: 'user',
 			content: userInput,
 		};
 
-		setConversation([...conversation, newMessage]);
-		setUserInput('');
+		const response = await generateResponse(
+			newMessage,
+			conversation.conversation
+		);
 
-		const response = await generateResponse([...conversation, newMessage]);
-		setConversation([...conversation, newMessage, response]);
+		// TODO: Currently works up to here but need to dispatch the response to the store
+		//       and show the response in the chat along with updating the database
 	};
 
 	return (

@@ -1,14 +1,17 @@
 import React, { useRef } from 'react';
-import { scrollToBottom, setChatMargin } from '../../utils/ChatUtils';
+import { scrollToBottom } from '../../utils/ChatUtils';
 
-export const Messages = ({ conversation }) => {
+export const Messages = ({ conversations, activeConversation }) => {
 	const chatRef = useRef(null);
 
+	const conversation =
+		conversations.find((conversation) => conversation.id === activeConversation)
+			?.conversation || [];
+
 	scrollToBottom(chatRef, conversation);
-	setChatMargin();
 
 	return (
-		<section className='flex grow flex-col justify-end gap-2 p-2'>
+		<section className='mb-14 flex grow flex-col justify-end gap-2 p-2'>
 			{conversation.map((message, i) => {
 				return message.role === 'user' ? (
 					<p

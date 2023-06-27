@@ -11,7 +11,7 @@ export default function SideMenu({ Icons, authenticated, setMenuOpen }) {
 			className='fixed left-0 top-12 z-40 flex h-[calc(100%-48px)] w-64 max-w-[100vw] animate-slide-in flex-col justify-between bg-light/60 p-2 backdrop-blur-sm dark:bg-xdark/60'
 		>
 			{!authenticated && <Login />}
-			{/* {authenticated && <Conversations />} */}
+			{authenticated && <Conversations />}
 			<NavFooter Icons={Icons} authenticated={authenticated} />
 		</aside>
 	);

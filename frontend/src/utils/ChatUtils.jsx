@@ -1,16 +1,6 @@
 import { useEffect } from 'react';
 import Api from './Api';
 
-// add margin to bottom of chat to prevent input from covering last message
-export const setChatMargin = () => {
-	useEffect(() => {
-		const chat = document.querySelector('section');
-		chat.style.marginBottom = `${
-			document.querySelector('form').offsetHeight
-		}px`;
-	}, []);
-};
-
 // Scroll to bottom of chat on new activity
 export const scrollToBottom = (chatRef, conversation) => {
 	const scrollToBottom = () => {
@@ -22,9 +12,9 @@ export const scrollToBottom = (chatRef, conversation) => {
 	}, [conversation]);
 };
 
-export const generateResponse = async (conversation) => {
+export const generateResponse = async (newMessage, conversation) => {
 	const response = await Api.post('/conversations', {
-		messages: conversation,
+		messages: [...conversation, newMessage],
 	});
 
 	return response.data;

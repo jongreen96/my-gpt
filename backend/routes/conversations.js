@@ -4,9 +4,13 @@ const { getAllConversations } = require('../queries/conversations');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-	const { messages } = req.body;
-	const result = await generateResponse(messages);
-	res.send(result);
+	try {
+		const { messages } = req.body;
+		const result = await generateResponse(messages);
+		res.send(result);
+	} catch (error) {
+		res.status(500).send('Server error');
+	}
 });
 
 // Test route to retrieve all conversations for a user

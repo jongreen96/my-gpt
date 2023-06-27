@@ -23,7 +23,7 @@ export const scrollToBottom = (chatRef, conversation) => {
 };
 
 export const generateResponse = async (conversation) => {
-	const response = await Api.post('/chat', {
+	const response = await Api.post('/conversations', {
 		messages: conversation,
 	});
 

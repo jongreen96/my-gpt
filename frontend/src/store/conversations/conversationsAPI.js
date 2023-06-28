@@ -12,10 +12,11 @@ export const fetchConversations = createAsyncThunk(
 export const updateConversation = createAsyncThunk(
 	'conversations/updateConversation',
 	async (conversation) => {
-		const result = await Api.put(
+		const response = await Api.put(
 			`/conversations/${conversation.id}`,
-			conversation.conversation
+			conversation
 		);
-		return result.data;
+		console.log(response.data);
+		return response.data;
 	}
 );

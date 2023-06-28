@@ -8,9 +8,10 @@ module.exports = {
 		return result.rows;
 	},
 	updateConversation: async (id, conversation) => {
+		const stringifiedConversation = JSON.stringify(conversation);
 		const result = await db.query(
 			`UPDATE conversations SET conversation = $1 WHERE id = $2 RETURNING id, subject, conversation`,
-			[conversation, id]
+			[stringifiedConversation, id]
 		);
 		return result.rows[0];
 	},

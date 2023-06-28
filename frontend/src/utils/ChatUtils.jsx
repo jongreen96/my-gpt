@@ -12,9 +12,9 @@ export const scrollToBottom = (chatRef, conversation) => {
 	}, [conversation]);
 };
 
-export const generateResponse = async (newMessage, conversation) => {
+export const generateResponse = async (conversation) => {
 	const response = await Api.post('/conversations', {
-		messages: [...conversation, newMessage],
+		messages: conversation,
 	});
 
 	return response.data;

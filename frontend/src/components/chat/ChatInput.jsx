@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Icons from '../../assets/Icons';
 import { generateResponse } from '../../utils/ChatUtils';
 import { useDispatch } from 'react-redux';
+import { updateConversation } from '../../store/conversations/conversationsAPI';
 
 export const ChatInput = ({ conversations, activeConversation }) => {
 	const dispatch = useDispatch();
@@ -13,21 +14,31 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
 		if (userInput === '') return;
+		setUserInput('');
 
-		const newMessage = {
-			role: 'user',
-			content: userInput,
-		};
+		const newConversation = conversation.conversation
+			? conversation.conversation.concat({
+					role: 'user',
+					content: userInput,
+			  })
+			: [
+					{
+						role: 'user',
+						content: userInput,
+					},
+			  ];
 
-		const response = await generateResponse(
-			newMessage,
-			conversation.conversation
+		const response = await generateResponse(newConversation);
+
+		console.log(response);
+
+		dispatch(
+			updateConversation({
+				...conversation,
+				conversation: [...newConversation, response],
+			})
 		);
-
-		// TODO: Currently works up to here but need to dispatch the response to the store
-		//       and show the response in the chat along with updating the database
 	};
 
 	return (

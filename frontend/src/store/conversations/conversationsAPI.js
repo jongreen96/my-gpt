@@ -16,7 +16,6 @@ export const updateConversation = createAsyncThunk(
 			`/conversations/${conversation.id}`,
 			conversation
 		);
-		console.log(response.data);
 		return response.data;
 	}
 );

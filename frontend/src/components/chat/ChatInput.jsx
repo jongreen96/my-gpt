@@ -29,9 +29,14 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 					},
 			  ];
 
-		const response = await generateResponse(newConversation);
+		dispatch(
+			updateConversation({
+				...conversation,
+				conversation: [...newConversation],
+			})
+		);
 
-		console.log(response);
+		const response = await generateResponse(newConversation);
 
 		dispatch(
 			updateConversation({

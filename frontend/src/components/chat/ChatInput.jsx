@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Icons from '../../assets/Icons';
-import { generateResponse } from '../../utils/ChatUtils';
 import { useDispatch } from 'react-redux';
-import { updateConversation } from '../../store/conversations/conversationsAPI';
+import Icons from '../../assets/Icons';
+import { handleChatInput } from '../../utils/ChatUtils';
 
 export const ChatInput = ({ conversations, activeConversation }) => {
 	const dispatch = useDispatch();
@@ -14,36 +13,7 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (userInput === '') return;
-		setUserInput('');
-
-		const newConversation = conversation.conversation
-			? conversation.conversation.concat({
-					role: 'user',
-					content: userInput,
-			  })
-			: [
-					{
-						role: 'user',
-						content: userInput,
-					},
-			  ];
-
-		dispatch(
-			updateConversation({
-				...conversation,
-				conversation: [...newConversation],
-			})
-		);
-
-		const response = await generateResponse(newConversation);
-
-		dispatch(
-			updateConversation({
-				...conversation,
-				conversation: [...newConversation, response],
-			})
-		);
+		handleChatInput(userInput, setUserInput, conversation, dispatch);
 	};
 
 	return (

@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { ChatInput } from '../components/chat/ChatInput';
 import { Messages } from '../components/chat/Messages';
-import { useSelector } from 'react-redux';
 
 export default function Chat({}) {
 	const { status, conversations, activeConversation } = useSelector(

@@ -15,4 +15,12 @@ module.exports = {
 		);
 		return result.rows[0];
 	},
+	createConversation: async (conversation) => {
+		const stringifiedConversation = JSON.stringify(conversation);
+		const result = await db.query(
+			`INSERT INTO conversations (subject, conversation) VALUES ($1, $2) RETURNING id, subject, conversation`,
+			[`${conversation[0].content.slice(0, 20)}...`, stringifiedConversation]
+		);
+		return result.rows[0];
+	},
 };

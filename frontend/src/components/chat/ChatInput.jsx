@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Icons from '../../assets/Icons';
-import { handleChatInput } from '../../utils/ChatUtils';
+import { handleChatInput, handleNewChat } from '../../utils/ChatUtils';
 
 export const ChatInput = ({ conversations, activeConversation }) => {
 	const dispatch = useDispatch();
@@ -13,7 +14,10 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		handleChatInput(userInput, setUserInput, conversation, dispatch);
+
+		conversation
+			? handleChatInput(userInput, setUserInput, conversation, dispatch)
+			: handleNewChat(userInput, setUserInput, dispatch);
 	};
 
 	return (
@@ -34,4 +38,9 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 			</button>
 		</form>
 	);
+};
+
+ChatInput.propTypes = {
+	conversations: PropTypes.array.isRequired,
+	activeConversation: PropTypes.number,
 };

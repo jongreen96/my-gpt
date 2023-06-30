@@ -3,6 +3,7 @@ const generateResponse = require('../utils/openAi');
 const {
 	getAllConversations,
 	updateConversation,
+	createConversation,
 } = require('../queries/conversations');
 const router = express.Router();
 
@@ -30,6 +31,16 @@ router.post('/', async (req, res) => {
 	try {
 		const { messages } = req.body;
 		const result = await generateResponse(messages);
+		res.send(result);
+	} catch (error) {
+		res.status(500).send('Server error');
+	}
+});
+
+router.post('/new', async (req, res) => {
+	try {
+		const { conversation } = req.body;
+		const result = await createConversation(conversation);
 		res.send(result);
 	} catch (error) {
 		res.status(500).send('Server error');

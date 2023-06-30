@@ -1,14 +1,21 @@
-import React, { useRef } from 'react';
-import { scrollToBottom } from '../../utils/ChatUtils';
+import PropTypes from 'prop-types';
+import { useEffect, useMemo, useRef } from 'react';
 
 export const Messages = ({ conversations, activeConversation }) => {
 	const chatRef = useRef(null);
 
-	const conversation =
-		conversations.find((conversation) => conversation.id === activeConversation)
-			?.conversation || [];
+	const conversation = useMemo(() => {
+		return (
+			conversations.find(
+				(conversation) => conversation.id === activeConversation
+			)?.conversation || []
+		);
+	}, [conversations, activeConversation]);
 
-	scrollToBottom(chatRef, conversation);
+	// Scroll to bottom of chat on new message
+	useEffect(() => {
+		chatRef.current?.scrollIntoView();
+	}, [conversation]);
 
 	return (
 		<section className='mb-14 flex grow flex-col justify-end gap-2 p-2'>
@@ -32,4 +39,9 @@ export const Messages = ({ conversations, activeConversation }) => {
 			<div ref={chatRef} className='-m-2' aria-hidden='true' />
 		</section>
 	);
+};
+
+Messages.propTypes = {
+	conversations: PropTypes.array.isRequired,
+	activeConversation: PropTypes.number,
 };

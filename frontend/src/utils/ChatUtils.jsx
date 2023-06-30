@@ -1,17 +1,9 @@
-import { useEffect } from 'react';
-import { updateConversation } from '../store/conversations/conversationsAPI';
+import {
+	createConversation,
+	updateConversation,
+} from '../store/conversations/conversationsAPI';
+import { setActiveConversation } from '../store/conversations/conversationsSlice';
 import Api from './Api';
-
-// Scroll to bottom of chat on new activity
-export const scrollToBottom = (chatRef, conversation) => {
-	const scrollToBottom = () => {
-		chatRef.current?.scrollIntoView();
-	};
-
-	useEffect(() => {
-		scrollToBottom();
-	}, [conversation]);
-};
 
 export const generateResponse = async (conversation) => {
 	const response = await Api.post('/conversations', {
@@ -30,17 +22,10 @@ export const handleChatInput = async (
 	if (userInput === '') return;
 	setUserInput('');
 
-	const newConversation = conversation.conversation
-		? conversation.conversation.concat({
-				role: 'user',
-				content: userInput,
-		  })
-		: [
-				{
-					role: 'user',
-					content: userInput,
-				},
-		  ];
+	const newConversation = conversation.conversation.concat({
+		role: 'user',
+		content: userInput,
+	});
 
 	dispatch(
 		updateConversation({
@@ -54,6 +39,35 @@ export const handleChatInput = async (
 	dispatch(
 		updateConversation({
 			...conversation,
+			conversation: [...newConversation, response],
+		})
+	);
+};
+
+export const handleNewChat = async (userInput, setUserInput, dispatch) => {
+	if (userInput === '') return;
+	setUserInput('');
+
+	const newConversation = [
+		{
+			role: 'user',
+			content: userInput,
+		},
+	];
+
+	const newlyCreatedConversation = await dispatch(
+		createConversation({
+			conversation: [...newConversation],
+		})
+	);
+
+	await dispatch(setActiveConversation(newlyCreatedConversation.payload.id));
+
+	const response = await generateResponse(newConversation);
+
+	dispatch(
+		updateConversation({
+			...newlyCreatedConversation.payload,
 			conversation: [...newConversation, response],
 		})
 	);

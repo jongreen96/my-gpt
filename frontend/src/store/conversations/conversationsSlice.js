@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchConversations, updateConversation } from './conversationsAPI';
+import {
+	createConversation,
+	fetchConversations,
+	updateConversation,
+} from './conversationsAPI';
 
 const conversationsSlice = createSlice({
 	name: 'conversations',
@@ -20,7 +24,7 @@ const conversationsSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(fetchConversations.pending, (state, action) => {
+			.addCase(fetchConversations.pending, (state) => {
 				state.status = 'loading';
 			})
 			.addCase(fetchConversations.fulfilled, (state, action) => {
@@ -41,6 +45,9 @@ const conversationsSlice = createSlice({
 			.addCase(updateConversation.rejected, (state, action) => {
 				state.status = 'failed';
 				state.error = action.error.message;
+			})
+			.addCase(createConversation.fulfilled, (state, action) => {
+				state.conversations.push(action.payload);
 			});
 	},
 });

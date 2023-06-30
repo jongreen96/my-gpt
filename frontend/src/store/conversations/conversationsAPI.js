@@ -1,5 +1,5 @@
-import Api from '../../utils/Api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import Api from '../../utils/Api';
 
 export const fetchConversations = createAsyncThunk(
 	'conversations/fetchConversations',
@@ -16,6 +16,14 @@ export const updateConversation = createAsyncThunk(
 			`/conversations/${conversation.id}`,
 			conversation
 		);
+		return response.data;
+	}
+);
+
+export const createConversation = createAsyncThunk(
+	'conversations/createConversation',
+	async (conversation) => {
+		const response = await Api.post('/conversations/new', conversation);
 		return response.data;
 	}
 );

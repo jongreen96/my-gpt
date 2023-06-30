@@ -1,11 +1,20 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { ChatInput } from '../components/chat/ChatInput';
 import { Messages } from '../components/chat/Messages';
+import { setActiveConversation } from '../store/conversations/conversationsSlice';
 
-export default function Chat({}) {
+export default function Chat() {
+	const dispatch = useDispatch();
+	const { id } = useParams();
 	const { status, conversations, activeConversation } = useSelector(
 		(state) => state.conversations
 	);
+
+	useEffect(() => {
+		dispatch(setActiveConversation(Number(id)));
+	}, [id, dispatch]);
 
 	if (status === 'loading') return <div>Loading...</div>;
 	if (status === 'failed') return <div>Error</div>;

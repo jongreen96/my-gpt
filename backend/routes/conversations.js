@@ -4,6 +4,7 @@ const {
 	getAllConversations,
 	updateConversation,
 	createConversation,
+	deleteConversation,
 } = require('../queries/conversations');
 const router = express.Router();
 
@@ -41,6 +42,16 @@ router.post('/new', async (req, res) => {
 	try {
 		const { conversation } = req.body;
 		const result = await createConversation(conversation);
+		res.send(result);
+	} catch (error) {
+		res.status(500).send('Server error');
+	}
+});
+
+router.delete('/:id', async (req, res) => {
+	try {
+		const { id } = req.params;
+		const result = await deleteConversation(id);
 		res.send(result);
 	} catch (error) {
 		res.status(500).send('Server error');

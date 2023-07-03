@@ -27,4 +27,11 @@ module.exports = {
 		);
 		return result.rows[0];
 	},
+	deleteConversation: async (id) => {
+		const result = await db.query(
+			`DELETE FROM conversations WHERE id = $1 RETURNING id`,
+			[id]
+		);
+		return result.rows[0];
+	},
 };

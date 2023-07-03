@@ -3,6 +3,7 @@ import {
 	createConversation,
 	fetchConversations,
 	updateConversation,
+	deleteConversation,
 } from './conversationsAPI';
 
 const conversationsSlice = createSlice({
@@ -48,6 +49,12 @@ const conversationsSlice = createSlice({
 			})
 			.addCase(createConversation.fulfilled, (state, action) => {
 				state.conversations.push(action.payload);
+			})
+			.addCase(deleteConversation.fulfilled, (state, action) => {
+				const index = state.conversations.findIndex(
+					(conversation) => conversation.id === action.payload.id
+				);
+				state.conversations.splice(index, 1);
 			});
 	},
 });

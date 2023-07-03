@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setActiveConversation } from '../../store/conversations/conversationsSlice';
+import { deleteConversation } from '../../store/conversations/conversationsAPI';
+import Icons from '../../assets/Icons';
 
 export default function Conversations() {
 	const dispatch = useDispatch();
@@ -24,14 +26,21 @@ export default function Conversations() {
 			</Link>
 			{conversations.map((conversation) => (
 				<Link
-					to={`/chat/${conversation.id}`}
+					to={`/chat`}
 					key={conversation.id}
 					onClick={() => {
 						dispatch(setActiveConversation(conversation.id));
 					}}
 				>
-					<li className='w-full items-center rounded-lg rounded-br-none bg-teal-700 p-2 hover:bg-teal-800'>
+					<li className='flex w-full items-center justify-between rounded-lg rounded-br-none bg-teal-700 p-2 hover:bg-teal-800'>
 						<span className='text-m text-white'>{conversation.subject}</span>
+						<button
+							onClick={() => {
+								dispatch(deleteConversation(conversation.id));
+							}}
+						>
+							<Icons.DeleteButton />
+						</button>
 					</li>
 				</Link>
 			))}

@@ -27,3 +27,11 @@ export const createConversation = createAsyncThunk(
 		return response.data;
 	}
 );
+
+export const deleteConversation = createAsyncThunk(
+	'conversations/deleteConversation',
+	async (conversationId) => {
+		const response = await Api.delete(`/conversations/${conversationId}`);
+		return response.data;
+	}
+);

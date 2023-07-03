@@ -33,6 +33,7 @@ const conversationsSlice = createSlice({
 				state.status = 'succeeded';
 			})
 			.addCase(fetchConversations.rejected, (state, action) => {
+				localStorage.removeItem('token');
 				state.status = 'failed';
 				state.error = action.error.message;
 			})

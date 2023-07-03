@@ -1,8 +1,19 @@
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { login } from '../store/users/userAPI';
 
 export default function Login() {
+	const dispatch = useDispatch();
+
+	const [form, setForm] = useState({
+		email: '',
+		password: '',
+	});
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		dispatch(login(form));
 	};
 
 	return (
@@ -19,7 +30,9 @@ export default function Login() {
 							type='email'
 							name='email'
 							id='email'
-							className='bg-light dark:bg-xdark rounded-lg rounded-br-none border-2 border-teal-700 p-2'
+							value={form.email}
+							onChange={(e) => setForm({ ...form, email: e.target.value })}
+							className='rounded-lg rounded-br-none border-2 border-teal-700 bg-light p-2 dark:bg-xdark'
 						/>
 					</div>
 
@@ -34,7 +47,9 @@ export default function Login() {
 							type='password'
 							name='password'
 							id='password'
-							className='bg-light dark:bg-xdark mb-2 rounded-lg rounded-br-none border-2 border-teal-700 p-2'
+							value={form.password}
+							onChange={(e) => setForm({ ...form, password: e.target.value })}
+							className='mb-2 rounded-lg rounded-br-none border-2 border-teal-700 bg-light p-2 dark:bg-xdark'
 						/>
 					</div>
 

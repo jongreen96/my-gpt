@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { register } from '../store/users/userAPI';
 
 export default function Login() {
+	const dispatch = useDispatch();
 	const [errorMessage, setErrorMessage] = useState('');
 
 	const [form, setForm] = useState({
@@ -30,6 +33,7 @@ export default function Login() {
 		}
 
 		setErrorMessage('');
+		dispatch(register(form));
 	};
 
 	return (
@@ -46,7 +50,7 @@ export default function Login() {
 							type='email'
 							name='email'
 							id='email'
-							className='bg-light dark:bg-xdark rounded-lg rounded-br-none border-2 border-teal-700 p-2'
+							className='rounded-lg rounded-br-none border-2 border-teal-700 bg-light p-2 dark:bg-xdark'
 							value={form.email}
 							onChange={(e) => setForm({ ...form, email: e.target.value })}
 						/>
@@ -63,7 +67,7 @@ export default function Login() {
 							type='password'
 							name='password'
 							id='password'
-							className='bg-light dark:bg-xdark rounded-lg rounded-br-none border-2 border-teal-700 p-2'
+							className='rounded-lg rounded-br-none border-2 border-teal-700 bg-light p-2 dark:bg-xdark'
 							value={form.password}
 							onChange={(e) => setForm({ ...form, password: e.target.value })}
 						/>
@@ -80,7 +84,7 @@ export default function Login() {
 							type='password'
 							name='confirm-password'
 							id='confirm-password'
-							className='bg-light dark:bg-xdark rounded-lg rounded-br-none border-2 border-teal-700 p-2'
+							className='rounded-lg rounded-br-none border-2 border-teal-700 bg-light p-2 dark:bg-xdark'
 							value={form.confirmPassword}
 							onChange={(e) =>
 								setForm({ ...form, confirmPassword: e.target.value })
@@ -99,7 +103,7 @@ export default function Login() {
 							type='text'
 							name='account-name'
 							id='account-name'
-							className='bg-light dark:bg-xdark rounded-lg rounded-br-none border-2 border-teal-700 p-2'
+							className='rounded-lg rounded-br-none border-2 border-teal-700 bg-light p-2 dark:bg-xdark'
 							value={form.accountName}
 							onChange={(e) =>
 								setForm({ ...form, accountName: e.target.value })

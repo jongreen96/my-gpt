@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
 	try {
-		const conversations = await getAllConversations();
+		const conversations = await getAllConversations(req.user.id);
 		res.send(conversations);
 	} catch (error) {
 		res.status(500).send('Server error');
@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
 router.post('/new', async (req, res) => {
 	try {
 		const { conversation } = req.body;
-		const result = await createConversation(conversation);
+		const result = await createConversation(conversation, req.user.id);
 		res.send(result);
 	} catch (error) {
 		res.status(500).send('Server error');

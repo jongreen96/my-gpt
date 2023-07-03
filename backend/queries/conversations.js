@@ -1,9 +1,10 @@
 const db = require('../db');
 
 module.exports = {
-	getAllConversations: async () => {
+	getAllConversations: async (userId) => {
 		const result = await db.query(
-			'SELECT id, subject, conversation FROM conversations'
+			'SELECT id, subject, conversation FROM conversations WHERE admin_id = $1 OR user_id = $1',
+			[userId]
 		);
 		return result.rows;
 	},
@@ -15,15 +16,15 @@ module.exports = {
 		);
 		return result.rows[0];
 	},
-	createConversation: async (conversation) => {
+	createConversation: async (conversation, userId) => {
 		const subject =
 			conversation[0].content.length > 20
 				? conversation[0].content.slice(0, 20) + '...'
 				: conversation[0].content;
 		const stringifiedConversation = JSON.stringify(conversation);
 		const result = await db.query(
-			`INSERT INTO conversations (subject, conversation) VALUES ($1, $2) RETURNING id, subject, conversation`,
-			[subject, stringifiedConversation]
+			`INSERT INTO conversations (admin_id, subject, conversation) VALUES ($1, $2, $3) RETURNING id, subject, conversation`,
+			[userId, subject, stringifiedConversation]
 		);
 		return result.rows[0];
 	},

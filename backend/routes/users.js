@@ -1,7 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const { getUser, createNewUser } = require('../queries/users');
+const { getUser, createNewUser, getUserById } = require('../queries/users');
+const authenticateToken = require('../utils/jwt');
+
+router.get('/', authenticateToken, async (req, res) => {
+	try {
+		const { id } = req.user;
+		const user = await getUserById(id);
+		res.send(user);
+	} catch (error) {
+		res.status(500).send('Server error');
+	}
+});
 
 router.post('/login', async (req, res) => {
 	try {

@@ -1,16 +1,26 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setActiveConversation } from '../../store/conversations/conversationsSlice';
-import { deleteConversation } from '../../store/conversations/conversationsAPI';
 import Icons from '../../assets/Icons';
+import {
+	deleteConversation,
+	fetchConversations,
+} from '../../store/conversations/conversationsAPI';
+import { setActiveConversation } from '../../store/conversations/conversationsSlice';
 
 export default function Conversations() {
 	const dispatch = useDispatch();
 	const { status, conversations } = useSelector((state) => state.conversations);
 
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if (token) {
+			dispatch(fetchConversations());
+		}
+	}, [dispatch]);
+
 	if (status === 'loading') return <div>Loading...</div>;
 	if (status === 'failed') return <div>Error</div>;
-
 	return (
 		<ul role='list' className='flex w-full flex-col gap-2 align-middle'>
 			{/* Loop through conversations */}

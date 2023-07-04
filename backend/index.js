@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const authenticateToken = require('./utils/jwt');
 
 const app = express();
 app.use(express.json());
@@ -11,7 +12,6 @@ const port = process.env.PORT || 3000;
 const usersRouter = require('./routes/users');
 app.use('/api/users', usersRouter);
 
-const authenticateToken = require('./utils/jwt');
 const conversationsRouter = require('./routes/conversations');
 app.use('/api/conversations', authenticateToken, conversationsRouter);
 

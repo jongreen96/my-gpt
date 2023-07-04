@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { login } from '../store/users/userAPI';
 
 export default function Login() {
+	const navigation = useNavigate();
 	const dispatch = useDispatch();
 
 	const [form, setForm] = useState({
@@ -14,6 +15,7 @@ export default function Login() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch(login(form));
+		navigation('/chat');
 	};
 
 	return (

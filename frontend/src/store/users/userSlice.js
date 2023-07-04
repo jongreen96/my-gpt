@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, register } from './userAPI';
+import { login, register, fetchUser } from './userAPI';
 
 const userSlice = createSlice({
 	name: 'user',
@@ -35,8 +35,21 @@ const userSlice = createSlice({
 			.addCase(register.rejected, (state, action) => {
 				state.status = 'failed';
 				state.error = action.error.message;
+			})
+			.addCase(fetchUser.pending, (state) => {
+				state.status = 'loading';
+			})
+			.addCase(fetchUser.fulfilled, (state, action) => {
+				state.user = action.payload;
+				state.status = 'succeeded';
+			})
+			.addCase(fetchUser.rejected, (state, action) => {
+				state.status = 'failed';
+				state.error = action.error.message;
 			});
 	},
 });
 
 export default userSlice.reducer;
+
+export const selectUser = (state) => state.user.user;

@@ -4,7 +4,11 @@ import Api from '../../utils/Api';
 export const fetchConversations = createAsyncThunk(
 	'conversations/fetchConversations',
 	async () => {
-		const response = await Api.get('/conversations');
+		const response = await Api.get('/conversations', {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
+			},
+		});
 		return response.data;
 	}
 );

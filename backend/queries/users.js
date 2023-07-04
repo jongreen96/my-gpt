@@ -1,6 +1,10 @@
 const db = require('../db');
 
 module.exports = {
+	getUserById: async (id) => {
+		const user = await db.query(`SELECT * FROM admins WHERE id = $1`, [id]);
+		return user.rows[0];
+	},
 	getUser: async (email, password) => {
 		const user = await db.query(
 			`SELECT * FROM admins WHERE email = $1 AND password = $2`,

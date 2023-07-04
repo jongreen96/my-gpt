@@ -13,17 +13,13 @@ export default function Conversations() {
 	const { status, conversations } = useSelector((state) => state.conversations);
 
 	useEffect(() => {
-		const token = localStorage.getItem('token');
-		if (token) {
-			dispatch(fetchConversations());
-		}
+		dispatch(fetchConversations());
 	}, [dispatch]);
 
 	if (status === 'loading') return <div>Loading...</div>;
 	if (status === 'failed') return <div>Error</div>;
 	return (
 		<ul role='list' className='flex w-full flex-col gap-2 align-middle'>
-			{/* Loop through conversations */}
 			<Link
 				to='/chat'
 				onClick={() => {

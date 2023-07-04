@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Icons from './assets/Icons';
 import Navigation from './components/navigation/Navigation';
 import { Account, Chat, Homepage, Login, Register, Settings } from './pages';
-import { selectUser } from './store/users/userSlice';
 import { fetchUser } from './store/users/userAPI';
+import { selectUser } from './store/users/userSlice';
 
 function App() {
 	const dispatch = useDispatch();

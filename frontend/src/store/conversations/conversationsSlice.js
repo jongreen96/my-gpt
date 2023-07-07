@@ -62,4 +62,6 @@ const conversationsSlice = createSlice({
 export const { setActiveConversation, getActiveConversation } =
 	conversationsSlice.actions;
 
+export const selectConversations = (state) => state.conversations;
+
 export default conversationsSlice.reducer;

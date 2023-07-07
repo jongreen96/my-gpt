@@ -3,14 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { ChatInput } from '../components/chat/ChatInput';
 import { Messages } from '../components/chat/Messages';
-import { setActiveConversation } from '../store/conversations/conversationsSlice';
+import {
+	selectConversations,
+	setActiveConversation,
+} from '../store/conversations/conversationsSlice';
 
 export default function Chat() {
 	const dispatch = useDispatch();
 	const { id } = useParams();
-	const { status, conversations, activeConversation } = useSelector(
-		(state) => state.conversations
-	);
+	const { status, conversations, activeConversation } =
+		useSelector(selectConversations);
 
 	useEffect(() => {
 		dispatch(setActiveConversation(Number(id)));

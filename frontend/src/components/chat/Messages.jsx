@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import { useEffect, useMemo, useRef } from 'react';
+import { Thinking } from './Thinking';
+import { ChatBubble } from './ChatBubble';
 
 export const Messages = ({ conversations, activeConversation }) => {
 	const chatRef = useRef(null);
 
+	// Get active conversation
 	const conversation = useMemo(() => {
 		return (
 			conversations.find(
@@ -20,22 +23,11 @@ export const Messages = ({ conversations, activeConversation }) => {
 	return (
 		<section className='mb-14 flex grow flex-col justify-end gap-2 p-2'>
 			{conversation.map((message, i) => {
-				return message.role === 'user' ? (
-					<p
-						key={i}
-						className='w-fit max-w-[90%] self-end rounded-lg rounded-br-none bg-blue p-2 text-white'
-					>
-						{message.content}
-					</p>
-				) : (
-					<p
-						key={i}
-						className='w-fit max-w-[90%] whitespace-normal rounded-lg rounded-bl-none bg-teal-700 p-2 text-white'
-					>
-						{message.content}
-					</p>
-				);
+				return <ChatBubble message={message} key={i} />;
 			})}
+
+			{conversation[conversation.length - 1]?.role === 'user' && <Thinking />}
+
 			<div ref={chatRef} className='-m-2' aria-hidden='true' />
 		</section>
 	);

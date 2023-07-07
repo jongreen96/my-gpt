@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const ChatBubble = ({ message }) => {
 	return message.role === 'user' ? (
 		<p className='w-fit max-w-[90%] self-end rounded-lg rounded-br-none bg-blue p-2 text-white'>
@@ -8,4 +10,8 @@ export const ChatBubble = ({ message }) => {
 			{message.content}
 		</p>
 	);
+};
+
+ChatBubble.propTypes = {
+	message: PropTypes.object.isRequired,
 };

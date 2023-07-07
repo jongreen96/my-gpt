@@ -19,7 +19,7 @@ function App() {
 
 	// Redirect to chat if user is logged in
 	useEffect(() => {
-		if (!!user) {
+		if (user) {
 			navigate('/chat');
 		}
 	}, [user]);

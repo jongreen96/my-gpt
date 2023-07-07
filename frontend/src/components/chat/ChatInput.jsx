@@ -23,7 +23,7 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className='fixed bottom-0 flex w-full max-w-3xl p-2 backdrop-blur-sm md:w-[calc(100%-200px)]'
+			className='fixed bottom-0 flex w-full max-w-3xl p-2 backdrop-blur-sm md:w-[calc(100%-256px)]'
 		>
 			<input
 				type='text'

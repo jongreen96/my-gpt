@@ -9,7 +9,7 @@ export default function Navigation({ authenticated }) {
 
 	return (
 		<>
-			<nav className='sticky top-0 flex h-12 bg-light/60 p-2 align-middle backdrop-blur-sm dark:bg-xdark/60 md:h-screen md:w-64 md:flex-col md:justify-normal md:border-r-2 md:border-r-teal-700'>
+			<nav className='sticky top-0 flex h-12 shrink-0 bg-light/60 p-2 align-middle backdrop-blur-sm dark:bg-xdark/60 md:h-screen md:w-64 md:flex-col md:justify-normal md:border-r-2 md:border-r-teal-700'>
 				<button onClick={() => setMenuOpen(!menuOpen)} className='md:hidden'>
 					<Icons.HamburgerMenuButton />
 				</button>

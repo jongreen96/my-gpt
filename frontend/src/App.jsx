@@ -32,11 +32,11 @@ function App() {
 					<Route path='/' element={<Homepage />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/register' element={<Register />} />
-					<Route path='/settings' element={<Settings />} />
 					{!!user && (
 						<>
 							<Route path='/account' element={<Account />} />
 							<Route path='/chat' element={<Chat />} />
+							<Route path='/settings' element={<Settings />} />
 						</>
 					)}
 					<Route path='*' element={<Homepage />} />

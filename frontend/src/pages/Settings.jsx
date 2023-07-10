@@ -7,8 +7,13 @@ export default function Settings() {
 	const dispatch = useDispatch();
 	const settings = useSelector(selectUserSettings);
 
+	const handleLogout = () => {
+		localStorage.removeItem('token');
+		window.location.reload();
+	};
+
 	return (
-		<main className='mx-auto flex w-full max-w-3xl grow flex-col gap-10 pt-10'>
+		<main className='mx-auto flex w-full max-w-3xl grow flex-col gap-10 p-2 pt-10'>
 			<h1 className='text-4xl font-semibold uppercase'>Settings</h1>
 
 			<section className='flex flex-col gap-2'>
@@ -56,6 +61,13 @@ export default function Settings() {
 			<section className='flex flex-col gap-2'>
 				<h2 className='text-2xl font-semibold uppercase'>Admin Settings</h2>
 			</section>
+
+			<button
+				onClick={handleLogout}
+				className='fixed bottom-2 w-[calc(100%-16px)] max-w-lg self-center rounded-lg rounded-br-none bg-teal-700 p-2 text-xl font-semibold uppercase text-white hover:bg-teal-800'
+			>
+				Logout
+			</button>
 		</main>
 	);
 }

@@ -19,6 +19,7 @@ const userSlice = createSlice({
 				state.user = action.payload.user;
 				state.status = 'succeeded';
 				applyUserSettings(state.user.settings);
+				window.location.reload();
 			})
 			.addCase(login.rejected, (state, action) => {
 				localStorage.removeItem('token');
@@ -35,6 +36,7 @@ const userSlice = createSlice({
 				state.user = action.payload.user;
 				state.status = 'succeeded';
 				applyUserSettings(state.user.settings);
+				window.location.reload();
 			})
 			.addCase(register.rejected, (state, action) => {
 				state.status = 'failed';

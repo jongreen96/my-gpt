@@ -15,3 +15,11 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
 	const response = await Api.get('/users');
 	return response.data;
 });
+
+export const updateSetting = createAsyncThunk(
+	'user/updateSetting',
+	async ({ setting, value }) => {
+		const response = await Api.put('/users/settings', { setting, value });
+		return response.data;
+	}
+);

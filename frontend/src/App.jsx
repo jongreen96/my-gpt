@@ -22,7 +22,7 @@ function App() {
 		if (user) {
 			navigate('/chat');
 		}
-	}, [user]);
+	}, [user?.id]);
 
 	return (
 		<>

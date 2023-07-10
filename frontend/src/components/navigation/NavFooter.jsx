@@ -16,12 +16,15 @@ export default function NavFooter({ Icons, setMenuOpen, authenticated }) {
 					>
 						<Icons.AccountButton />
 					</NavLink>
+
+					<NavLink
+						to='/settings'
+						onClick={() => setMenuOpen && setMenuOpen(false)}
+					>
+						<Icons.SettingsButton />
+					</NavLink>
 				</>
 			)}
-
-			<NavLink to='/settings' onClick={() => setMenuOpen && setMenuOpen(false)}>
-				<Icons.SettingsButton />
-			</NavLink>
 		</div>
 	);
 }

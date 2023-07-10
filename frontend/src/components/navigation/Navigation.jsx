@@ -20,7 +20,8 @@ export default function Navigation({ authenticated }) {
 
 				<div className='hidden h-full flex-col justify-between md:flex'>
 					{!authenticated && <Login />}
-					{authenticated && <Conversations />}
+					{location.pathname === '/chat' && authenticated && <Conversations />}
+					<div></div>
 					<NavFooter Icons={Icons} authenticated={authenticated} />
 				</div>
 			</nav>

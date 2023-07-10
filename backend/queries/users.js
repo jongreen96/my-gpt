@@ -53,4 +53,14 @@ module.exports = {
 		user.rows[0].settings = settings.rows[0];
 		return user.rows[0];
 	},
+	updateUserSettings: async (id, setting, value) => {
+		const updatedSettings = await db.query(
+			`UPDATE settings SET
+			${setting} = $1
+			WHERE admin_id = $2
+			RETURNING *`,
+			[value, id]
+		);
+		return updatedSettings.rows[0];
+	},
 };

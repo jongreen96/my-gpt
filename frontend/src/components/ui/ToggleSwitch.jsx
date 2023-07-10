@@ -1,4 +1,5 @@
 import Icons from '../../assets/Icons';
+import PropTypes from 'prop-types';
 
 export const ToggleSwitch = ({ setting }) => {
 	return (
@@ -12,4 +13,8 @@ export const ToggleSwitch = ({ setting }) => {
 			</div>
 		</div>
 	);
+};
+
+ToggleSwitch.propTypes = {
+	setting: PropTypes.bool.isRequired,
 };

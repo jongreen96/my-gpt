@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Icons from '../../assets/Icons';
 import { handleChatInput, handleNewChat } from '../../utils/ChatUtils';
+import { selectUserSettings } from '../../store/users/userSlice';
 
 export const ChatInput = ({ conversations, activeConversation }) => {
 	const dispatch = useDispatch();
+	const settings = useSelector(selectUserSettings);
 	const [userInput, setUserInput] = useState('');
 
 	const conversation = conversations.find(
@@ -16,7 +18,13 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 		e.preventDefault();
 
 		conversation
-			? handleChatInput(userInput, setUserInput, conversation, dispatch)
+			? handleChatInput(
+					userInput,
+					setUserInput,
+					conversation,
+					dispatch,
+					settings
+			  )
 			: handleNewChat(userInput, setUserInput, dispatch);
 	};
 

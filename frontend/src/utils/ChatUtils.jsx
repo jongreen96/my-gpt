@@ -17,7 +17,8 @@ export const handleChatInput = async (
 	userInput,
 	setUserInput,
 	conversation,
-	dispatch
+	dispatch,
+	settings
 ) => {
 	if (userInput === '') return;
 	setUserInput('');
@@ -35,7 +36,13 @@ export const handleChatInput = async (
 		})
 	);
 
-	const response = await generateResponse(newConversation);
+	// send messages based on settings.conversation_memory_length
+	const memoryLength =
+		settings.conversation_memory_length === 0
+			? 1000
+			: settings.conversation_memory_length * 2;
+
+	const response = await generateResponse(newConversation.slice(-memoryLength));
 
 	dispatch(
 		updateConversation({

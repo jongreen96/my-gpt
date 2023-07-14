@@ -31,8 +31,17 @@ router.put('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
 	try {
 		const { messages } = req.body;
-		const result = await generateResponse(messages);
-		res.send(result);
+		const strippedMessages = messages.map((message) => {
+			return {
+				role: message.role,
+				content: message.content,
+			};
+		});
+		const result = await generateResponse(strippedMessages);
+		res.send({
+			...result,
+			time: new Date().toISOString(),
+		});
 	} catch (error) {
 		res.status(500).send('Server error');
 	}

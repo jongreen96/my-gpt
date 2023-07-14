@@ -25,6 +25,7 @@ export const handleChatInput = async (
 	const newConversation = conversation.conversation.concat({
 		role: 'user',
 		content: userInput,
+		time: new Date().toISOString(),
 	});
 
 	dispatch(
@@ -52,6 +53,7 @@ export const handleNewChat = async (userInput, setUserInput, dispatch) => {
 		{
 			role: 'user',
 			content: userInput,
+			time: new Date().toISOString(),
 		},
 	];
 

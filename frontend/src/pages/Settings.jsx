@@ -38,7 +38,7 @@ export default function Settings() {
 					</button>
 				</div>
 
-				{/* <div className='flex justify-between'>
+				<div className='flex justify-between'>
 					<div>
 						<h3 className='text-xl font-semibold'>Timestamp Messages</h3>
 						<p>Toggle timestamps on or off.</p>
@@ -55,7 +55,7 @@ export default function Settings() {
 					>
 						<ToggleSwitch setting={settings.timestamps} />
 					</button>
-				</div> */}
+				</div>
 			</section>
 
 			<section className='flex flex-col gap-2'>

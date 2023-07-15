@@ -6,9 +6,7 @@
   "proxy": "http://localhost:3000",
   "scripts": {
     "dev": "nodemon ./backend/index.js",
-    "pre-build": "cd ./frontend && npm run build",
-    "move": "move ./frontend/dist ./backend/dist",
-    "build": "npm run pre-build && npm run move"
+    "pre-build": "cd ./frontend && npm run build"
   },
   "keywords": [],
   "author": "",

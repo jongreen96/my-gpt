@@ -1,13 +1,28 @@
 {
-  "name": "my-gpt",
+  "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "./backend/index.js",
+  "main": "index.js",
+  "proxy": "http://localhost:3000",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd ./backend && npm run dev"
+    "dev": "nodemon ./backend/index.js",
+    "pre-build": "cd ./frontend && npm run build",
+    "move": "move ./frontend/dist ./backend/dist",
+    "build": "npm run pre-build && npm run move"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "openai": "^3.3.0",
+    "pg": "^8.11.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
 }

@@ -6,7 +6,8 @@
   "proxy": "http://localhost:3000",
   "scripts": {
     "dev": "nodemon ./backend/index.js",
-    "pre-build": "cd ./frontend && npm run build"
+    "pre-build": "cd ./frontend && npm run build",
+    "run": "node ./backend/index.js"
   },
   "keywords": [],
   "author": "",

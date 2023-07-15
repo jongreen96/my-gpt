@@ -35,7 +35,6 @@ const userSlice = createSlice({
 				localStorage.setItem('token', action.payload.accessToken);
 				state.user = action.payload.user;
 				state.status = 'succeeded';
-				applyUserSettings(state.user.settings);
 				window.location.reload();
 			})
 			.addCase(register.rejected, (state, action) => {

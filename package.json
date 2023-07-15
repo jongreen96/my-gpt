@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nodemon ./backend/index.js",
     "pre-build": "cd ./frontend && npm run build",
+    "build": "npm run pre-build && mv ./frontend/dist ./backend/dist",
     "start": "node ./backend/index.js"
   },
   "keywords": [],

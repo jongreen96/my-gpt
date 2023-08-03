@@ -43,7 +43,6 @@ router.post('/register', async (req, res) => {
 		const accessToken = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET);
 		res.json({ accessToken, newUser });
 	} catch (error) {
-		console.log('error', error);
 		res.status(500).send('Server error');
 	}
 });

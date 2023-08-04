@@ -10,7 +10,7 @@ const generateResponse = async (messages) => {
 		model: 'gpt-3.5-turbo',
 		messages,
 	});
-	return response.data.choices[0].message;
+	return response.data;
 };
 
 module.exports = generateResponse;

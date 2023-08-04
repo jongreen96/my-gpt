@@ -7,11 +7,7 @@ export const Timestamp = ({ time }) => {
 		hour12: false,
 	});
 
-	return (
-		<p className='w-fit max-w-[90%] select-none self-center text-xs text-gray-500'>
-			{localTime || 'Just now'}
-		</p>
-	);
+	return <p>{localTime || 'Just now'}</p>;
 };
 
 Timestamp.propTypes = {

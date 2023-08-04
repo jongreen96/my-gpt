@@ -16,7 +16,7 @@ export default function Settings() {
 		<main className='mx-auto flex w-full max-w-3xl grow flex-col gap-10 p-2 pt-10'>
 			<h1 className='text-4xl font-semibold uppercase'>Settings</h1>
 
-			<section className='flex flex-col gap-2'>
+			<section className='flex flex-col gap-3'>
 				<h2 className='text-2xl font-semibold uppercase'>Account Settings</h2>
 
 				<div className='flex justify-between'>
@@ -56,10 +56,6 @@ export default function Settings() {
 						<ToggleSwitch setting={settings.timestamps} />
 					</button>
 				</div>
-			</section>
-
-			<section className='flex flex-col gap-2'>
-				<h2 className='text-2xl font-semibold uppercase'>Admin Settings</h2>
 
 				<div className='flex justify-between'>
 					<div>
@@ -85,6 +81,28 @@ export default function Settings() {
 							)
 						}
 					/>
+				</div>
+
+				<div className='flex justify-between'>
+					<div>
+						<h3 className='text-xl font-semibold'>Token Counter</h3>
+						<p>
+							Toggle token counter on or off. Usefull to see token usage during
+							conversations.
+						</p>
+					</div>
+					<button
+						onClick={() =>
+							dispatch(
+								updateSetting({
+									setting: 'tokens',
+									value: !settings.tokens,
+								})
+							)
+						}
+					>
+						<ToggleSwitch setting={settings.tokens} />
+					</button>
 				</div>
 			</section>
 

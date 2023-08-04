@@ -39,7 +39,8 @@ router.post('/', async (req, res) => {
 		});
 		const result = await generateResponse(strippedMessages);
 		res.send({
-			...result,
+			...result.choices[0].message,
+			usage: result.usage,
 			time: new Date().toISOString(),
 		});
 	} catch (error) {

@@ -16,6 +16,17 @@ export const updateConversation = createAsyncThunk(
 			`/conversations/${conversation.id}`,
 			conversation
 		);
+
+		if (
+			response.data.conversation[response.data.conversation.length - 1].role ===
+			'assistant'
+		) {
+			response.data.conversation[response.data.conversation.length - 2].usage =
+				response.data.conversation[response.data.conversation.length - 1].usage;
+		}
+
+		Api.put(`/conversations/${conversation.id}`, response.data);
+
 		return response.data;
 	}
 );

@@ -11,6 +11,9 @@ import { setActiveConversation } from '../../store/conversations/conversationsSl
 export default function Conversations() {
 	const dispatch = useDispatch();
 	const { status, conversations } = useSelector((state) => state.conversations);
+	const activeConversation = useSelector(
+		(state) => state.conversations.activeConversation
+	);
 
 	useEffect(() => {
 		dispatch(fetchConversations());
@@ -45,7 +48,7 @@ export default function Conversations() {
 								dispatch(deleteConversation(conversation.id));
 							}}
 						>
-							<Icons.DeleteButton />
+							{activeConversation === conversation.id && <Icons.DeleteButton />}
 						</button>
 					</li>
 				</Link>

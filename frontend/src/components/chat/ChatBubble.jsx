@@ -12,12 +12,12 @@ export const ChatBubble = ({ message }) => {
 			<p className='w-fit max-w-[90%] rounded-lg rounded-br-none bg-blue p-2 text-white'>
 				{message.content}
 			</p>
-			<div className='w-fit max-w-[90%] select-none self-center text-xs text-gray-500'>
+			<div className='flex w-fit max-w-[90%] select-none flex-col items-end self-center text-xs text-gray-500'>
 				{settings.timestamps && <Timestamp time={message.time} />}
 				{settings.tokens && (
-					<p className='flex'>
-						{<Icons.Token />}
+					<p className='flex gap-1'>
 						{message.usage?.prompt_tokens}
+						{<Icons.Token />}
 					</p>
 				)}
 			</div>
@@ -27,10 +27,10 @@ export const ChatBubble = ({ message }) => {
 			<p className='w-fit max-w-[90%] whitespace-normal rounded-lg rounded-bl-none bg-teal-700 p-2 text-white'>
 				{message.content}
 			</p>
-			<div className='w-fit max-w-[90%] select-none self-center text-xs text-gray-500'>
+			<div className='flex w-fit max-w-[90%] select-none flex-col self-center text-xs text-gray-500'>
 				{settings.timestamps && <Timestamp time={message.time} />}
 				{settings.tokens && (
-					<p className='flex'>
+					<p className='flex gap-[2px]'>
 						{<Icons.Token />}
 						{message.usage?.completion_tokens}
 					</p>

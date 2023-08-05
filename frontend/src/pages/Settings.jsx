@@ -70,6 +70,7 @@ export default function Settings() {
 					<input
 						className='h-8 w-16 self-center rounded-lg rounded-br-none border-2 border-teal-700 bg-light p-2 outline-none dark:bg-xdark'
 						type='number'
+						pattern='\\d*'
 						min='0'
 						value={settings.conversation_memory_length}
 						onChange={(e) =>

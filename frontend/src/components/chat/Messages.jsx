@@ -2,13 +2,9 @@ import PropTypes from 'prop-types';
 import { useEffect, useMemo, useRef } from 'react';
 import { Thinking } from './Thinking';
 import { ChatBubble } from './ChatBubble';
-import { selectUserSettings } from '../../store/users/userSlice';
-import { useSelector } from 'react-redux';
-import { MemoryLimit } from './MemoryLimit';
 
 export const Messages = ({ conversations, activeConversation }) => {
 	const chatRef = useRef(null);
-	const settings = useSelector(selectUserSettings);
 
 	// Get active conversation
 	const conversation = useMemo(() => {
@@ -33,7 +29,6 @@ export const Messages = ({ conversations, activeConversation }) => {
 			})}
 
 			{conversation[conversation.length - 1]?.role === 'user' && <Thinking />}
-			{settings.conversation_memory_length === 1 && <MemoryLimit />}
 
 			<div ref={chatRef} className='-m-2' aria-hidden='true' />
 		</section>

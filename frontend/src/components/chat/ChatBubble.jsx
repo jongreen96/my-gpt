@@ -10,8 +10,6 @@ export const ChatBubble = ({ message, i }) => {
 
 	return message.role === 'user' ? (
 		<>
-			{settings.conversation_memory_length * 2 - 2 === i && <MemoryLimit />}
-
 			<div className='flex w-full flex-row-reverse gap-2'>
 				<p className='w-fit max-w-[90%] rounded-lg rounded-br-none bg-blue p-2 text-white'>
 					{message.content}
@@ -26,11 +24,11 @@ export const ChatBubble = ({ message, i }) => {
 					)}
 				</div>
 			</div>
+
+			{settings.conversation_memory_length * 2 - 1 === i && <MemoryLimit />}
 		</>
 	) : (
 		<>
-			{settings.conversation_memory_length * 2 - 2 === i && <MemoryLimit />}
-
 			<div className='flex gap-2'>
 				<p className='w-fit max-w-[90%] whitespace-normal rounded-lg rounded-bl-none bg-teal-700 p-2 text-white'>
 					{message.content}
@@ -45,6 +43,8 @@ export const ChatBubble = ({ message, i }) => {
 					)}
 				</div>
 			</div>
+
+			{settings.conversation_memory_length * 2 - 1 === i && <MemoryLimit />}
 		</>
 	);
 };

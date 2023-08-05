@@ -23,7 +23,9 @@ export const Messages = ({ conversations, activeConversation }) => {
 	return (
 		<section className='mb-14 flex grow flex-col justify-end gap-2 p-2'>
 			{conversation.map((message, i) => {
-				return <ChatBubble message={message} key={i} />;
+				return (
+					<ChatBubble message={message} key={i} i={conversation.length - i} />
+				);
 			})}
 
 			{conversation[conversation.length - 1]?.role === 'user' && <Thinking />}

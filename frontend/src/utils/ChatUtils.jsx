@@ -40,7 +40,7 @@ export const handleChatInput = async (
 	const memoryLength =
 		settings.conversation_memory_length === 0
 			? 1000
-			: settings.conversation_memory_length * 2;
+			: settings.conversation_memory_length * 2 - 1;
 
 	const response = await generateResponse(newConversation.slice(-memoryLength));
 

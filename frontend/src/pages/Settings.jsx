@@ -1,7 +1,8 @@
-import { ToggleSwitch } from '../components/ui/ToggleSwitch';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserSettings } from '../store/users/userSlice';
+import { Dropdown } from '../components/ui/Dropdown';
+import { ToggleSwitch } from '../components/ui/ToggleSwitch';
 import { updateSetting } from '../store/users/userAPI';
+import { selectUserSettings } from '../store/users/userSlice';
 
 export default function Settings() {
 	const dispatch = useDispatch();
@@ -63,15 +64,12 @@ export default function Settings() {
 						<p>
 							How many previous messages in the chat history are sent to GPT,
 							increasing this number improves conversational ability but can
-							increase token use. Setting to (0) will default to GPT max memory
+							increase token use. Setting to ∞ will default to GPT max memory
 							length.
 						</p>
 					</div>
-					<input
-						className='h-8 w-16 self-center rounded-lg rounded-br-none border-2 border-teal-700 bg-light p-2 outline-none dark:bg-xdark'
-						type='number'
-						pattern='\\d*'
-						min='0'
+					<select
+						className='ml-2 h-8 w-16 self-center rounded-lg rounded-br-none border-2 border-teal-700 bg-light px-2 outline-none dark:bg-xdark'
 						value={settings.conversation_memory_length}
 						onChange={(e) =>
 							dispatch(
@@ -81,7 +79,9 @@ export default function Settings() {
 								})
 							)
 						}
-					/>
+					>
+						<Dropdown length={10} />
+					</select>
 				</div>
 
 				<div className='flex justify-between'>

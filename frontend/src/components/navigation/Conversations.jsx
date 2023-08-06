@@ -11,12 +11,10 @@ import { setActiveConversation } from '../../store/conversations/conversationsSl
 export default function Conversations() {
 	const dispatch = useDispatch();
 	const { status, conversations } = useSelector((state) => state.conversations);
-	const activeConversation = useSelector(
-		(state) => state.conversations.activeConversation
-	);
+	const activeConversation = conversations.activeConversation;
 
 	useEffect(() => {
-		dispatch(fetchConversations());
+		if (status !== 'succeeded') dispatch(fetchConversations());
 	}, [dispatch]);
 
 	if (status === 'loading') return <div>Loading...</div>;

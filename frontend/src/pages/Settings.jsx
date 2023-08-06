@@ -69,7 +69,7 @@ export default function Settings() {
 						</p>
 					</div>
 					<select
-						className='ml-2 h-8 w-16 self-center rounded-lg rounded-br-none border-2 border-teal-700 bg-light px-2 outline-none dark:bg-xdark'
+						className='ml-2 h-8 w-[135px] self-center rounded-lg rounded-br-none border-2 border-teal-700 bg-light outline-none dark:bg-xdark'
 						value={settings.conversation_memory_length}
 						onChange={(e) =>
 							dispatch(

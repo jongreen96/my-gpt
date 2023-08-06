@@ -21,7 +21,6 @@ export default function Conversations() {
 
 	if (status === 'loading') return <div>Loading...</div>;
 	if (status === 'failed') return <div>Error</div>;
-
 	return (
 		<ul role='list' className='flex w-full flex-col gap-2 align-middle'>
 			<Link

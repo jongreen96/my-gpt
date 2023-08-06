@@ -17,11 +17,6 @@ const conversationsSlice = createSlice({
 		setActiveConversation(state, action) {
 			state.activeConversation = action.payload;
 		},
-		getActiveConversation(state, action) {
-			return state.conversations.find(
-				(conversation) => conversation.id === action.payload
-			);
-		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -59,8 +54,7 @@ const conversationsSlice = createSlice({
 	},
 });
 
-export const { setActiveConversation, getActiveConversation } =
-	conversationsSlice.actions;
+export const { setActiveConversation } = conversationsSlice.actions;
 
 export const selectConversations = (state) => state.conversations;
 

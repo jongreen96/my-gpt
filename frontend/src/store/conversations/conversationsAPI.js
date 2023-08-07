@@ -17,6 +17,8 @@ export const updateConversation = createAsyncThunk(
 			conversation
 		);
 
+		// If the last message was sent by the assistant, then we need to update the usage
+		// of the second to last message
 		if (
 			response.data.conversation[response.data.conversation.length - 1].role ===
 			'assistant'

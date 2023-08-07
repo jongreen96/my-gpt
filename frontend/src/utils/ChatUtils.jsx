@@ -3,6 +3,7 @@ import {
 	updateConversation,
 } from '../store/conversations/conversationsAPI';
 import { setActiveConversation } from '../store/conversations/conversationsSlice';
+import { updateTokens } from '../store/users/userSlice';
 import Api from './Api';
 
 export const generateResponse = async (conversation) => {
@@ -50,6 +51,8 @@ export const handleChatInput = async (
 			conversation: [...newConversation, response],
 		})
 	);
+
+	dispatch(updateTokens(response.usage.total_tokens));
 };
 
 export const handleNewChat = async (userInput, setUserInput, dispatch) => {
@@ -80,4 +83,6 @@ export const handleNewChat = async (userInput, setUserInput, dispatch) => {
 			conversation: [...newConversation, response],
 		})
 	);
+
+	dispatch(updateTokens(response.usage.total_tokens));
 };

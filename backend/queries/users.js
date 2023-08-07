@@ -63,4 +63,11 @@ module.exports = {
 		);
 		return updatedSettings.rows[0];
 	},
+	calculateTokens: async (id, tokens) => {
+		const user = await db.query(
+			`UPDATE mygpt_admins SET tokens = tokens - $1 WHERE id = $2 RETURNING *`,
+			[tokens, id]
+		);
+		return user.rows[0];
+	},
 };

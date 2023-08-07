@@ -3,11 +3,16 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Icons from '../../assets/Icons';
 import { handleChatInput, handleNewChat } from '../../utils/ChatUtils';
-import { selectUserSettings } from '../../store/users/userSlice';
+import {
+	selectUserSettings,
+	selectUserTokens,
+} from '../../store/users/userSlice';
 
 export const ChatInput = ({ conversations, activeConversation }) => {
 	const dispatch = useDispatch();
 	const settings = useSelector(selectUserSettings);
+	const tokens = useSelector(selectUserTokens);
+
 	const [userInput, setUserInput] = useState('');
 
 	const conversation = conversations.find(
@@ -16,6 +21,11 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		if (tokens < 1) {
+			alert('You have run out of tokens.');
+			return;
+		}
 
 		conversation
 			? handleChatInput(

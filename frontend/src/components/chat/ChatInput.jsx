@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Icons from '../../assets/Icons';
 import { handleChatInput, handleNewChat } from '../../utils/ChatUtils';
@@ -18,6 +18,12 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 	const conversation = conversations.find(
 		(conversation) => conversation.id === activeConversation
 	);
+
+	// Focus on input when component mounts
+	const inputRef = useRef(null);
+	useEffect(() => {
+		inputRef.current.focus();
+	}, [activeConversation]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -49,6 +55,7 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 				placeholder='Type your message here...'
 				value={userInput}
 				onChange={(e) => setUserInput(e.target.value)}
+				ref={inputRef}
 			/>
 
 			<button type='submit' className='h-10 w-10 rounded-tr-lg bg-teal-700'>

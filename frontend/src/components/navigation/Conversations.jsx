@@ -23,7 +23,10 @@ export default function Conversations() {
 	if (status === 'failed') return <div>Error</div>;
 
 	return (
-		<ul role='list' className='flex w-full flex-col gap-2 align-middle'>
+		<ul
+			role='list'
+			className='no-scrollbar flex w-full flex-col gap-2 overflow-scroll align-middle'
+		>
 			<Link
 				to='/chat'
 				onClick={() => {

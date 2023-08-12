@@ -19,10 +19,12 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 		(conversation) => conversation.id === activeConversation
 	);
 
-	// Focus on input when component mounts
+	// Focus on input when component mounts on desktop
 	const inputRef = useRef(null);
 	useEffect(() => {
-		inputRef.current.focus();
+		if (navigator.userAgent.indexOf('Mobi') === -1) {
+			inputRef.current.focus();
+		}
 	}, [activeConversation]);
 
 	const handleSubmit = async (e) => {

@@ -6,7 +6,7 @@ const {
 	createConversation,
 	deleteConversation,
 } = require('../queries/conversations');
-const { calculateTokens } = require('../queries/users');
+const { calculateUsage } = require('../queries/users');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -39,7 +39,9 @@ router.post('/', async (req, res) => {
 			};
 		});
 		const result = await generateResponse(strippedMessages);
-		await calculateTokens(req.user.id, result.usage.total_tokens);
+
+		await calculateUsage(req.user.id, result.usage.total_tokens);
+
 		res.send({
 			...result.choices[0].message,
 			usage: result.usage,

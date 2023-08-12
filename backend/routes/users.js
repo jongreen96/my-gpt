@@ -6,6 +6,7 @@ const {
 	createNewUser,
 	getUserById,
 	updateUserSettings,
+	getUserUsage,
 } = require('../queries/users');
 const authenticateToken = require('../utils/jwt');
 
@@ -53,6 +54,16 @@ router.put('/settings', authenticateToken, async (req, res) => {
 		const { setting, value } = req.body;
 		const updatedSettings = await updateUserSettings(id, setting, value);
 		res.send(updatedSettings);
+	} catch (error) {
+		res.status(500).send('Server error');
+	}
+});
+
+router.get('/usage', authenticateToken, async (req, res) => {
+	try {
+		const { id } = req.user;
+		const usage = await getUserUsage(id);
+		res.send(usage);
 	} catch (error) {
 		res.status(500).send('Server error');
 	}

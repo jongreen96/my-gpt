@@ -88,4 +88,11 @@ module.exports = {
 			);
 		}
 	},
+	getUserUsage: async (id) => {
+		const usage = await db.query(
+			`SELECT * FROM mygpt_usage WHERE admin_id = $1 ORDER BY date DESC`,
+			[id]
+		);
+		return usage.rows;
+	},
 };

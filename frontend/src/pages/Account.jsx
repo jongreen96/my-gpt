@@ -21,18 +21,18 @@ export default function Account() {
 					<thead>
 						<tr>
 							<th className='text-left'>Date</th>
-							<th className='text-left'>Used</th>
-							<th className='text-left'>Added</th>
-							<th className='text-left'>Remaining</th>
+							<th className='text-right'>Used</th>
+							<th className='text-right'>Added</th>
+							<th className='text-right'>Remaining</th>
 						</tr>
 					</thead>
 					<tbody>
 						{usage.map((item) => (
-							<tr key={item.date}>
+							<tr key={item.date} className='border-t-2'>
 								<td>{item.date}</td>
-								<td>{item.tokens_used}</td>
-								<td>{item.tokens_added}</td>
-								<td>{item.tokens_remaining}</td>
+								<td className='text-right'>{item.tokens_used}</td>
+								<td className='text-right'>{item.tokens_added}</td>
+								<td className='text-right'>{item.tokens_remaining}</td>
 							</tr>
 						))}
 					</tbody>

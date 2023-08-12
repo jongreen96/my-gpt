@@ -6,10 +6,8 @@ import Login from './Login';
 export default function SideMenu({ Icons, authenticated, setMenuOpen }) {
 	document.addEventListener('click', (e) => {
 		if (
-			e.target.closest('aside') ||
-			e.target.closest('nav') ||
-			e.target.closest('button') ||
-			e.target.closest('svg')
+			// e.target.closest('aside') ||
+			e.target.closest('nav')
 		)
 			return;
 		setMenuOpen(false);

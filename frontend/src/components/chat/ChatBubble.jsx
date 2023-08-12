@@ -51,4 +51,5 @@ export const ChatBubble = ({ message, i }) => {
 
 ChatBubble.propTypes = {
 	message: PropTypes.object.isRequired,
+	i: PropTypes.number.isRequired,
 };

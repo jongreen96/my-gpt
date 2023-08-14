@@ -17,4 +17,32 @@
 		-ms-overflow-style: none; /* IE and Edge */
 		scrollbar-width: none; /* Firefox */
 	}
+
+	.custom-scrollbar-x::-webkit-scrollbar {
+		width: 8px;
+		height: 0px;
+		margin: 10px;
+	}
+
+	.custom-scrollbar-y::-webkit-scrollbar {
+		width: 0px;
+		height: 8px;
+		margin: 10px;
+	}
+
+	.custom-scrollbar-y::-webkit-scrollbar-track,
+	.custom-scrollbar-x::-webkit-scrollbar-track {
+		background: inherit;
+	}
+
+	.custom-scrollbar-y::-webkit-scrollbar-thumb,
+	.custom-scrollbar-x::-webkit-scrollbar-thumb {
+		background: #212121;
+		border-radius: 50vw;
+	}
+
+	.custom-scrollbar-y::-webkit-scrollbar-thumb:hover,
+	.custom-scrollbar-x::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
 }

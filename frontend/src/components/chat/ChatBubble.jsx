@@ -8,19 +8,14 @@ import { MemoryLimit } from './MemoryLimit';
 export const ChatBubble = ({ message, i }) => {
 	const settings = useSelector(selectUserSettings);
 
-	const codeRegex = /```(\w+)\n([\s\S]+?)\n```/g;
-	const formattedMessage = message.content.replace(
-		codeRegex,
-		`<div class="bg-black rounded-t-lg font-semibold px-2 pb-1 mt-2">$1</div>
-		<div class="p-2 rounded-b-lg mb-2 bg-black"><div class="bg-black pb-2 overflow-scroll custom-scrollbar-y"><pre><code>$2</code></pre></div></div>`
-	);
+	const messageArray = message.content.split('```');
 
 	return message.role === 'user' ? (
 		<>
 			<div className='flex w-full flex-row-reverse gap-2'>
-				<p className='w-fit max-w-[90%] rounded-lg rounded-br-none bg-blue p-2 text-white'>
-					{formattedMessage}
-				</p>
+				<div className='w-fit max-w-[90%] rounded-lg rounded-br-none bg-blue p-2 text-white'>
+					{message.content}
+				</div>
 				<div className='flex w-fit max-w-[90%] select-none flex-col items-end self-center text-xs text-gray-500'>
 					{settings.timestamps && <Timestamp time={message.time} />}
 					{settings.tokens && (
@@ -37,10 +32,37 @@ export const ChatBubble = ({ message, i }) => {
 	) : (
 		<>
 			<div className='flex gap-2'>
-				<p
-					className='w-fit max-w-[90%] whitespace-normal rounded-lg rounded-bl-none bg-teal-700 p-2 text-white'
-					dangerouslySetInnerHTML={{ __html: formattedMessage }}
-				/>
+				<div className='w-fit max-w-[90%] whitespace-normal rounded-lg rounded-bl-none bg-teal-700 p-2 text-white'>
+					{messageArray.map((part, i) => (
+						<span key={i}>
+							{i % 2 === 0 ? (
+								part
+							) : (
+								<>
+									<div className='mt-2 flex items-center justify-between rounded-t-lg border-b-[2px] border-dark bg-black px-2 pb-1 font-semibold'>
+										{part.split('\n')[0]}
+										<p
+											className='cursor-pointer text-gray-400 hover:text-gray-200'
+											id={`copy-code-${i}`}
+											onClick={() => {
+												navigator.clipboard.writeText(
+													part.split('\n').slice(1).join('\n')
+												);
+											}}
+										>
+											copy code
+										</p>
+									</div>
+									<div className='mb-2 rounded-b-lg bg-black p-2'>
+										<div className='custom-scrollbar-y overflow-scroll bg-black pb-2'>
+											<pre>{part.split('\n').slice(1).join('\n')}</pre>
+										</div>
+									</div>
+								</>
+							)}
+						</span>
+					))}
+				</div>
 				<div className='flex w-fit max-w-[90%] select-none flex-col self-center text-xs text-gray-500'>
 					{settings.timestamps && <Timestamp time={message.time} />}
 					{settings.tokens && (

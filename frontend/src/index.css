@@ -35,9 +35,13 @@
 		background: inherit;
 	}
 
-	.custom-scrollbar-y::-webkit-scrollbar-thumb,
-	.custom-scrollbar-x::-webkit-scrollbar-thumb {
+	.custom-scrollbar-y::-webkit-scrollbar-thumb {
 		background: #212121;
+		border-radius: 50vw;
+	}
+
+	.custom-scrollbar-x::-webkit-scrollbar-thumb {
+		background: #7a7a7a;
 		border-radius: 50vw;
 	}
 

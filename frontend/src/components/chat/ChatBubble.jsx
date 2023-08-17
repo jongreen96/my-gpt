@@ -5,10 +5,22 @@ import { Timestamp } from './Timestamp';
 import Icons from '../../assets/Icons.jsx';
 import { MemoryLimit } from './MemoryLimit';
 
-export const ChatBubble = ({ message, i }) => {
+export const ChatBubble = ({ message, index }) => {
 	const settings = useSelector(selectUserSettings);
-
 	const messageArray = message.content.split('```');
+
+	const handleCopyCode = (index, i, part) => {
+		navigator.clipboard.writeText(part.split('\n').slice(1).join('\n'));
+
+		const el = document.getElementById(`copy-code-${index}-part-${i}`);
+		el.innerText = 'copied!';
+		el.classList.remove('text-gray-400');
+
+		setTimeout(() => {
+			el.innerText = 'copy code';
+			el.classList.add('text-gray-400');
+		}, 2000);
+	};
 
 	return message.role === 'user' ? (
 		<>
@@ -27,7 +39,7 @@ export const ChatBubble = ({ message, i }) => {
 				</div>
 			</div>
 
-			{settings.conversation_memory_length * 2 - 1 === i && <MemoryLimit />}
+			{settings.conversation_memory_length * 2 - 1 === index && <MemoryLimit />}
 		</>
 	) : (
 		<>
@@ -43,18 +55,14 @@ export const ChatBubble = ({ message, i }) => {
 										{part.split('\n')[0]}
 										<p
 											className='cursor-pointer text-gray-400 hover:text-gray-200'
-											id={`copy-code-${i}`}
-											onClick={() => {
-												navigator.clipboard.writeText(
-													part.split('\n').slice(1).join('\n')
-												);
-											}}
+											id={`copy-code-${index}-part-${i}`}
+											onClick={() => handleCopyCode(index, i, part)}
 										>
 											copy code
 										</p>
 									</div>
 									<div className='mb-2 rounded-b-lg bg-black p-2'>
-										<div className='custom-scrollbar-y overflow-scroll bg-black pb-2'>
+										<div className='custom-scrollbar-y overflow-scroll bg-black'>
 											<pre>{part.split('\n').slice(1).join('\n')}</pre>
 										</div>
 									</div>
@@ -79,5 +87,5 @@ export const ChatBubble = ({ message, i }) => {
 
 ChatBubble.propTypes = {
 	message: PropTypes.object.isRequired,
-	i: PropTypes.number.isRequired,
+	index: PropTypes.number.isRequired,
 };

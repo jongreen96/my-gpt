@@ -24,16 +24,18 @@ export default function Account() {
 
 				{/* Tokens used based off remaining tokens at begining of month plus tokens added */}
 				<div>
-					<div>
+					<div className='flex justify-between'>
 						<p>{usage[0]?.tokens_used} used this month</p>
+						<p>{usage[0]?.tokens_remaining} remaining</p>
 					</div>
-					<div className='mb-2 h-5 w-full rounded-lg bg-gray-300'>
+					<div className='mb-2 h-5 w-full overflow-hidden rounded-lg rounded-br-none bg-gray-300'>
 						<div
-							className='h-full rounded-lg bg-teal-700'
+							className='h-full bg-teal-700'
 							style={{
 								width: `${
 									(usage[0]?.tokens_used /
-										(usage[1]?.tokens_remaining + usage[0]?.tokens_added)) *
+										(usage[1]?.tokens_remaining + usage[0]?.tokens_added ||
+											100000)) *
 									100
 								}%`,
 							}}
@@ -41,6 +43,35 @@ export default function Account() {
 					</div>
 				</div>
 
+				{/* Bar chart */}
+				<div className='flex h-28 flex-row-reverse items-baseline gap-2'>
+					{usage.map((item, index) => {
+						const largestUsedTokens = Math.max(
+							...usage.map((item) => item.tokens_used)
+						);
+
+						const date = new Date(item.date + '-01');
+						const formattedDate = date.toLocaleDateString('en-US', {
+							month: 'short',
+						});
+
+						if (index > 11) return null;
+
+						return (
+							<div className='w h-full' style={{ width: `${100 / 12}%` }}>
+								<div
+									className='rounded-t-md bg-teal-700'
+									style={{
+										height: `${(item.tokens_used / largestUsedTokens) * 100}%`,
+									}}
+								></div>
+								<p className='text-center text-xs'>{formattedDate}</p>
+							</div>
+						);
+					})}
+				</div>
+
+				{/* Listed months */}
 				<table className='w-full'>
 					<thead>
 						<tr>
@@ -58,29 +89,13 @@ export default function Account() {
 								year: 'numeric',
 							});
 
-							const largestRemainingTokens = Math.max(
-								...usage.map((item) => item.tokens_remaining)
-							);
-
 							return (
-								<>
-									<tr key={item.date} className='border-t-2'>
-										<td>{formattedDate}</td>
-										<td className='text-right'>{item.tokens_used}</td>
-										<td className='text-right'>{item.tokens_added}</td>
-										<td className='text-right'>{item.tokens_remaining}</td>
-									</tr>
-									<div className='mb-2 mt-1 h-2 w-[299%] rounded-lg bg-gray-300'>
-										<div
-											className='h-full rounded-lg bg-teal-700'
-											style={{
-												width: `${
-													(item.tokens_used / largestRemainingTokens) * 100
-												}%`,
-											}}
-										></div>
-									</div>
-								</>
+								<tr key={item.date} className='border-t-2'>
+									<td>{formattedDate}</td>
+									<td className='text-right'>{item.tokens_used}</td>
+									<td className='text-right'>{item.tokens_added}</td>
+									<td className='text-right'>{item.tokens_remaining}</td>
+								</tr>
 							);
 						})}
 					</tbody>

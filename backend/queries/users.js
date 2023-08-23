@@ -1,5 +1,6 @@
 const db = require('../db');
 const bcrypt = require('bcrypt');
+const { validateEmail, validatePassword } = require('../utils/validation');
 
 module.exports = {
 	getUserById: async (id) => {
@@ -17,7 +18,7 @@ module.exports = {
 	getUser: async (email, password) => {
 		const user = await db.query(
 			`SELECT id, email, password, username, tokens FROM mygpt_admins WHERE email = $1`,
-			[email]
+			[email.toLowerCase()]
 		);
 		if (!user.rows[0]) return null;
 
@@ -41,10 +42,13 @@ module.exports = {
 		};
 	},
 	createNewUser: async (email, password, accountName) => {
+		if (!validateEmail(email)) return null;
+		if (!validatePassword(password)) return null;
+
 		const encryptedPassword = await bcrypt.hash(password, 10);
 		const user = await db.query(
 			`INSERT INTO mygpt_admins (email, password, username) VALUES ($1, $2, $3) RETURNING *`,
-			[email, encryptedPassword, accountName]
+			[email.toLowerCase(), encryptedPassword, accountName]
 		);
 		const settings = await db.query(
 			`INSERT INTO mygpt_settings (admin_id) VALUES ($1) RETURNING *`,

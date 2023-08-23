@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { register } from '../store/users/userAPI';
+import { validateEmail, validatePassword } from '../utils/validation';
 
 export default function Login() {
 	const dispatch = useDispatch();
@@ -22,13 +23,15 @@ export default function Login() {
 			return;
 		}
 
-		if (form.password.length < 8) {
-			setErrorMessage('Password must be at least 8 characters');
+		if (!validateEmail(form.email)) {
+			setErrorMessage('Invalid Email Address');
 			return;
 		}
 
-		if (form.accountName.length < 4) {
-			setErrorMessage('Account name must be at least 4 characters');
+		if (!validatePassword(form.password)) {
+			setErrorMessage(
+				'Password must be: A minimum of 8 characters, contain at least 1 uppercase letter and at least 1 number.'
+			);
 			return;
 		}
 

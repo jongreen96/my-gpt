@@ -81,6 +81,8 @@ export const ChatBubble = ({ message, index }) => {
 					)}
 				</div>
 			</div>
+
+			{settings.conversation_memory_length * 2 - 1 === index && <MemoryLimit />}
 		</>
 	);
 };

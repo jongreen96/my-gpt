@@ -12,7 +12,6 @@ export default function Login() {
 		email: '',
 		password: '',
 		confirmPassword: '',
-		accountName: '',
 	});
 
 	const handleSubmit = (e) => {
@@ -91,25 +90,6 @@ export default function Login() {
 							value={form.confirmPassword}
 							onChange={(e) =>
 								setForm({ ...form, confirmPassword: e.target.value })
-							}
-						/>
-					</div>
-
-					<div className='flex flex-col'>
-						<label
-							htmlFor='account-name'
-							className='text-2xl font-semibold uppercase'
-						>
-							account username:
-						</label>
-						<input
-							type='text'
-							name='account-name'
-							id='account-name'
-							className='rounded-lg rounded-br-none border-2 border-teal-700 bg-light p-2 dark:bg-xdark'
-							value={form.accountName}
-							onChange={(e) =>
-								setForm({ ...form, accountName: e.target.value })
 							}
 						/>
 					</div>

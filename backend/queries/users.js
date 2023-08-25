@@ -5,7 +5,7 @@ const { validateEmail, validatePassword } = require('../utils/validation');
 module.exports = {
 	getUserById: async (id) => {
 		const user = await db.query(
-			`SELECT id, email, username, tokens FROM mygpt_admins WHERE id = $1`,
+			`SELECT id, email, tokens FROM mygpt_admins WHERE id = $1`,
 			[id]
 		);
 		const settings = await db.query(
@@ -17,7 +17,7 @@ module.exports = {
 	},
 	getUser: async (email, password) => {
 		const user = await db.query(
-			`SELECT id, email, password, username, tokens FROM mygpt_admins WHERE email = $1`,
+			`SELECT id, email, password, tokens FROM mygpt_admins WHERE email = $1`,
 			[email.toLowerCase()]
 		);
 		if (!user.rows[0]) return null;
@@ -36,19 +36,18 @@ module.exports = {
 		return {
 			id: user.rows[0].id,
 			email: user.rows[0].email,
-			username: user.rows[0].username,
 			tokens: user.rows[0].tokens,
 			settings: settings.rows[0],
 		};
 	},
-	createNewUser: async (email, password, accountName) => {
+	createNewUser: async (email, password) => {
 		if (!validateEmail(email)) return null;
 		if (!validatePassword(password)) return null;
 
 		const encryptedPassword = await bcrypt.hash(password, 10);
 		const user = await db.query(
-			`INSERT INTO mygpt_admins (email, password, username) VALUES ($1, $2, $3) RETURNING *`,
-			[email.toLowerCase(), encryptedPassword, accountName]
+			`INSERT INTO mygpt_admins (email, password) VALUES ($1, $2) RETURNING *`,
+			[email.toLowerCase(), encryptedPassword]
 		);
 		const settings = await db.query(
 			`INSERT INTO mygpt_settings (admin_id) VALUES ($1) RETURNING *`,

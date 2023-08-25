@@ -12,10 +12,16 @@ export default function Login() {
 		email: '',
 		password: '',
 		confirmPassword: '',
+		apikey: '',
 	});
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
+		if (/^sk-[a-zA-Z0-9]{48}$/.test(form.apikey) === false) {
+			setErrorMessage('Invalid API Key');
+			return;
+		}
 
 		if (form.password !== form.confirmPassword) {
 			setErrorMessage('Passwords do not match');
@@ -35,6 +41,8 @@ export default function Login() {
 		}
 
 		setErrorMessage('');
+
+		localStorage.setItem('apikey', form.apikey);
 		dispatch(register(form));
 	};
 
@@ -92,6 +100,29 @@ export default function Login() {
 								setForm({ ...form, confirmPassword: e.target.value })
 							}
 						/>
+					</div>
+
+					<div className='flex flex-col'>
+						<label
+							htmlFor='apikey'
+							className='text-2xl font-semibold uppercase'
+						>
+							api key:
+						</label>
+						<input
+							type='password'
+							name='apikey'
+							id='apikey'
+							className='rounded-lg rounded-br-none border-2 border-teal-700 bg-light p-2 dark:bg-xdark'
+							value={form.apikey}
+							onChange={(e) => setForm({ ...form, apikey: e.target.value })}
+						/>
+						<p className='pt-2 text-xs'>
+							Please note that for security reasons, we do not store API keys in
+							our database. Instead, it's stored in your browser's local
+							storage. If you clear your browser data or use a different device,
+							you will need to re-enter your API key in your account settings.
+						</p>
 					</div>
 
 					<p className='text-center text-red-600'>{errorMessage}</p>

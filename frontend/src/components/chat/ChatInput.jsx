@@ -30,8 +30,8 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if (tokens < 1) {
-			alert('You have run out of tokens.');
+		if (!localStorage.getItem('apikey')) {
+			alert('Please enter your API key in the settings menu to continue.');
 			return;
 		}
 

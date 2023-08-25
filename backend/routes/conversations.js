@@ -31,14 +31,14 @@ router.put('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
 	try {
-		const { messages } = req.body;
+		const { messages, apiKey } = req.body;
 		const strippedMessages = messages.map((message) => {
 			return {
 				role: message.role,
 				content: message.content,
 			};
 		});
-		const result = await generateResponse(strippedMessages);
+		const result = await generateResponse(strippedMessages, apiKey);
 
 		await calculateUsage(req.user.id, result.usage.total_tokens);
 

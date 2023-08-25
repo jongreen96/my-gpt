@@ -9,6 +9,7 @@ import Api from './Api';
 export const generateResponse = async (conversation) => {
 	const response = await Api.post('/conversations', {
 		messages: conversation,
+		apiKey: localStorage.getItem('apikey'),
 	});
 
 	return response.data;
@@ -44,6 +45,11 @@ export const handleChatInput = async (
 			: settings.conversation_memory_length * 2 - 1;
 
 	const response = await generateResponse(newConversation.slice(-memoryLength));
+
+	if (response === undefined) {
+		alert('Please enter your API key in the settings menu to continue.');
+		return;
+	}
 
 	dispatch(
 		updateConversation({

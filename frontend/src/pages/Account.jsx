@@ -12,6 +12,7 @@ export default function Account() {
 
 	const handleLogout = () => {
 		localStorage.removeItem('token');
+		localStorage.removeItem('apikey');
 		window.location.reload();
 	};
 

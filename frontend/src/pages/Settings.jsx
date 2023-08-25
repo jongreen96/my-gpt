@@ -15,6 +15,36 @@ export default function Settings() {
 			<section className='flex flex-col gap-3'>
 				<div className='flex justify-between'>
 					<div>
+						<h3 className='text-xl font-semibold'>API Key:</h3>
+						<p>
+							Your OpenAI API key. You can find your key{' '}
+							<a
+								href='https://beta.openai.com/account/api-keys'
+								target='_blank'
+								rel='noreferrer'
+								className='font-semibold text-teal-700 hover:text-teal-500 '
+							>
+								here
+							</a>
+							.
+						</p>
+						<p className='pt-2 text-xs'>
+							Please note that for security reasons, we do not store API keys in
+							our database. Instead, it's stored in your browser's local
+							storage. If you clear your browser data or use a different device,
+							you will need to re-enter your API key.
+						</p>
+					</div>
+					<input
+						type='text'
+						className='ml-2 h-8 w-32 self-center rounded-lg rounded-br-none border-2 border-teal-700 bg-light px-2 outline-none dark:bg-xdark'
+						value={localStorage.getItem('apikey')}
+						onChange={(e) => localStorage.setItem('apikey', e.target.value)}
+					/>
+				</div>
+
+				<div className='flex justify-between'>
+					<div>
 						<h3 className='text-xl font-semibold'>Dark Mode</h3>
 						<p>Toggle dark mode on or off.</p>
 					</div>

@@ -44,32 +44,36 @@ export default function Account() {
 				</div>
 
 				{/* Bar chart */}
-				<div className='flex h-28 flex-row-reverse items-baseline gap-2'>
-					{usage.map((item, index) => {
-						const largestUsedTokens = Math.max(
-							...usage.map((item) => item.tokens_used)
-						);
+				{usage.length > 1 && (
+					<div className='flex h-28 flex-row-reverse items-baseline justify-end gap-2'>
+						{usage.map((item, index) => {
+							const largestUsedTokens = Math.max(
+								...usage.map((item) => item.tokens_used)
+							);
 
-						const date = new Date(item.date + '-01');
-						const formattedDate = date.toLocaleDateString('en-US', {
-							month: 'short',
-						});
+							const date = new Date(item.date + '-01');
+							const formattedDate = date.toLocaleDateString('en-US', {
+								month: 'short',
+							});
 
-						if (index > 11) return null;
+							if (index > 11) return null;
 
-						return (
-							<div className='w h-full' style={{ width: `${100 / 12}%` }}>
-								<div
-									className='rounded-t-md bg-teal-700'
-									style={{
-										height: `${(item.tokens_used / largestUsedTokens) * 100}%`,
-									}}
-								></div>
-								<p className='text-center text-xs'>{formattedDate}</p>
-							</div>
-						);
-					})}
-				</div>
+							return (
+								<div className='w h-full' style={{ width: `${100 / 12}%` }}>
+									<div
+										className='rounded-t-md bg-teal-700'
+										style={{
+											height: `${
+												(item.tokens_used / largestUsedTokens) * 100
+											}%`,
+										}}
+									></div>
+									<p className='text-center text-xs'>{formattedDate}</p>
+								</div>
+							);
+						})}
+					</div>
+				)}
 
 				{/* Listed months */}
 				<table className='w-full'>

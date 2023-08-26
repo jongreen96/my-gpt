@@ -3,82 +3,73 @@ import { Link } from 'react-router-dom';
 export default function Homepage() {
 	return (
 		<main className='mx-auto flex w-full max-w-3xl flex-col gap-10 p-2 pt-10'>
-			<h1 className='text-4xl font-semibold uppercase'>
-				gpt admin control made simple
-			</h1>
+			<h1 className='text-4xl font-semibold uppercase'>gpt made simple</h1>
 
-			<section className='flex flex-col-reverse gap-5 md:flex-row'>
-				<img
-					src='https://i.imgur.com/gtSMsOw.png'
-					alt='placeholder'
-					className='h-full w-full rounded-md shadow-md md:w-1/2'
-				/>
-				<article className='flex flex-col'>
-					<h2 className='text-2xl font-semibold uppercase'>ai assistant</h2>
-					<p>
-						With ChatGPT&apos;s rising popularity, it&apos;s now more crucial
-						than ever to stay in front and take control of your conversations.
-						That&apos;s where My-GPT comes in - we offer a powerful platform
-						that ensures you&apos;re always one step ahead. It&apos;s time to
-						take control of your chat environment and stay in front of the
-						curve. Join My-GPT and experience a better way to manage chat
-						conversations.
-					</p>
-					<Link
-						to='/register'
-						role='button'
-						className='mt-auto w-full rounded-lg rounded-br-none bg-teal-700 p-2 text-center text-xl font-semibold uppercase text-white hover:bg-teal-800'
-					>
-						join my-gpt
-					</Link>
-				</article>
-			</section>
+			<div className='flex flex-col gap-2'>
+				<p className='text-lg'>
+					Want to use GPT-4 but dont feel you use it enough to justify $20 a
+					month? My-GPT is the solution, using your own API key to interact with
+					the OpenAI API, you can use GPT-4 (or any other models) and only pay
+					for what you use.
+				</p>
+				<p>
+					No payment details are required and we dont charge you anything, you
+					only pay for what you use with OpenAI.
+				</p>
+				<Link
+					to='/register'
+					role='button'
+					className='mt-auto w-full rounded-lg rounded-br-none bg-teal-700 p-2 text-center text-xl font-semibold uppercase text-white hover:bg-teal-800'
+				>
+					join my-gpt
+				</Link>
+			</div>
 
-			<section className='flex flex-col-reverse gap-5 md:flex-row-reverse'>
-				<img
-					src='https://i.imgur.com/reirqi0.png'
-					alt='placeholder'
-					className='h-full w-full rounded-md shadow-md md:w-1/2'
-				/>
-				<article>
-					<h2 className='text-2xl font-semibold uppercase'>manage accounts</h2>
-					<p>
-						With My-GPT, you can view and manage the chat history of all the
-						accounts under your supervision. This way, you can keep an eye on
-						conversations and ensure that everything adheres to community
-						standards and guidelines.My GPT allows you to fine-tune how ChatGPT
-						responds to messages. You can customize the platform&apos;s settings
-						to ensure your child/student&apos;s conversations always stay on
-						topic and relevant.
-					</p>
-				</article>
-			</section>
+			<div className='flex flex-col gap-2'>
+				<h2 className='text-2xl font-semibold uppercase'>how it works</h2>
+				<p className='text-lg'>
+					My-GPT is a simple web app that uses your OpenAI API key to interact
+					with the OpenAI API. We dont store your API key, we simply pass it
+					along to OpenAI when you make a request.
+				</p>
+				<p className='text-lg'>
+					When you make a request, we send your API key to OpenAI and they
+					return the response to us. We then display the response to you.
+				</p>
+			</div>
 
-			<section className='flex flex-col-reverse gap-5 md:flex-row'>
-				<img
-					src='https://i.imgur.com/D5GcqA5.png'
-					alt='placeholder'
-					className='h-full w-full rounded-md shadow-md md:w-1/2'
-				/>
-				<article>
-					<h2 className='text-2xl font-semibold uppercase'>
-						customizable experience
-					</h2>
-					<ol className='mb-2 list-inside list-disc'>
-						<li>Control responses</li>
-						<li>Restrict response lengths</li>
-						<li>Receive alerts of misuse</li>
-					</ol>
-					<p>
-						Our platform is packed with features that boost productivity and
-						improve chat interactions. You&apos;ll enjoy a seamless chat
-						experience with our platform, all while ensuring a safe and secure
-						communication environment.We are proud to offer a reliable and
-						efficient chat management tool that serves parents, educators and
-						businesses alike.
-					</p>
-				</article>
-			</section>
+			<div className='flex flex-col gap-2'>
+				<h2 className='text-2xl font-semibold uppercase'>how much it costs</h2>
+				<p className='text-lg'>
+					We dont charge you anything, you only pay for what you use with
+					OpenAI. You can view their pricing here:
+				</p>
+				<a href='https://openai.com/pricing' target='_blank' rel='noreferrer'>
+					<button className='w-full rounded-lg rounded-br-none bg-teal-700 p-2 text-center text-xl font-semibold uppercase text-white hover:bg-teal-800'>
+						view openai pricing
+					</button>
+				</a>
+			</div>
+
+			<div className='flex flex-col gap-2'>
+				<h2 className='text-2xl font-semibold uppercase'>
+					This site is in early beta, many features are not yet implemented
+				</h2>
+				<p className='text-lg'>
+					We are working hard to bring you the best experience possible, but
+					please be patient with us as we are still in early beta.
+				</p>
+				<p className='text-lg'>We are working on many features, including:</p>
+				<ul className='list-inside list-disc'>
+					<li>Custom models (currently defaults to gpt-3.5-turbo)</li>
+					<li>Custom prompts (ability to use system messages)</li>
+				</ul>
+				<p>
+					Were currently taking feedback on what you want to see included,
+					please feel free to share what you would like to see:
+					jongreen1996@gmail.com
+				</p>
+			</div>
 		</main>
 	);
 }

@@ -38,7 +38,7 @@ export default function Settings() {
 					<input
 						type='text'
 						className='ml-2 h-8 w-32 self-center rounded-lg rounded-br-none border-2 border-teal-700 bg-light px-2 outline-none dark:bg-xdark'
-						value={localStorage.getItem('apikey')}
+						placeholder={localStorage.getItem('apikey') || 'API Key'}
 						onChange={(e) => localStorage.setItem('apikey', e.target.value)}
 					/>
 				</div>

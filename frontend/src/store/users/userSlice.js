@@ -8,11 +8,7 @@ const userSlice = createSlice({
 		user: null,
 		status: 'loading',
 	},
-	reducers: {
-		updateTokens(state, action) {
-			state.user.tokens = state.user.tokens - action.payload;
-		},
-	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder
 			.addCase(login.pending, (state) => {
@@ -76,8 +72,5 @@ const userSlice = createSlice({
 
 export default userSlice.reducer;
 
-export const { updateTokens } = userSlice.actions;
-
 export const selectUser = (state) => state.user;
 export const selectUserSettings = (state) => state.user.user.settings;
-export const selectUserTokens = (state) => state.user.user.tokens;

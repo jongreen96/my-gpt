@@ -67,11 +67,6 @@ module.exports = {
 		return updatedSettings.rows[0];
 	},
 	calculateUsage: async (id, tokens) => {
-		const user = await db.query(
-			`UPDATE mygpt_admins SET tokens = tokens - $1 WHERE id = $2 RETURNING *`,
-			[tokens, id]
-		);
-
 		const usage = await db.query(
 			`SELECT * FROM mygpt_usage WHERE admin_id = $1 AND date = $2`,
 			[id, new Date().toISOString().slice(0, 7)]
@@ -81,13 +76,13 @@ module.exports = {
 
 		if (usage.rows[0]) {
 			newUsage = await db.query(
-				`UPDATE mygpt_usage SET tokens_used = tokens_used + $1, tokens_remaining = tokens_remaining - $1 WHERE admin_id = $2 AND date = $3 RETURNING *`,
+				`UPDATE mygpt_usage SET tokens_used = tokens_used + $1 WHERE admin_id = $2 AND date = $3 RETURNING *`,
 				[tokens, id, new Date().toISOString().slice(0, 7)]
 			);
 		} else {
 			newUsage = await db.query(
-				`INSERT INTO mygpt_usage (admin_id, tokens_used, tokens_remaining, date) VALUES ($1, $2, $3, $4) RETURNING *`,
-				[id, tokens, user.rows[0].tokens, new Date().toISOString().slice(0, 7)]
+				`INSERT INTO mygpt_usage (admin_id, tokens_used, date) VALUES ($1, $2, $3, $4) RETURNING *`,
+				[id, tokens, new Date().toISOString().slice(0, 7)]
 			);
 		}
 	},

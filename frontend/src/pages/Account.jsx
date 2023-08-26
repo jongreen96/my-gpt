@@ -23,27 +23,6 @@ export default function Account() {
 			<section className='flex flex-col gap-3'>
 				<h2 className='text-2xl font-semibold uppercase'>Usage</h2>
 
-				{/* Tokens used based off remaining tokens at begining of month plus tokens added */}
-				<div>
-					<div className='flex justify-between'>
-						<p>{usage[0]?.tokens_used} used this month</p>
-						<p>{usage[0]?.tokens_remaining} remaining</p>
-					</div>
-					<div className='mb-2 h-5 w-full overflow-hidden rounded-lg rounded-br-none bg-gray-300'>
-						<div
-							className='h-full bg-teal-700'
-							style={{
-								width: `${
-									(usage[0]?.tokens_used /
-										(usage[1]?.tokens_remaining + usage[0]?.tokens_added ||
-											100000)) *
-									100
-								}%`,
-							}}
-						></div>
-					</div>
-				</div>
-
 				{/* Bar chart */}
 				{usage.length > 1 && (
 					<div className='flex h-28 flex-row-reverse items-baseline justify-end gap-2'>
@@ -82,8 +61,6 @@ export default function Account() {
 						<tr>
 							<th className='text-left'>Month</th>
 							<th className='text-right'>Used</th>
-							<th className='text-right'>Added</th>
-							<th className='text-right'>Remaining</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -98,8 +75,6 @@ export default function Account() {
 								<tr key={item.date} className='border-t-2'>
 									<td>{formattedDate}</td>
 									<td className='text-right'>{item.tokens_used}</td>
-									<td className='text-right'>{item.tokens_added}</td>
-									<td className='text-right'>{item.tokens_remaining}</td>
 								</tr>
 							);
 						})}

@@ -3,15 +3,11 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Icons from '../../assets/Icons';
 import { handleChatInput, handleNewChat } from '../../utils/ChatUtils';
-import {
-	selectUserSettings,
-	selectUserTokens,
-} from '../../store/users/userSlice';
+import { selectUserSettings } from '../../store/users/userSlice';
 
 export const ChatInput = ({ conversations, activeConversation }) => {
 	const dispatch = useDispatch();
 	const settings = useSelector(selectUserSettings);
-	const tokens = useSelector(selectUserTokens);
 
 	const [userInput, setUserInput] = useState('');
 

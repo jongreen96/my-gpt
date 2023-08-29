@@ -18,7 +18,10 @@ export default function Login() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (/^sk-[a-zA-Z0-9]{48}$/.test(form.apikey) === false) {
+		if (
+			form.apikey !== '' &&
+			/^sk-[a-zA-Z0-9]{48}$/.test(form.apikey) === false
+		) {
 			setErrorMessage('Invalid API Key');
 			return;
 		}
@@ -113,6 +116,7 @@ export default function Login() {
 							type='password'
 							name='apikey'
 							id='apikey'
+							placeholder='Optional at registration'
 							className='rounded-lg rounded-br-none border-2 border-teal-700 bg-light p-2 dark:bg-xdark'
 							value={form.apikey}
 							onChange={(e) => setForm({ ...form, apikey: e.target.value })}

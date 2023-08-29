@@ -63,7 +63,7 @@ export const ChatBubble = ({ message, index }) => {
 									</div>
 									<div className='mb-2 rounded-b-lg bg-black p-2'>
 										<div className='custom-scrollbar-y overflow-scroll bg-black'>
-											<pre>{part.split('\n').slice(1).join('\n')}</pre>
+											<pre>{part.split('\n').slice(1).join('\n').trim()}</pre>
 										</div>
 									</div>
 								</>

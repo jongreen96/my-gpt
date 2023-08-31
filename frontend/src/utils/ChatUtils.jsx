@@ -11,6 +11,14 @@ export const generateResponse = async (conversation) => {
 		apiKey: localStorage.getItem('apikey'),
 	});
 
+	if (response.status !== 200) {
+		return {
+			role: 'assistant',
+			content: 'Sorry, something went wrong. Please try again later.',
+			time: new Date().toISOString(),
+		};
+	}
+
 	return response.data;
 };
 

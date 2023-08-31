@@ -42,13 +42,24 @@ router.post('/', async (req, res) => {
 
 		await calculateUsage(req.user.id, result.usage.total_tokens);
 
+		console.log(result.choices[0].message);
 		res.send({
 			...result.choices[0].message,
 			usage: result.usage,
 			time: new Date().toISOString(),
 		});
 	} catch (error) {
-		res.status(500).send('Server error');
+		const errorMessage = {
+			role: 'assistant',
+			content: 'Invalid API key! Please update it in the settings menu.',
+		};
+		res.send({
+			...errorMessage,
+			usage: {
+				total_tokens: 0,
+			},
+			time: new Date().toISOString(),
+		});
 	}
 });
 

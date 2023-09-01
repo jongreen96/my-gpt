@@ -81,7 +81,7 @@ module.exports = {
 			);
 		} else {
 			newUsage = await db.query(
-				`INSERT INTO mygpt_usage (admin_id, tokens_used, date) VALUES ($1, $2, $3, $4) RETURNING *`,
+				`INSERT INTO mygpt_usage (admin_id, tokens_used, date) VALUES ($1, $2, $3) RETURNING *`,
 				[id, tokens, new Date().toISOString().slice(0, 7)]
 			);
 		}

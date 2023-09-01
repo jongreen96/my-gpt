@@ -42,7 +42,6 @@ router.post('/', async (req, res) => {
 
 		await calculateUsage(req.user.id, result.usage.total_tokens);
 
-		console.log(result.choices[0].message);
 		res.send({
 			...result.choices[0].message,
 			usage: result.usage,

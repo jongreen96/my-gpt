@@ -6,7 +6,7 @@
   "proxy": "https://my-gpt-7151960e3867.herokuapp.com/",
   "scripts": {
     "dev": "nodemon ./backend/index.js",
-    "pre-build": "cd ./backend && rmdir /s /q dist && cd ../frontend && npm i && npm run build && move ./dist ../backend/",
+    "pre-build": "cd ./backend && rmdir /s /q dist && cd ../frontend && npm run build && move ./dist ../backend/",
     "start": "node ./backend/index.js"
   },
   "keywords": [],

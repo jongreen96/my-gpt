@@ -5,10 +5,11 @@ import {
 import { setActiveConversation } from '../store/conversations/conversationsSlice';
 import Api from './Api';
 
-export const generateResponse = async (conversation) => {
+export const generateResponse = async (conversation, model) => {
 	const response = await Api.post('/conversations', {
 		messages: conversation,
 		apiKey: localStorage.getItem('apikey'),
+		model,
 	});
 
 	if (response.status !== 200) {
@@ -51,7 +52,10 @@ export const handleChatInput = async (
 			? 1000
 			: settings.conversation_memory_length * 2 - 1;
 
-	const response = await generateResponse(newConversation.slice(-memoryLength));
+	const response = await generateResponse(
+		newConversation.slice(-memoryLength),
+		settings.model
+	);
 
 	dispatch(
 		updateConversation({
@@ -61,7 +65,12 @@ export const handleChatInput = async (
 	);
 };
 
-export const handleNewChat = async (userInput, setUserInput, dispatch) => {
+export const handleNewChat = async (
+	userInput,
+	setUserInput,
+	dispatch,
+	settings
+) => {
 	if (userInput === '') return;
 	setUserInput('');
 
@@ -81,7 +90,7 @@ export const handleNewChat = async (userInput, setUserInput, dispatch) => {
 
 	await dispatch(setActiveConversation(newlyCreatedConversation.payload.id));
 
-	const response = await generateResponse(newConversation);
+	const response = await generateResponse(newConversation, settings.model);
 
 	dispatch(
 		updateConversation({

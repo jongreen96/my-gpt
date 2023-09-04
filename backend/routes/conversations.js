@@ -31,14 +31,14 @@ router.put('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
 	try {
-		const { messages, apiKey } = req.body;
+		const { messages, apiKey, model } = req.body;
 		const strippedMessages = messages.map((message) => {
 			return {
 				role: message.role,
 				content: message.content,
 			};
 		});
-		const result = await generateResponse(strippedMessages, apiKey);
+		const result = await generateResponse(strippedMessages, apiKey, model);
 
 		await calculateUsage(req.user.id, result.usage.total_tokens);
 
@@ -50,7 +50,8 @@ router.post('/', async (req, res) => {
 	} catch (error) {
 		const errorMessage = {
 			role: 'assistant',
-			content: 'Invalid API key! Please update it in the settings menu.',
+			content:
+				'Invalid API key or use of GPT-4 model! Please update in the settings menu.',
 		};
 		res.send({
 			...errorMessage,

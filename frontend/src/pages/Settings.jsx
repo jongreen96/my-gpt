@@ -45,6 +45,41 @@ export default function Settings() {
 
 				<div className='flex justify-between'>
 					<div>
+						<h3 className='text-xl font-semibold'>Model</h3>
+						<p>
+							Model to use for generating responses. <br /> GPT-4 is currently
+							in early roll-out and requires at least one billing event to use.
+							Find more info{' '}
+							<a
+								href='https://platform.openai.com/docs/models/gpt-4'
+								target='_blank'
+								rel='noreferrer'
+								className='font-semibold text-teal-700 hover:text-teal-500 '
+							>
+								here
+							</a>
+							.
+						</p>
+					</div>
+					<select
+						className='ml-2 h-8 w-32 self-center rounded-lg rounded-br-none border-2 border-teal-700 bg-light outline-none dark:bg-xdark'
+						value={settings.model}
+						onChange={(e) =>
+							dispatch(
+								updateSetting({
+									setting: 'model',
+									value: e.target.value,
+								})
+							)
+						}
+					>
+						<option value='gpt-3.5-turbo'>GPT-3.5-turbo</option>
+						<option value='gpt-4'>GPT-4</option>
+					</select>
+				</div>
+
+				<div className='flex justify-between'>
+					<div>
 						<h3 className='text-xl font-semibold'>Dark Mode</h3>
 						<p>Toggle dark mode on or off.</p>
 					</div>

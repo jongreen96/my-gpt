@@ -39,7 +39,7 @@ export const ChatInput = ({ conversations, activeConversation }) => {
 					dispatch,
 					settings
 			  )
-			: handleNewChat(userInput, setUserInput, dispatch);
+			: handleNewChat(userInput, setUserInput, dispatch, settings);
 	};
 
 	return (

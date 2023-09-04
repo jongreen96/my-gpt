@@ -1,6 +1,6 @@
 const { Configuration, OpenAIApi } = require('openai');
 
-const generateResponse = async (messages, apiKey, model = 'gpt-3.5-turbo') => {
+const generateResponse = async (messages, apiKey, model) => {
 	const configuration = new Configuration({
 		apiKey: apiKey,
 	});

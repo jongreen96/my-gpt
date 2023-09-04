@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Icons from '../../assets/Icons';
 import { Conversations, NavFooter, SideMenu } from './';
 import Login from './Login';
+import { Link } from 'react-router-dom';
 
 export default function Navigation({ authenticated }) {
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -14,8 +15,8 @@ export default function Navigation({ authenticated }) {
 					<Icons.HamburgerMenuButton />
 				</button>
 
-				<h1 className='absolute left-[50%] translate-x-[-50%] text-xl font-bold md:static md:left-0 md:mb-5 md:translate-x-0 md:self-center'>
-					My-GPT
+				<h1 className='absolute left-[50%] translate-x-[-50%] text-xl font-bold hover:text-teal-800 md:static md:left-0 md:mb-5 md:translate-x-0 md:self-center'>
+					<Link to='/'>My-GPT</Link>
 				</h1>
 
 				<div className='hidden h-[calc(100%-48px)] flex-col justify-between md:flex'>

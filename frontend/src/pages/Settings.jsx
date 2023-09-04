@@ -49,7 +49,7 @@ export default function Settings() {
 						<p>
 							Model to use for generating responses. <br /> GPT-4 is currently
 							in early roll-out and requires at least one billing event to use.
-							Find more info{' '}
+							Find more information about each model{' '}
 							<a
 								href='https://platform.openai.com/docs/models/gpt-4'
 								target='_blank'
@@ -73,8 +73,10 @@ export default function Settings() {
 							)
 						}
 					>
-						<option value='gpt-3.5-turbo'>GPT-3.5-turbo</option>
+						<option value='gpt-3.5-turbo'>GPT-3.5-turbo (Recommended)</option>
+						<option value='gpt-3.5-turbo-16k'>GPT-3.5-turbo-16k</option>
 						<option value='gpt-4'>GPT-4</option>
+						<option value='gpt-4-32k'>GPT-4-32k</option>
 					</select>
 				</div>
 

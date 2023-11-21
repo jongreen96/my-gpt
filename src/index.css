@@ -64,16 +64,3 @@ button {
 button:hover {
 	border-color: var(--bg-300);
 }
-
-@media (prefers-color-scheme: light) {
-	:root {
-		color: var(--bg-100);
-		background-color: var(--text-100);
-	}
-	a:hover {
-		color: var(--primary-200);
-	}
-	button {
-		background-color: var(--bg-300);
-	}
-}

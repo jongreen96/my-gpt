@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "dev": "vite --config ./config/vite.config.js",
+    "build": "vite build --config ./config/vite.config.js",
+    "lint": "eslint . --config ./config/.eslintrc.cjs --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 export default function Root() {
 	return (
-		<div className='hover:w-64 group w-16 bg-bg-200 h-screen fixed transition-all overflow-hidden flex flex-col'>
+		<div className='hover:w-64 group w-16 bg-bg-200 h-screen fixed transition-all overflow-hidden flex flex-col border-r-2 border-bg-300'>
 			<div className='flex p-2 gap-2 w-64'>
 				<img src='./openai.svg' alt='openai' className='w-12' />
 				<h1 className=' font-semibold select-none'>My-GPT</h1>

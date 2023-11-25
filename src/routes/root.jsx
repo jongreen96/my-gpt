@@ -1,31 +1,27 @@
+import { OpenAI, UserSolid, UserRegular } from '../assets/Icons';
+
 export default function Root() {
-	return (
-		<div className='hover:w-64 group w-16 bg-bg-200 h-screen fixed transition-all overflow-hidden flex flex-col border-r-2 border-bg-300'>
-			<div className='flex p-2 gap-2 w-64'>
-				<img src='./openai.svg' alt='openai' className='w-12' />
-				<h1 className=' font-semibold select-none'>My-GPT</h1>
-			</div>
-
-			<div className='group-hover:w-64 p-2 flex-col gap-2 flex'>
-				<button className='flex justify-center items-center gap-2'>
-					<img src='./user-solid.svg' alt='sign-in' className='w-4' />
-					<p className='hidden group-hover:block'>Sign In</p>
-				</button>
-				<button className='flex justify-center items-center gap-2'>
-					<img
-						src='./user-regular.svg'
-						alt='sign-in'
-						className='w-4 m-auto group-hover:m-0'
-					/>
-					<p className='hidden group-hover:block'>Sign Up</p>
-				</button>
-			</div>
-
-			<img
-				src='./angles-right-solid.svg'
-				alt='open'
-				className='mt-auto group-hover:hidden w-8 m-4'
-			/>
-		</div>
-	);
+    return (
+        <div className="group fixed flex h-[100svh] w-16 flex-col overflow-hidden border-r-2 border-bg-300 bg-bg-200 transition-all hover:w-64">
+            <div className="flex w-64 gap-2 p-2">
+                <OpenAI />
+                <h1 className=" select-none font-semibold">My-GPT</h1>
+            </div>
+            <div className="flex flex-col gap-2 p-2 group-hover:w-64">
+                <button className="flex items-center justify-center gap-2">
+                    <UserSolid />
+                    <p className="hidden group-hover:block">Sign In</p>
+                </button>
+                <button className="flex items-center justify-center gap-2">
+                    <UserRegular />
+                    <p className="hidden group-hover:block">Sign Up</p>
+                </button>
+            </div>
+            <img
+                src="./angles-right-solid.svg"
+                alt="open"
+                className="m-4 mt-auto w-8 group-hover:hidden"
+            />
+        </div>
+    );
 }

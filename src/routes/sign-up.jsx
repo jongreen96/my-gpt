@@ -1,6 +1,6 @@
 export default function SignUp() {
     return (
-        <div className='flex h-screen flex-col items-center justify-center gap-2'>
+        <div className='flex h-[100dvh] flex-col items-center justify-center gap-2'>
             <h1 className='text-2xl font-semibold'>Sign Up</h1>
             <form className='flex w-64 flex-col gap-2'>
                 <input

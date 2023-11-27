@@ -5,8 +5,8 @@ import { OpenAI } from '../assets/Icons';
 export default function HomePage() {
     return (
         <>
-            <main className='my-32 flex flex-col items-center gap-8'>
-                <section className='bg-gradient flex gap-8 p-8'>
+            <main className='my-32 flex flex-col items-center gap-24'>
+                <section className='bg-gradient flex flex-col gap-8 sm:flex-row sm:p-8'>
                     <div className='flex flex-col justify-center gap-4'>
                         <h1 className='font-semibold'>
                             All GPT Models, <br /> No monthly subscription
@@ -27,12 +27,14 @@ export default function HomePage() {
                     <img
                         src={dogFalling}
                         alt='dog falling'
-                        className='aspect-square w-2/5 rounded-lg object-cover'
+                        className='aspect-square rounded-lg object-cover sm:w-2/5'
                     />
                 </section>
-                <section className='.bg-gradient flex max-w-5xl justify-center gap-8 p-8'>
-                    <div className='flex flex-1 flex-col gap-2 text-center'>
-                        <OpenAI />
+                <section className='.bg-gradient flex max-w-5xl flex-col justify-center gap-8 sm:flex-row sm:p-8'>
+                    <div className='flex flex-1 flex-col items-center gap-2 text-center'>
+                        <div className='w-12'>
+                            <OpenAI />
+                        </div>
                         <h3 className='text-3xl font-semibold'>GPT-4 </h3>
                         <p className='text-sm'>
                             The latest GPT-4 model with improved instruction
@@ -40,8 +42,10 @@ export default function HomePage() {
                             function calling, and more.
                         </p>
                     </div>
-                    <div className='flex flex-1 flex-col gap-2 text-center'>
-                        <OpenAI />
+                    <div className='flex flex-1 flex-col items-center gap-2 text-center'>
+                        <div className='w-12'>
+                            <OpenAI />
+                        </div>
                         <h3 className='text-3xl font-semibold'>
                             Instant Access
                         </h3>
@@ -51,8 +55,10 @@ export default function HomePage() {
                             pay for what you use.
                         </p>
                     </div>
-                    <div className='flex flex-1 flex-col gap-2 text-center'>
-                        <OpenAI />
+                    <div className='flex flex-1 flex-col items-center gap-2 text-center'>
+                        <div className='w-12'>
+                            <OpenAI />
+                        </div>
                         <h3 className='text-3xl font-semibold'>
                             Image Generation
                         </h3>
@@ -63,8 +69,8 @@ export default function HomePage() {
                         </p>
                     </div>
                 </section>
-                <section className='flex flex-col justify-center gap-8 p-8'>
-                    <div className='flex gap-8 p-8'>
+                <section className='flex flex-col justify-center gap-8 sm:p-8'>
+                    <div className='flex flex-col gap-8 sm:flex-row sm:p-8'>
                         <h2 className='flex-1 text-4xl font-semibold'>
                             Unleash the Power of GPT-4
                         </h2>
@@ -85,7 +91,7 @@ export default function HomePage() {
                         className='aspect-video rounded-lg object-cover'
                     />
                 </section>
-                <section className='flex items-center justify-center gap-8 p-8'>
+                <section className='flex flex-col items-center justify-center gap-8 sm:flex-row sm:p-8'>
                     <div className='flex flex-1 flex-col gap-8'>
                         <h2 className='flex-1 text-4xl font-semibold'>
                             Start today with 1,000 free credits
@@ -108,8 +114,10 @@ export default function HomePage() {
                     </p>
                 </section>
             </main>
-            <footer className='flex w-full items-center justify-between'>
-                <OpenAI />
+            <footer className='mb-10 flex w-full items-center justify-between sm:mb-0'>
+                <div className='w-12'>
+                    <OpenAI />
+                </div>
                 <p className='text-sm'>© 2023 Jon Green</p>
                 <p>
                     Created by{' '}

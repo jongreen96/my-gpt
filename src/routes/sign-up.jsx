@@ -6,21 +6,21 @@ export default function SignUp() {
                 <input
                     type='text'
                     placeholder='Username'
-                    className='rounded-md border-2 border-bg-300 bg-bg-200 p-2'
+                    className='border-bg-light bg-bg-regular rounded-md border-2 p-2'
                 />
                 <input
                     type='password'
                     placeholder='Password'
-                    className='rounded-md border-2 border-bg-300 bg-bg-200 p-2'
+                    className='border-bg-light bg-bg-regular rounded-md border-2 p-2'
                 />
                 <input
                     type='password'
                     placeholder='Confirm Password'
-                    className='rounded-md border-2 border-bg-300 bg-bg-200 p-2'
+                    className='border-bg-light bg-bg-regular rounded-md border-2 p-2'
                 />
                 <button
                     type='submit'
-                    className='m-auto w-1/2 rounded-md border-2 border-bg-300 bg-bg-200 p-2'
+                    className='border-bg-light bg-bg-regular m-auto w-1/2 rounded-md border-2 p-2'
                 >
                     Sign Up
                 </button>

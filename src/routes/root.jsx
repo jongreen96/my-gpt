@@ -4,7 +4,7 @@ import { OpenAI, UserSolid, UserRegular } from '../assets/Icons';
 export default function Root() {
     return (
         <>
-            <div className='group fixed left-0 flex h-[100svh] w-16 flex-col overflow-hidden border-r-2 border-bg-300 bg-bg-200 transition-all hover:w-64'>
+            <div className='border-bg-light bg-bg-regular group fixed left-0 flex h-[100svh] w-16 flex-col overflow-hidden border-r-2 transition-all hover:w-64'>
                 <div className='flex w-64 gap-2 p-2'>
                     <OpenAI />
                     <h1 className=' select-none font-semibold'>My-GPT</h1>

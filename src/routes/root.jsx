@@ -5,10 +5,12 @@ export default function Root() {
     return (
         <>
             <div className='border-bg-light bg-bg-regular group fixed left-0 flex h-[100svh] w-16 flex-col overflow-hidden border-r-2 transition-all hover:w-64'>
-                <div className='flex w-64 gap-2 p-2'>
-                    <OpenAI />
-                    <h1 className=' select-none font-semibold'>My-GPT</h1>
-                </div>
+                <Link to='/'>
+                    <div className='flex w-64 gap-2 p-2'>
+                        <OpenAI />
+                        <h1 className=' select-none font-semibold'>My-GPT</h1>
+                    </div>
+                </Link>
                 <div className='flex flex-col gap-2 p-2 group-hover:w-64'>
                     <Link to='/sign-in'>
                         <button

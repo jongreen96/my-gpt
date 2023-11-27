@@ -37,7 +37,9 @@ export default function Root() {
                     className='m-4 mt-auto w-8 group-hover:hidden'
                 />
             </div>
-            <Outlet />
+            <div className='ml-16 max-w-7xl p-2'>
+                <Outlet />
+            </div>
         </>
     );
 }

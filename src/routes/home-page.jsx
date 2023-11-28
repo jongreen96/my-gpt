@@ -109,8 +109,7 @@ export default function HomePage() {
                         GPT-4 offers unrivaled capabilities. Unleash the
                         potential, seize instant access, and kickstart your AI
                         adventure today. Sign up now and enjoy 1,000 free
-                        credits - because your future of innovation starts with
-                        here!
+                        credits - because your future of innovation starts here!
                     </p>
                 </section>
             </main>
@@ -118,8 +117,8 @@ export default function HomePage() {
                 <div className='w-12'>
                     <OpenAI />
                 </div>
-                <p className='text-sm'>© 2023 Jon Green</p>
-                <p>
+                <p className='text-sm'>© My-GPT 2023</p>
+                <p className='text-sm'>
                     Created by{' '}
                     <a
                         href='https://jongreen.dev/'

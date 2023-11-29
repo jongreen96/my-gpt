@@ -10,3 +10,5 @@ const pool = new pg.Pool({
 export const query = (text, params, callback) => {
 	return pool.query(text, params, callback);
 };
+
+export default { query };

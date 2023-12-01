@@ -7,9 +7,9 @@ export default function Root() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        console.log('here');
         const fetchUser = async () => {
             try {
+                if (!localStorage.getItem('token')) return;
                 const res = await api.get('/user');
                 setUser(res.data.user);
             } catch (err) {

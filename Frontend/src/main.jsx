@@ -8,6 +8,7 @@ import ErrorPage from './routes/error-page';
 import HomePage from './routes/home-page';
 import SignUp from './routes/sign-up';
 import SignIn from './routes/sign-in';
+import Chat from './routes/chat';
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: '/sign-in',
                 element: <SignIn />,
+            },
+            {
+                path: '/chat',
+                element: <Chat />,
             },
         ],
     },

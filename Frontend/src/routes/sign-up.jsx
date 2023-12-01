@@ -20,6 +20,13 @@ export default function SignUp() {
             return;
         }
 
+        if (
+            !RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/).test(form.email)
+        ) {
+            setForm({ ...form, error: 'Please enter a valid email' });
+            return;
+        }
+
         if (form.password !== form.confirmPassword) {
             setForm({ ...form, error: 'Passwords do not match' });
             return;

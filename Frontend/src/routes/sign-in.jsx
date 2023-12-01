@@ -20,6 +20,13 @@ export default function SignIn() {
         }
 
         if (
+            !RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/).test(form.email)
+        ) {
+            setForm({ ...form, error: 'Please enter a valid email' });
+            return;
+        }
+
+        if (
             RegExp(/^(?=.*[A-Z])(?=.*\d).{8,}$/).test(form.password) === false
         ) {
             setForm({

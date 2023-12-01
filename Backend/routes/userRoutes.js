@@ -5,6 +5,15 @@ import userQueries from '../db/queries/userQueries.js';
 
 const userRouter = express.Router();
 
+userRouter.get('/user', jwt.authenticateToken, async (req, res) => {
+	try {
+		const user = await userQueries.getUserById(req.user.id);
+		res.json({ user: user.rows[0] });
+	} catch (e) {
+		res.status(500).json({ error: e.message });
+	}
+});
+
 userRouter.post('/register', async (req, res) => {
 	try {
 		let { email, password } = req.body;
@@ -14,6 +23,9 @@ userRouter.post('/register', async (req, res) => {
 			if (err) throw new Error(err);
 
 			const newUser = await userQueries.registerUser(email, hash);
+			if (newUser instanceof Error)
+				return res.status(409).json({ error: newUser.message });
+
 			const accessToken = jwt.generateAccessToken({ id: newUser.rows[0].id });
 
 			res.json({ accessToken, user: newUser.rows[0] });

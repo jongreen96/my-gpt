@@ -20,7 +20,7 @@ export default function Root() {
                         <Link to='/sign-in'>
                             <button
                                 tabIndex='-1'
-                                className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-primary-100 bg-primary-100 font-semibold transition-all hover:border-primary-100'
+                                className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-primary-100 bg-primary-100 font-semibold transition-all hover:border-text-100'
                             >
                                 <UserSolid />
                                 <p className='hidden group-hover:block'>
@@ -31,7 +31,7 @@ export default function Root() {
                         <Link to='/sign-up'>
                             <button
                                 tabIndex='-1'
-                                className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-primary-100'
+                                className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-text-100'
                             >
                                 <UserRegular />
                                 <p className='hidden group-hover:block'>

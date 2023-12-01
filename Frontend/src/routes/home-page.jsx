@@ -19,7 +19,7 @@ export default function HomePage() {
                             <Link to='/sign-up'>
                                 <button
                                     tabIndex='-1'
-                                    className='h-12 w-32 rounded-lg border-2 border-primary-100 bg-primary-100 font-semibold transition-all hover:border-primary-100'
+                                    className='h-12 w-32 rounded-lg border-2 border-primary-100 bg-primary-100 font-semibold transition-all hover:border-text-100'
                                 >
                                     Sign Up
                                 </button>
@@ -27,7 +27,7 @@ export default function HomePage() {
                             <Link to='/sign-in'>
                                 <button
                                     tabIndex='-1'
-                                    className='h-12 w-32 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-primary-100'
+                                    className='h-12 w-32 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-text-100'
                                 >
                                     Sign In
                                 </button>
@@ -109,7 +109,7 @@ export default function HomePage() {
                         <Link to='/sign-up'>
                             <button
                                 tabIndex='-1'
-                                className='h-12 w-full rounded-lg border-2 border-primary-100 bg-primary-100 font-semibold transition-all hover:border-bg-light'
+                                className='h-12 w-full rounded-lg border-2 border-primary-100 bg-primary-100 font-semibold transition-all hover:border-text-100'
                             >
                                 Sign Up
                             </button>

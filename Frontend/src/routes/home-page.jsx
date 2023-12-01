@@ -6,9 +6,9 @@ export default function HomePage() {
     return (
         <>
             <main className='my-32 flex flex-col items-center gap-24'>
-                <section className='bg-gradient flex flex-col gap-8 sm:flex-row sm:p-8'>
+                <section className='flex flex-col gap-8 sm:flex-row sm:p-8'>
                     <div className='flex flex-col justify-center gap-4'>
-                        <h1 className='font-semibold'>
+                        <h1 className='text-5xl font-semibold'>
                             All GPT Models, <br /> No monthly subscription
                         </h1>
                         <p>
@@ -17,10 +17,20 @@ export default function HomePage() {
                         </p>
                         <div className='flex gap-2'>
                             <Link to='/sign-up'>
-                                <button className='w-32'>Sign Up</button>
+                                <button
+                                    tabIndex='-1'
+                                    className='h-12 w-32 rounded-lg border-2 border-primary-100 bg-primary-100 font-semibold transition-all hover:border-primary-100'
+                                >
+                                    Sign Up
+                                </button>
                             </Link>
                             <Link to='/sign-in'>
-                                <button className='w-32'>Sign In</button>
+                                <button
+                                    tabIndex='-1'
+                                    className='h-12 w-32 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-primary-100'
+                                >
+                                    Sign In
+                                </button>
                             </Link>
                         </div>
                     </div>
@@ -97,7 +107,12 @@ export default function HomePage() {
                             Start today with 1,000 free credits
                         </h2>
                         <Link to='/sign-up'>
-                            <button className='w-full'>Sign Up</button>
+                            <button
+                                tabIndex='-1'
+                                className='h-12 w-full rounded-lg border-2 border-primary-100 bg-primary-100 font-semibold transition-all hover:border-bg-light'
+                            >
+                                Sign Up
+                            </button>
                         </Link>
                     </div>
                     <p className='flex-1 text-sm'>

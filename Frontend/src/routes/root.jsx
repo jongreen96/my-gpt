@@ -4,7 +4,7 @@ import { OpenAI, UserSolid, UserRegular } from '../assets/Icons';
 export default function Root() {
     return (
         <>
-            <div className='border-bg-light bg-bg-regular hover:max-h-3/4 group fixed left-0 top-0 flex h-14 w-full justify-between overflow-hidden border-b-2 transition-all hover:h-min sm:left-0 sm:h-screen sm:w-16 sm:flex-col sm:justify-between sm:border-b-0 sm:border-r-2 sm:hover:h-screen sm:hover:w-64'>
+            <div className='hover:max-h-3/4 group fixed left-0 top-0 flex h-14 w-full justify-between overflow-hidden border-b-2 border-bg-light bg-bg-regular transition-all hover:h-min sm:left-0 sm:h-screen sm:w-16 sm:flex-col sm:justify-between sm:border-b-0 sm:border-r-2 sm:hover:h-screen sm:hover:w-64'>
                 <div className='w-screen sm:w-full'>
                     <div className='flex w-64 gap-2 p-2'>
                         <Link to='/'>
@@ -20,7 +20,7 @@ export default function Root() {
                         <Link to='/sign-in'>
                             <button
                                 tabIndex='-1'
-                                className='flex w-full items-center justify-center gap-2'
+                                className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-primary-100 bg-primary-100 font-semibold transition-all hover:border-primary-100'
                             >
                                 <UserSolid />
                                 <p className='hidden group-hover:block'>
@@ -31,7 +31,7 @@ export default function Root() {
                         <Link to='/sign-up'>
                             <button
                                 tabIndex='-1'
-                                className='flex w-full items-center justify-center gap-2'
+                                className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-primary-100'
                             >
                                 <UserRegular />
                                 <p className='hidden group-hover:block'>

@@ -13,16 +13,26 @@ export default function Root() {
         const fetchUser = async () => {
             try {
                 if (!localStorage.getItem('token')) return;
+                const storedUser = sessionStorage.getItem('user');
+                if (storedUser) {
+                    setUser(JSON.parse(storedUser));
+                    return;
+                }
                 const res = await api.get('/user');
                 setUser(res.data.user);
-                if (window.location.pathname === '/' && res.data.user)
-                    navigate('/chat');
+                sessionStorage.setItem('user', JSON.stringify(res.data.user));
             } catch (err) {
                 console.log(err);
             }
         };
         fetchUser();
     }, []);
+
+    useEffect(() => {
+        if (user) {
+            navigate('/chat');
+        }
+    }, [user]);
 
     return (
         <>

@@ -14,7 +14,7 @@ export default function ErrorPage() {
                 <h1 className='text-5xl font-semibold'>Oops! {error.status}</h1>
                 <p className='text-xl'>Something went wrong</p>
                 <p className='text-xs'>{error.message}</p>
-                <Link to='/' className='text-blue-500 hover:underline'>
+                <Link to='/chat' className='text-blue-500 hover:underline'>
                     <button
                         tabIndex='-1'
                         className='h-12 w-32 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-text-100'

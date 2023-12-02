@@ -46,7 +46,7 @@ export default function Root() {
                     className='m-3 mt-auto w-8 rotate-90 group-hover:hidden sm:m-4 sm:inline-block sm:rotate-0'
                 />
             </nav>
-            <div className='max-w-7xl p-2 sm:ml-16'>
+            <div className='max-w-7xl sm:ml-16'>
                 <Outlet context={[user, setUser]} />
             </div>
         </>

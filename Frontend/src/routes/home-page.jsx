@@ -5,7 +5,7 @@ import { OpenAI } from '../assets/Icons';
 export default function HomePage() {
     return (
         <>
-            <main className='my-32 flex flex-col items-center gap-24'>
+            <main className='my-32 flex flex-col items-center gap-24 p-2 sm:p-0'>
                 <section className='flex flex-col gap-8 sm:flex-row sm:p-8'>
                     <div className='flex flex-col justify-center gap-4'>
                         <h1 className='text-5xl font-semibold'>

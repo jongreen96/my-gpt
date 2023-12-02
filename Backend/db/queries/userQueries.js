@@ -5,7 +5,7 @@ export const registerUser = async (email, password) => {
 	if (user.rows.length > 0) return new Error('User already exists!');
 
 	const newUser = await db.query(
-		'INSERT INTO gpt_users (email, password, credits) VALUES ($1, $2, 1000) RETURNING id, email, credits, settings',
+		'INSERT INTO gpt_users (email, password, credits) VALUES ($1, $2, 0) RETURNING id, email, credits, settings',
 		[email, password]
 	);
 	return newUser;

@@ -47,6 +47,24 @@ userRouter.post('/register', async (req, res) => {
 	}
 });
 
+userRouter.post('/verify', async (req, res) => {
+	try {
+		let { id, veriCode } = req.query;
+
+		if (!id || !veriCode)
+			return res.status(400).json({ error: 'Missing fields!' });
+
+		const verified = await userQueries.verifyUser(id, veriCode);
+
+		if (verified instanceof Error)
+			return res.status(404).json({ error: verified.message });
+
+		res.json({ message: 'User verified!' });
+	} catch (e) {
+		res.status(500).json({ error: e.message });
+	}
+});
+
 userRouter.post('/login', async (req, res) => {
 	try {
 		let { email, password } = req.body;

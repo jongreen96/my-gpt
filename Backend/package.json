@@ -5,7 +5,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test": "vitest",
+    "coverage": "vitest run --coverage.enabled=true"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +20,10 @@
     "jsonwebtoken": "^9.0.2",
     "nodemon": "^3.0.1",
     "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^0.34.6",
+    "supertest": "^6.3.3",
+    "vitest": "^0.34.6"
   }
 }

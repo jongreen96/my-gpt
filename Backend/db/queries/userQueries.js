@@ -58,6 +58,7 @@ export const getUserById = async (id) => {
 		'SELECT id, email, credits, settings FROM gpt_users WHERE id = $1',
 		[id]
 	);
+	if (user.rows.length === 0) return new Error('User not found!');
 	return user;
 };
 

@@ -1,18 +1,19 @@
 import express from 'express';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
-import jwt from '../middleware/jwt.js';
-import userQueries from '../db/queries/userQueries.js';
+import { authenticateToken, generateAccessToken } from '../middleware/jwt.js';
 import { validateUser } from '../middleware/user.js';
+import userQueries from '../db/queries/userQueries.js';
 
 const userRouter = express.Router();
 
-userRouter.get('/user', jwt.authenticateToken, async (req, res) => {
+userRouter.get('/user', authenticateToken, async (req, res) => {
 	try {
 		const user = await userQueries.getUserById(req.user.id);
+		if (user instanceof Error) throw user;
 		res.json({ user: user.rows[0] });
 	} catch (e) {
-		res.status(500).json({ error: e.message });
+		res.status(404).json({ error: e.message });
 	}
 });
 
@@ -31,9 +32,9 @@ userRouter.post('/register', validateUser, async (req, res) => {
 		// TODO: Send email with verification code
 		console.log(veriCode);
 
-		const accessToken = jwt.generateAccessToken({ id: newUser.rows[0].id });
+		const accessToken = generateAccessToken({ id: newUser.rows[0].id });
 
-		res.json({ accessToken, user: newUser.rows[0] });
+		res.json({ accessToken, user: newUser.rows[0], veriCode });
 	} catch (e) {
 		res.status(500).json({ error: e.message });
 	}
@@ -56,7 +57,7 @@ userRouter.post('/verify', async (req, res) => {
 	}
 });
 
-userRouter.post('/login', async (req, res) => {
+userRouter.post('/login', validateUser, async (req, res) => {
 	try {
 		let { email, password } = req.body;
 
@@ -70,7 +71,7 @@ userRouter.post('/login', async (req, res) => {
 				return res.status(401).json({ error: 'Incorrect password!' });
 
 			delete user.rows[0].password;
-			const accessToken = jwt.generateAccessToken({ id: user.rows[0].id });
+			const accessToken = generateAccessToken({ id: user.rows[0].id });
 
 			res.json({ accessToken, user: user.rows[0] });
 		});

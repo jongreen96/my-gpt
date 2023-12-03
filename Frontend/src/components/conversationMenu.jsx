@@ -15,7 +15,7 @@ export default function ConversationMenu() {
             </Link>
 
             {/* TEST BUTTONS */}
-            {new Array(20).fill(0).map((_, i) => {
+            {new Array(10).fill(0).map((_, i) => {
                 return (
                     <Link to={`/chat/${i}`} key={i}>
                         <button

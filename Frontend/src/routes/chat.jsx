@@ -10,7 +10,7 @@ export default function Chat() {
     }, [user]);
 
     return (
-        <div className='flex h-[100dvh] flex-col gap-8 pt-14 sm:pt-0'>
+        <div className='flex flex-col gap-8'>
             <h1>Chat</h1>
         </div>
     );

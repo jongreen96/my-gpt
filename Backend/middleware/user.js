@@ -1,5 +1,5 @@
 export function formatUser(req, res, next) {
-	req.body.email = req.body.email.toLowerCase();
+	if (req.body.email) req.body.email = req.body.email.toLowerCase();
 
 	next();
 }

@@ -1,4 +1,5 @@
 import express from 'express';
+import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import jwt from '../middleware/jwt.js';
 import userQueries from '../db/queries/userQueries.js';
@@ -31,17 +32,20 @@ userRouter.post('/register', async (req, res) => {
 					'Password must be at least 8 characters long and contain at least one number!',
 			});
 
-		bcrypt.hash(password, 10, async (err, hash) => {
-			if (err) throw new Error(err);
+		const veriCode = crypto.randomBytes(16).toString('hex');
+		const hash = bcrypt.hashSync(password, 10);
+		const veriHash = bcrypt.hashSync(veriCode, 10);
+		const newUser = await userQueries.registerUser(email, hash, veriHash);
 
-			const newUser = await userQueries.registerUser(email, hash);
-			if (newUser instanceof Error)
-				return res.status(409).json({ error: newUser.message });
+		if (newUser instanceof Error)
+			return res.status(409).json({ error: newUser.message });
 
-			const accessToken = jwt.generateAccessToken({ id: newUser.rows[0].id });
+		// TODO: Send email with verification code
+		console.log(veriCode);
 
-			res.json({ accessToken, user: newUser.rows[0] });
-		});
+		const accessToken = jwt.generateAccessToken({ id: newUser.rows[0].id });
+
+		res.json({ accessToken, user: newUser.rows[0] });
 	} catch (e) {
 		res.status(500).json({ error: e.message });
 	}
@@ -56,12 +60,11 @@ userRouter.post('/verify', async (req, res) => {
 
 		const verified = await userQueries.verifyUser(id, veriCode);
 
-		if (verified instanceof Error)
-			return res.status(404).json({ error: verified.message });
+		if (verified instanceof Error) throw verified;
 
 		res.json({ message: 'User verified!' });
 	} catch (e) {
-		res.status(500).json({ error: e.message });
+		res.status(400).json({ error: e.message });
 	}
 });
 

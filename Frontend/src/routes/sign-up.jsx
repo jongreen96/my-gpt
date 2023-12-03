@@ -42,12 +42,10 @@ export default function SignUp() {
 
         try {
             const res = await api.post('/register', form);
-            console.log(res.data);
             localStorage.setItem('token', res.data.accessToken);
             setUser(res.data.user);
             navigate('/chat');
         } catch (err) {
-            console.log(err);
             setForm({ ...form, error: err.response.data.error });
         }
     };

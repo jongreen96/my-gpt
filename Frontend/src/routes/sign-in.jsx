@@ -42,7 +42,6 @@ export default function SignIn() {
             setUser(res.data.user);
             navigate('/chat');
         } catch (err) {
-            console.log(err);
             setForm({ ...form, error: err.response.data.error });
         }
     };

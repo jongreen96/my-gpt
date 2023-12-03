@@ -60,8 +60,6 @@ userRouter.post('/login', async (req, res) => {
 	try {
 		let { email, password } = req.body;
 
-		console.log(email);
-
 		const user = await userQueries.getUserByEmail(email);
 		if (user.rows.length === 0)
 			return res.status(404).json({ error: 'User not found!' });

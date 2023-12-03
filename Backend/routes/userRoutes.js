@@ -3,6 +3,7 @@ import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import jwt from '../middleware/jwt.js';
 import userQueries from '../db/queries/userQueries.js';
+import { validateUser } from '../middleware/user.js';
 
 const userRouter = express.Router();
 
@@ -15,28 +16,15 @@ userRouter.get('/user', jwt.authenticateToken, async (req, res) => {
 	}
 });
 
-userRouter.post('/register', async (req, res) => {
+userRouter.post('/register', validateUser, async (req, res) => {
 	try {
 		let { email, password } = req.body;
-		email = email.toLowerCase();
-
-		if (!email || !password)
-			return res.status(400).json({ error: 'Missing fields!' });
-
-		if (!RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/).test(email))
-			return res.status(400).json({ error: 'Invalid email!' });
-
-		if (!RegExp(/^(?=.*[A-Z])(?=.*\d).{8,}$/).test(password))
-			return res.status(400).json({
-				error:
-					'Password must be at least 8 characters long and contain at least one number!',
-			});
 
 		const veriCode = crypto.randomBytes(16).toString('hex');
 		const hash = bcrypt.hashSync(password, 10);
 		const veriHash = bcrypt.hashSync(veriCode, 10);
-		const newUser = await userQueries.registerUser(email, hash, veriHash);
 
+		const newUser = await userQueries.registerUser(email, hash, veriHash);
 		if (newUser instanceof Error)
 			return res.status(409).json({ error: newUser.message });
 
@@ -71,7 +59,8 @@ userRouter.post('/verify', async (req, res) => {
 userRouter.post('/login', async (req, res) => {
 	try {
 		let { email, password } = req.body;
-		email = email.toLowerCase();
+
+		console.log(email);
 
 		const user = await userQueries.getUserByEmail(email);
 		if (user.rows.length === 0)

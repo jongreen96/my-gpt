@@ -128,7 +128,7 @@ export default function HomePage() {
                     </p>
                 </section>
             </main>
-            <footer className='mb-10 flex w-full items-center justify-between sm:mb-0'>
+            <footer className='mb-10 flex w-full items-center justify-between p-2 sm:mb-0'>
                 <div className='w-12'>
                     <OpenAI />
                 </div>

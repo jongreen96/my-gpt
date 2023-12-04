@@ -7,7 +7,7 @@ export default function HomePage() {
         <>
             <main className='my-32 flex flex-col items-center gap-24 p-2 sm:p-0'>
                 <section className='flex flex-col gap-8 sm:flex-row sm:p-8'>
-                    <div className='flex flex-col justify-center gap-4'>
+                    <div className='flex flex-col justify-center gap-4 text-center sm:text-left'>
                         <h1 className='text-5xl font-semibold'>
                             All GPT Models, <br /> No monthly subscription
                         </h1>
@@ -15,7 +15,7 @@ export default function HomePage() {
                             Experience the power of OpenAI's latest GPT models
                             without the monthly subscription or waitlist.
                         </p>
-                        <div className='flex gap-2'>
+                        <div className='flex w-full justify-center gap-2 sm:justify-start'>
                             <Link to='/sign-up'>
                                 <button
                                     tabIndex='-1'

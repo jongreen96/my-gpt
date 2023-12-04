@@ -118,9 +118,10 @@ describe('User routes', () => {
 		});
 
 		it('should return 200 if valid id and veriCode are provided', async () => {
-			const res = await supertest(app).post(
-				`/api/verify?id=${userId}&veriCode=${veriCode}`
-			);
+			const res = await supertest(app).post(`/api/verify`).send({
+				id: userId,
+				veriCode: veriCode,
+			});
 			expect(res.status).toBe(200);
 		});
 

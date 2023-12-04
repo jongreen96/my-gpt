@@ -9,6 +9,7 @@ import HomePage from './routes/home-page';
 import SignUp from './routes/sign-up';
 import SignIn from './routes/sign-in';
 import Chat from './routes/chat';
+import Verification from './routes/verification';
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: '/chat',
                 element: <Chat />,
+            },
+            {
+                path: '/verification',
+                element: <Verification />,
             },
         ],
     },

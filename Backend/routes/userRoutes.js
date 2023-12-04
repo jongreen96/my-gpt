@@ -3,6 +3,7 @@ import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import { authenticateToken, generateAccessToken } from '../middleware/jwt.js';
 import { validateUser } from '../middleware/user.js';
+import sendVerification from '../middleware/email.js';
 import userQueries from '../db/queries/userQueries.js';
 
 const userRouter = express.Router();
@@ -29,8 +30,11 @@ userRouter.post('/register', validateUser, async (req, res) => {
 		if (newUser instanceof Error)
 			return res.status(409).json({ error: newUser.message });
 
-		// TODO: Send email with verification code
-		console.log(veriCode);
+		// NEED TO CHANGE THIS TO THE ACTUAL URL
+		sendVerification(
+			email,
+			`http://localhost:5173/verification?id=${newUser.rows[0].id}&veriCode=${veriCode}`
+		);
 
 		const accessToken = generateAccessToken({ id: newUser.rows[0].id });
 
@@ -42,7 +46,7 @@ userRouter.post('/register', validateUser, async (req, res) => {
 
 userRouter.post('/verify', async (req, res) => {
 	try {
-		let { id, veriCode } = req.query;
+		let { id, veriCode } = req.body;
 
 		if (!id || !veriCode)
 			return res.status(400).json({ error: 'Missing fields!' });

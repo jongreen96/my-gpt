@@ -29,7 +29,7 @@ export default function Root() {
     }, []);
 
     useEffect(() => {
-        if (user) {
+        if (user && window.location.pathname === '/') {
             navigate('/chat');
         }
     }, [user]);

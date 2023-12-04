@@ -5,7 +5,7 @@ import { OpenAI } from '../assets/Icons';
 export default function HomePage() {
     return (
         <>
-            <main className='my-32 flex flex-col items-center gap-24 p-2 sm:p-0'>
+            <main className='my-20 flex flex-col items-center gap-24 p-2 sm:my-40 sm:p-0'>
                 <section className='flex flex-col gap-8 sm:flex-row sm:p-8'>
                     <div className='flex flex-col justify-center gap-4 text-center sm:text-left'>
                         <h1 className='text-5xl font-semibold'>
@@ -40,6 +40,7 @@ export default function HomePage() {
                         className='aspect-square rounded-lg object-cover sm:w-2/5'
                     />
                 </section>
+
                 <section className='.bg-gradient flex max-w-5xl flex-col justify-center gap-8 sm:flex-row sm:p-8'>
                     <div className='flex flex-1 flex-col items-center gap-2 text-center'>
                         <div className='w-12'>
@@ -79,6 +80,7 @@ export default function HomePage() {
                         </p>
                     </div>
                 </section>
+
                 <section className='flex flex-col justify-center gap-8 sm:p-8'>
                     <div className='flex flex-col gap-8 sm:flex-row sm:p-8'>
                         <h2 className='flex-1 text-4xl font-semibold'>
@@ -101,6 +103,7 @@ export default function HomePage() {
                         className='aspect-video rounded-lg object-cover'
                     />
                 </section>
+
                 <section className='flex flex-col items-center justify-center gap-8 sm:flex-row sm:p-8'>
                     <div className='flex flex-1 flex-col gap-8'>
                         <h2 className='flex-1 text-4xl font-semibold'>
@@ -128,6 +131,7 @@ export default function HomePage() {
                     </p>
                 </section>
             </main>
+
             <footer className='mb-10 flex w-full items-center justify-between p-2 sm:mb-0'>
                 <div className='w-12'>
                     <OpenAI />

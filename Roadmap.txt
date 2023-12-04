@@ -18,3 +18,7 @@ Connect to OpenAI's API:
     - voice chat
     - token to credit setup
     - test
+
+DB:
+    - transactions
+    - test

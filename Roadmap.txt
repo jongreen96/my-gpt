@@ -1,5 +1,4 @@
 Impliment user Auth:
-    - pretty up the verification page
     - add a way to edit / delete a user
     - add a way to log out
     - test 

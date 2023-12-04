@@ -41,10 +41,12 @@ export default function Root() {
                         <h1 className='select-none text-3xl font-semibold sm:text-5xl'>
                             My-GPT
                         </h1>
-                        <div className='ml-auto flex flex-col items-center font-semibold sm:hidden'>
-                            <p className='text-sm'>Credits</p>
-                            <p>{user?.credits || 0}</p>
-                        </div>
+                        {user && (
+                            <div className='ml-auto flex flex-col items-center font-semibold sm:hidden'>
+                                <p className='text-sm'>Credits</p>
+                                <p>{user.credits || 0}</p>
+                            </div>
+                        )}
                     </div>
                     {user ? <ConversationMenu /> : <UserMenu />}
                 </div>
@@ -54,10 +56,12 @@ export default function Root() {
                         alt='open'
                         className='w-8 rotate-90 group-hover:hidden  sm:inline-block sm:rotate-0'
                     />
-                    <div className='hidden flex-col items-center font-semibold sm:flex'>
-                        <p className='text-sm'>Credits</p>
-                        <p>{user?.credits || 0}</p>
-                    </div>
+                    {user && (
+                        <div className='hidden flex-col items-center font-semibold sm:flex'>
+                            <p className='text-sm'>Credits</p>
+                            <p>{user.credits || 0}</p>
+                        </div>
+                    )}
                 </div>
             </nav>
             <div className='h-[100dvh] w-full max-w-7xl pt-14 sm:pl-16 sm:pt-0'>

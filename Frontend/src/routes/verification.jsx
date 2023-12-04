@@ -44,14 +44,14 @@ export function Verification() {
                 <h1 className='text-5xl font-semibold'>
                     Verification successful!
                 </h1>
-                <Link to='/chat'>
+                <a href='http://localhost:5173/chat'>
                     <button
                         tabIndex='-1'
                         className='h-12 w-32 rounded-lg border-2 border-primary-100 bg-primary-100 font-semibold transition-all hover:border-text-100'
                     >
                         Go to chat
                     </button>
-                </Link>
+                </a>
             </div>
         );
     return (

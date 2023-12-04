@@ -38,8 +38,6 @@ export const verifyUser = async (id, veriCode) => {
 			[user.rows[0].credits + 1000, id]
 		);
 		db.query('DELETE FROM gpt_verification WHERE user_id = $1', [id]);
-
-		// TODO: Send email with verification code
 	} catch (e) {
 		return e;
 	}

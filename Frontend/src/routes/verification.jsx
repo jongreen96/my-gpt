@@ -26,8 +26,23 @@ export function Verification() {
 
     if (verified === null)
         return (
-            <div className='flex h-full flex-col items-center justify-center gap-8'>
-                <h1 className='text-5xl font-semibold'>Verifying...</h1>
+            <div className='flex h-full flex-col items-center justify-center gap-8 text-center'>
+                <h1 className='pl-6 text-5xl font-semibold'>
+                    Verifying
+                    <span style={{ animation: 'dot 1.4s infinite 0.2s' }}>
+                        .
+                    </span>
+                    <span style={{ animation: 'dot 1.4s infinite 0.4s' }}>
+                        .
+                    </span>
+                    <span style={{ animation: 'dot 1.4s infinite 0.6s' }}>
+                        .
+                    </span>
+                </h1>
+                <p className='text-sm'>
+                    Please wait while we verify your account. This shouldn't
+                    take long.
+                </p>
                 <Link to='/chat'>
                     <button
                         tabIndex='-1'
@@ -38,12 +53,17 @@ export function Verification() {
                 </Link>
             </div>
         );
+
     if (verified)
         return (
-            <div className='flex h-full flex-col items-center justify-center gap-8'>
+            <div className='flex h-full flex-col items-center justify-center gap-8 text-center'>
                 <h1 className='text-5xl font-semibold'>
                     Verification successful!
                 </h1>
+                <p className='text-sm'>
+                    Your account has been verified and 1000 credits has been
+                    added to your account!
+                </p>
                 <a href='http://localhost:5173/chat'>
                     <button
                         tabIndex='-1'
@@ -54,9 +74,14 @@ export function Verification() {
                 </a>
             </div>
         );
+
     return (
-        <div className='flex h-full flex-col items-center justify-center gap-8'>
+        <div className='flex h-full flex-col items-center justify-center gap-8 text-center'>
             <h1 className='text-5xl font-semibold'>Verification failed!</h1>
+            <p className='text-sm'>
+                Unfortunately we couldn't verify your account. Please try again
+                later or contact support.
+            </p>
             <Link to='/chat'>
                 <button
                     tabIndex='-1'

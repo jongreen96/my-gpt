@@ -8,6 +8,7 @@ import ErrorPage from './routes/error-page';
 import HomePage from './routes/home-page';
 import SignUp from './routes/sign-up';
 import SignIn from './routes/sign-in';
+import Settings from './routes/settings';
 import Chat from './routes/chat';
 import Verification from './routes/verification';
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: '/sign-in',
                 element: <SignIn />,
+            },
+            {
+                path: '/settings',
+                element: <Settings />,
             },
             {
                 path: '/chat',

@@ -49,18 +49,22 @@ export default function Root() {
                         )}
                     </div>
                     {user ? <ConversationMenu /> : <UserMenu />}
-                    <Link
-                        to='/settings'
-                        className='hidden w-full p-2 group-hover:inline-block sm:group-hover:hidden'
-                    >
-                        <button
-                            tabIndex='-1'
-                            className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-text-100'
+                    {user && (
+                        <Link
+                            to='/settings'
+                            className='hidden w-full p-2 group-hover:inline-block sm:group-hover:hidden'
                         >
-                            <Settings />
-                            <p className='hidden group-hover:block'>Settings</p>
-                        </button>
-                    </Link>
+                            <button
+                                tabIndex='-1'
+                                className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-text-100'
+                            >
+                                <Settings />
+                                <p className='hidden group-hover:block'>
+                                    Settings
+                                </p>
+                            </button>
+                        </Link>
+                    )}
                 </div>
                 <div className='m-auto flex flex-col items-center justify-center gap-2 p-2 group-hover:hidden sm:m-0 sm:group-hover:flex'>
                     <img
@@ -68,23 +72,27 @@ export default function Root() {
                         alt='open'
                         className='w-8 rotate-90 group-hover:hidden  sm:inline-block sm:rotate-0'
                     />
-                    <Link
-                        to='/settings'
-                        className='hidden w-full sm:inline-block'
-                    >
-                        <button
-                            tabIndex='-1'
-                            className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-text-100'
-                        >
-                            <Settings />
-                            <p className='hidden group-hover:block'>Settings</p>
-                        </button>
-                    </Link>
                     {user && (
-                        <div className='hidden flex-col items-center font-semibold sm:flex'>
-                            <p className='text-sm'>Credits</p>
-                            <p>{user.credits || 0}</p>
-                        </div>
+                        <>
+                            <div className='hidden flex-col items-center font-semibold sm:flex'>
+                                <p className='text-sm'>Credits</p>
+                                <p>{user.credits || 0}</p>
+                            </div>
+                            <Link
+                                to='/settings'
+                                className='hidden w-full sm:inline-block'
+                            >
+                                <button
+                                    tabIndex='-1'
+                                    className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-text-100'
+                                >
+                                    <Settings />
+                                    <p className='hidden group-hover:block'>
+                                        Settings
+                                    </p>
+                                </button>
+                            </Link>
+                        </>
                     )}
                 </div>
             </nav>

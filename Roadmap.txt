@@ -1,6 +1,8 @@
+TODO:
+    - add function to settings buttons
+
 Impliment user Auth:
     - add a way to edit / delete a user
-    - add a way to log out
     - test 
 
 Setup server cache:

@@ -1,5 +1,6 @@
 import { useOutletContext, useNavigate } from 'react-router-dom';
 import { CheckboxChecked, CheckboxUnchecked } from '../assets/Icons';
+import api from '../utils/api';
 
 export default function Settings() {
     const navigate = useNavigate();
@@ -21,6 +22,9 @@ export default function Settings() {
                                 updatedUser.settings.darkmode =
                                     !updatedUser.settings.darkmode;
                                 setUser(updatedUser);
+                                api.patch('/user', {
+                                    settings: updatedUser.settings,
+                                });
                             }}
                             className='pr-5 sm:pr-0'
                         >
@@ -40,6 +44,9 @@ export default function Settings() {
                                 updatedUser.settings.timestamps =
                                     !updatedUser.settings.timestamps;
                                 setUser(updatedUser);
+                                api.patch('/user', {
+                                    settings: updatedUser.settings,
+                                });
                             }}
                             className='pr-5 sm:pr-0'
                         >
@@ -59,6 +66,9 @@ export default function Settings() {
                                 updatedUser.settings.credits =
                                     !updatedUser.settings.credits;
                                 setUser(updatedUser);
+                                api.patch('/user', {
+                                    settings: updatedUser.settings,
+                                });
                             }}
                             className='pr-5 sm:pr-0'
                         >
@@ -70,9 +80,26 @@ export default function Settings() {
                         </button>
                     </div>
 
-                    <div className='flex w-full justify-between rounded-lg border border-bg-light bg-bg-regular p-2'>
+                    <div className='flex w-full items-center justify-between rounded-lg border border-bg-light bg-bg-regular p-2'>
                         <p>Conversation memory limit</p>
-                        <button>Button</button>
+                        <select
+                            onChange={(e) => {
+                                const updatedUser = { ...user };
+                                updatedUser.settings.memory = e.target.value;
+                                setUser(updatedUser);
+                                api.patch('/user', {
+                                    settings: updatedUser.settings,
+                                });
+                            }}
+                            defaultValue={user.settings.memory}
+                            className='h-fit rounded border-2 bg-bg-dark py-1'
+                        >
+                            {new Array(100).fill(0).map((_, i) => (
+                                <option key={i} value={i + 1}>
+                                    {i + 1}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                 </section>
 

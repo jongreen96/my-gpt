@@ -60,4 +60,28 @@ export const getUserById = async (id) => {
 	return user;
 };
 
-export default { registerUser, getUserByEmail, getUserById, verifyUser };
+export const updateUser = async (id, updates) => {
+	const user = await getUserById(id);
+	if (user instanceof Error) return user;
+
+	const updateKeys = Object.keys(updates);
+	const updateValues = Object.values(updates);
+	const updateSet = updateKeys
+		.map((key, index) => `${key} = $${index + 2}`)
+		.join(', ');
+
+	const updatedUser = await db.query(
+		`UPDATE gpt_users SET ${updateSet} WHERE id = $1`,
+		[id, ...updateValues]
+	);
+
+	return updatedUser.rows[0];
+};
+
+export default {
+	registerUser,
+	getUserByEmail,
+	getUserById,
+	verifyUser,
+	updateUser,
+};

@@ -84,4 +84,19 @@ userRouter.post('/login', validateUser, async (req, res) => {
 	}
 });
 
+userRouter.patch('/user', authenticateToken, async (req, res) => {
+	try {
+		const { id } = req.user;
+
+		const updatedUser = await userQueries.updateUser(id, req.body);
+
+		if (updatedUser instanceof Error) throw updatedUser;
+
+		res.json({ user: updatedUser });
+	} catch (e) {
+		console.log(e);
+		res.status(500).json({ error: e.message });
+	}
+});
+
 export default userRouter;

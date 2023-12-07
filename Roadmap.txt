@@ -1,5 +1,7 @@
 TODO:
-    - add function to settings buttons
+    - fix navbar height on short desktop screens
+    - add update password to update route
+    - test update user info route
 
 Impliment user Auth:
     - add a way to edit / delete a user

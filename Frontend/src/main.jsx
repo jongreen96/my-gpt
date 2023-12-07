@@ -11,6 +11,7 @@ import SignIn from './routes/sign-in';
 import Settings from './routes/settings';
 import Chat from './routes/chat';
 import Verification from './routes/verification';
+import ChangePassword from './routes/changePassword';
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
             {
                 path: '/verification',
                 element: <Verification />,
+            },
+            {
+                path: '/change-password',
+                element: <ChangePassword />,
             },
         ],
     },

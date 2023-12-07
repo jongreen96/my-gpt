@@ -12,6 +12,7 @@ userRouter.get('/user', authenticateToken, async (req, res) => {
 	try {
 		const user = await userQueries.getUserById(req.user.id);
 		if (user instanceof Error) throw user;
+		delete user.rows[0].password;
 		res.json({ user: user.rows[0] });
 	} catch (e) {
 		res.status(404).json({ error: e.message });
@@ -87,6 +88,27 @@ userRouter.post('/login', validateUser, async (req, res) => {
 userRouter.patch('/user', authenticateToken, async (req, res) => {
 	try {
 		const { id } = req.user;
+
+		const user = await userQueries.getUserById(id);
+		if (user instanceof Error) throw user;
+
+		if (req.body.newPassword) {
+			const { oldPassword, newPassword } = req.body;
+
+			if (!RegExp(/^(?=.*[A-Z])(?=.*\d).{8,}$/).test(newPassword))
+				return res.status(400).json({
+					error:
+						'Password must be at least 8 characters long and contain at least one number!',
+				});
+
+			const result = bcrypt.compareSync(oldPassword, user.rows[0].password);
+			if (!result)
+				return res.status(401).json({ error: 'Incorrect password!' });
+
+			req.body.password = bcrypt.hashSync(newPassword, 10);
+			delete req.body.oldPassword;
+			delete req.body.newPassword;
+		}
 
 		const updatedUser = await userQueries.updateUser(id, req.body);
 

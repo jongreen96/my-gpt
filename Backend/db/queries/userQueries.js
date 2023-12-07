@@ -53,7 +53,7 @@ export const getUserByEmail = async (email) => {
 
 export const getUserById = async (id) => {
 	const user = await db.query(
-		'SELECT id, email, credits, settings FROM gpt_users WHERE id = $1',
+		'SELECT id, email, password, credits, settings FROM gpt_users WHERE id = $1',
 		[id]
 	);
 	if (user.rows.length === 0) return new Error('User not found!');
@@ -71,7 +71,7 @@ export const updateUser = async (id, updates) => {
 		.join(', ');
 
 	const updatedUser = await db.query(
-		`UPDATE gpt_users SET ${updateSet} WHERE id = $1`,
+		`UPDATE gpt_users SET ${updateSet}, date_modified = CURRENT_TIMESTAMP WHERE id = $1`,
 		[id, ...updateValues]
 	);
 

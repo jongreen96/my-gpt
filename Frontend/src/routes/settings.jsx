@@ -1,5 +1,6 @@
 import { useOutletContext, useNavigate } from 'react-router-dom';
 import { CheckboxChecked, CheckboxUnchecked } from '../assets/Icons';
+import openAIModels from '../utils/openAIModels';
 import api from '../utils/api';
 
 export default function Settings() {
@@ -7,12 +8,41 @@ export default function Settings() {
     const [user, setUser] = useOutletContext();
 
     if (!user) return null;
+
     return (
         <>
             <h1 className='mt-20 p-2 text-4xl font-semibold'>Settings</h1>
             <div className='flex flex-col gap-24 p-2 sm:flex-row sm:justify-between'>
                 <section className='flex w-full flex-1 flex-col gap-2'>
                     <h2 className='text-2xl font-semibold'>General</h2>
+
+                    <div className='flex w-full flex-col justify-between gap-2 rounded-lg border border-bg-light bg-bg-regular p-2'>
+                        <div className='flex items-center justify-between'>
+                            <p>Default model</p>
+                            <select
+                                onChange={(e) => {
+                                    const updatedUser = { ...user };
+                                    updatedUser.settings.default_model =
+                                        e.target.value;
+                                    setUser(updatedUser);
+                                    api.patch('/user', {
+                                        settings: updatedUser.settings,
+                                    });
+                                }}
+                                defaultValue={user.settings.default_model}
+                                className='h-fit rounded border-2 bg-bg-dark py-1'
+                            >
+                                {Object.keys(openAIModels).map((model) => (
+                                    <option key={model} value={model}>
+                                        {model}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <p className='text-sm'>
+                            {openAIModels[user.settings.default_model]}
+                        </p>
+                    </div>
 
                     <div className='flex w-full justify-between rounded-lg border border-bg-light bg-bg-regular p-2'>
                         <p>Dark mode</p>
@@ -94,8 +124,9 @@ export default function Settings() {
                             defaultValue={user.settings.memory}
                             className='h-fit rounded border-2 bg-bg-dark py-1'
                         >
+                            <option value='Unlimited'>Unlimited</option>
                             {new Array(100).fill(0).map((_, i) => (
-                                <option key={i} value={i + 1}>
+                                <option key={i + 1} value={i + 1}>
                                     {i + 1}
                                 </option>
                             ))}

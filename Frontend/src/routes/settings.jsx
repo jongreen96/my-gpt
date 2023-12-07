@@ -148,8 +148,8 @@ export default function Settings() {
                     </div>
 
                     <button
-                        tabIndex='-1'
                         className='h-12 w-full rounded-lg border-2 border-bg-regular bg-bg-regular font-semibold transition-all hover:border-text-100'
+                        onClick={() => navigate('/change-password')}
                     >
                         Change password
                     </button>
@@ -159,7 +159,6 @@ export default function Settings() {
                             setUser(null);
                             navigate('/');
                         }}
-                        tabIndex='-1'
                         className='h-12 w-full rounded-lg border-2 border-primary-100 bg-primary-100 font-semibold transition-all hover:border-text-100'
                     >
                         Log out

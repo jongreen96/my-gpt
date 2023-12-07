@@ -1,6 +1,5 @@
 TODO:
     - add function to settings buttons
-		- add error messages to login/register page
 
 Impliment user Auth:
     - add a way to edit / delete a user

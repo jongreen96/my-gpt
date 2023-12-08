@@ -8,6 +8,7 @@ import ConversationMenu from '../components/conversationMenu';
 export default function Root() {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -17,6 +18,8 @@ export default function Root() {
                 setUser(res.data.user);
             } catch (err) {
                 console.log(err);
+            } finally {
+                setLoading(false);
             }
         };
         fetchUser();
@@ -28,6 +31,7 @@ export default function Root() {
         }
     }, [user]);
 
+    if (loading) return null;
     return (
         <>
             <nav className='group fixed left-0 flex h-14 w-full flex-col overflow-hidden border-b-2 border-bg-light bg-bg-regular hover:h-auto hover:max-h-[75vh] sm:h-full sm:w-16 sm:border-b-0 sm:border-r-2 sm:hover:h-full sm:hover:max-h-screen sm:hover:w-64'>

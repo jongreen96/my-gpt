@@ -3,11 +3,8 @@ import { MessageRegular, MessageSolid } from '../assets/Icons';
 
 export default function ConversationMenu() {
     return (
-        <div
-            className='no-scrollbar flex max-h-[80dvh] w-full flex-col gap-2 overflow-scroll p-2 md:group-hover:w-64'
-            style={{ scrollSnapType: 'y mandatory' }}
-        >
-            <Link to='/chat' style={{ scrollSnapAlign: 'start' }}>
+        <div className='flex w-full flex-col gap-2 p-2 md:group-hover:w-64'>
+            <Link to='/chat'>
                 <button
                     tabIndex='-1'
                     className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-primary-100 bg-primary-100 font-semibold transition-all hover:border-text-100'
@@ -18,7 +15,7 @@ export default function ConversationMenu() {
             </Link>
 
             {/* TEST BUTTONS */}
-            {new Array(10).fill(0).map((_, i) => {
+            {new Array(1).fill(0).map((_, i) => {
                 return (
                     <Link
                         to={`/chat/${i}`}

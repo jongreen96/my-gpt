@@ -30,64 +30,76 @@ export default function Root() {
 
     return (
         <>
-            <nav className='hover:max-h-3/4 group fixed left-0 top-0 flex h-14 w-full justify-between overflow-hidden border-b-2 border-bg-light bg-bg-regular transition-all hover:h-min sm:left-0 sm:h-screen sm:w-16 sm:flex-col sm:justify-between sm:border-b-0 sm:border-r-2 sm:hover:h-screen sm:hover:w-64'>
-                <div className='w-screen sm:w-full'>
-                    <div className='flex w-full gap-2 p-2 sm:w-64'>
+            <nav className='group fixed left-0 flex h-14 w-full flex-col overflow-hidden border-b-2 border-bg-light bg-bg-regular hover:h-auto hover:max-h-[75vh] sm:h-full sm:w-16 sm:border-b-0 sm:border-r-2 sm:hover:h-full sm:hover:max-h-screen sm:hover:w-64'>
+                <div className='flex items-center justify-between pr-2'>
+                    <div className='flex gap-2 p-2'>
                         <Link to={user ? '/chat' : '/'}>
                             <div className='w-10 sm:w-12'>
                                 <OpenAI />
                             </div>
                         </Link>
-                        <h1 className='select-none text-3xl font-semibold sm:text-5xl'>
+                        <h1 className='select-none text-3xl font-semibold sm:w-60 sm:text-5xl'>
                             My-GPT
                         </h1>
+                    </div>
+                    <div className='flex gap-2 sm:hidden'>
+                        <img
+                            src='./angles-right-solid.svg'
+                            alt='open'
+                            className='w-8 rotate-90 group-hover:hidden sm:inline-block sm:rotate-0'
+                        />
                         {user && (
-                            <div className='ml-auto flex flex-col items-center font-semibold sm:hidden'>
+                            <div className='text-center font-semibold'>
                                 <p className='text-sm'>Credits</p>
                                 <p>{user.credits || 0}</p>
                             </div>
                         )}
                     </div>
-                    {user ? <ConversationMenu /> : <UserMenu />}
-                    {user && (
-                        <Link
-                            to='/settings'
-                            className='hidden w-full p-2 group-hover:inline-block sm:group-hover:hidden'
-                        >
-                            <button
-                                tabIndex='-1'
-                                className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-text-100'
-                            >
-                                <Settings />
-                                <p className='hidden group-hover:block'>
-                                    Settings
-                                </p>
-                            </button>
-                        </Link>
-                    )}
                 </div>
-                <div className='m-auto flex flex-col items-center justify-center gap-2 p-2 group-hover:hidden sm:m-0 sm:group-hover:flex'>
+
+                <div className='no-scrollbar flex h-full flex-col justify-between overflow-scroll'>
+                    <div className='w-screen sm:w-full'>
+                        {user ? <ConversationMenu /> : <UserMenu />}
+                    </div>
+                </div>
+                {user && (
+                    <Link
+                        to='/settings'
+                        className='hidden w-full p-2 pt-4 group-hover:inline-block sm:group-hover:hidden'
+                    >
+                        <button
+                            tabIndex='-1'
+                            className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-text-100'
+                        >
+                            <Settings />
+                            <p className='hidden group-hover:block'>Settings</p>
+                        </button>
+                    </Link>
+                )}
+
+                {/* Only shows up on wide screens */}
+                <div className='hidden flex-col gap-2 self-center py-2 sm:flex'>
                     <img
                         src='./angles-right-solid.svg'
                         alt='open'
-                        className='w-8 rotate-90 group-hover:hidden  sm:inline-block sm:rotate-0'
+                        className='ml-2 w-8 rotate-90 group-hover:hidden sm:inline-block sm:rotate-0'
                     />
                     {user && (
                         <>
-                            <div className='hidden flex-col items-center font-semibold sm:flex'>
+                            <div className='text-center font-semibold'>
                                 <p className='text-sm'>Credits</p>
                                 <p>{user.credits || 0}</p>
                             </div>
                             <Link
                                 to='/settings'
-                                className='hidden w-full sm:inline-block'
+                                className='w-full group-hover:inline-block group-hover:w-60'
                             >
                                 <button
                                     tabIndex='-1'
                                     className='flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-bg-light bg-bg-light font-semibold transition-all hover:border-text-100'
                                 >
                                     <Settings />
-                                    <p className='hidden group-hover:block'>
+                                    <p className='hidden group-hover:inline-block'>
                                         Settings
                                     </p>
                                 </button>

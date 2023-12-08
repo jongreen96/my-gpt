@@ -78,10 +78,18 @@ export const updateUser = async (id, updates) => {
 	return updatedUser.rows[0];
 };
 
+export const saveCachedUser = async (id, user) => {
+	await db.query(
+		`UPDATE gpt_users SET settings = $1, date_modified = CURRENT_TIMESTAMP WHERE id = $2`,
+		[user.settings, id]
+	);
+};
+
 export default {
 	registerUser,
 	getUserByEmail,
 	getUserById,
 	verifyUser,
 	updateUser,
+	saveCachedUser,
 };

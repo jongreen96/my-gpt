@@ -5,14 +5,23 @@ import { authenticateToken, generateAccessToken } from '../middleware/jwt.js';
 import { validateUser } from '../middleware/user.js';
 import sendVerification from '../middleware/email.js';
 import userQueries from '../db/queries/userQueries.js';
+import cache from '../middleware/chache.js';
 
 const userRouter = express.Router();
 
 userRouter.get('/user', authenticateToken, async (req, res) => {
+	const cachedUser = cache.get(req.user.id);
+	if (cachedUser) {
+		return res.json({ user: cachedUser });
+	}
+
 	try {
 		const user = await userQueries.getUserById(req.user.id);
 		if (user instanceof Error) throw user;
+
 		delete user.rows[0].password;
+		cache.set(req.user.id, user.rows[0], 3600);
+
 		res.json({ user: user.rows[0] });
 	} catch (e) {
 		res.status(404).json({ error: e.message });
@@ -38,6 +47,8 @@ userRouter.post('/register', validateUser, async (req, res) => {
 		);
 
 		const accessToken = generateAccessToken({ id: newUser.rows[0].id });
+
+		cache.set(newUser.rows[0].id, newUser.rows[0], 3600);
 
 		res.json({ accessToken, user: newUser.rows[0], veriCode });
 	} catch (e) {
@@ -70,16 +81,34 @@ userRouter.post('/login', validateUser, async (req, res) => {
 		if (user.rows.length === 0)
 			return res.status(404).json({ error: 'User not found!' });
 
+		const cachedUser = cache.get(user.rows[0].id);
+		if (cachedUser)
+			await userQueries.saveCachedUser(user.rows[0].id, cachedUser);
+
 		bcrypt.compare(password, user.rows[0].password, (err, result) => {
 			if (err) throw new Error(err);
 			if (!result)
 				return res.status(401).json({ error: 'Incorrect password!' });
 
 			delete user.rows[0].password;
+
 			const accessToken = generateAccessToken({ id: user.rows[0].id });
 
+			if (cachedUser) return res.json({ accessToken, user: cachedUser });
+
+			cache.set(user.rows[0].id, user.rows[0], 3600);
 			res.json({ accessToken, user: user.rows[0] });
 		});
+	} catch (e) {
+		res.status(500).json({ error: e.message });
+	}
+});
+
+userRouter.post('/logout', authenticateToken, async (req, res) => {
+	try {
+		cache.del(req.user.id);
+
+		res.json({ message: 'User logged out!' });
 	} catch (e) {
 		res.status(500).json({ error: e.message });
 	}
@@ -88,6 +117,13 @@ userRouter.post('/login', validateUser, async (req, res) => {
 userRouter.patch('/user', authenticateToken, async (req, res) => {
 	try {
 		const { id } = req.user;
+
+		let cachedUser = cache.get(id);
+		if (cachedUser) {
+			cache.set(id, { ...cachedUser, ...req.body }, 3600);
+			cachedUser = cache.get(id);
+			return res.json({ user: cachedUser });
+		}
 
 		const user = await userQueries.getUserById(id);
 		if (user instanceof Error) throw user;

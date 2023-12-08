@@ -156,6 +156,7 @@ export default function Settings() {
                     <button
                         onClick={() => {
                             localStorage.removeItem('token');
+                            api.post('/logout');
                             setUser(null);
                             navigate('/');
                         }}

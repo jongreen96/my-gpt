@@ -215,4 +215,33 @@ describe('User routes', () => {
 			expect(res.status).toBe(401);
 		});
 	});
+
+	describe('PATCH /api/user', () => {
+		it('should return return 401 if no token is provided', async () => {
+			const res = await supertest(app).patch('/api/user');
+			expect(res.status).toBe(401);
+		});
+
+		it('should return 403 if invalid token is provided', async () => {
+			const res = await supertest(app)
+				.patch('/api/user')
+				.set('Authorization', 'Bearer ' + process.env.TEST_INVALID_TOKEN + 'a');
+			expect(res.status).toBe(403);
+		});
+
+		it('should return 404 if token is valid but user does not exist', async () => {
+			const res = await supertest(app)
+				.patch('/api/user')
+				.set('Authorization', 'Bearer ' + process.env.TEST_INVALID_TOKEN);
+			expect(res.status).toBe(404);
+		});
+
+		it('should return 200 if valid token is provided', async () => {
+			const res = await supertest(app)
+				.patch('/api/user')
+				.set('Authorization', 'Bearer ' + process.env.TEST_VALID_TOKEN)
+				.send({ firstName: 'Test' });
+			expect(res.status).toBe(200);
+		});
+	});
 });

@@ -126,7 +126,7 @@ userRouter.patch('/user', authenticateToken, async (req, res) => {
 		}
 
 		const user = await userQueries.getUserById(id);
-		if (user instanceof Error) throw user;
+		if (user instanceof Error) return res.status(404).json({ error: user });
 
 		if (req.body.newPassword) {
 			const { oldPassword, newPassword } = req.body;

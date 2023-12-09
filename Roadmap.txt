@@ -1,16 +1,6 @@
 TODO:
     - test update user info route
 
-Impliment user Auth:
-    - add a way to edit / delete a user
-    - test 
-
-Setup server cache:
-    - cache the user data
-    - update the cache when information is changed
-    - clear cache after set time
-    - test
-
 Build Chat page:
 
 Connect to OpenAI's API:

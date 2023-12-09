@@ -1,8 +1,11 @@
 import NodeCache from 'node-cache';
 import userQueries from '../db/queries/userQueries.js';
 
+export const ttl = 120; // 2 minutes
+
 const cache = new NodeCache({
-	stdTTL: 3600 /* 1 hour */,
+	stdTTL: ttl,
+	checkperiod: ttl,
 });
 
 cache.on('expired', async (key, value) => {

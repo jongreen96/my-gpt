@@ -5,7 +5,7 @@ import { authenticateToken, generateAccessToken } from '../middleware/jwt.js';
 import { validateUser } from '../middleware/user.js';
 import sendVerification from '../middleware/email.js';
 import userQueries from '../db/queries/userQueries.js';
-import cache from '../middleware/chache.js';
+import cache, { ttl } from '../middleware/chache.js';
 
 const userRouter = express.Router();
 
@@ -20,7 +20,7 @@ userRouter.get('/user', authenticateToken, async (req, res) => {
 		if (user instanceof Error) throw user;
 
 		delete user.rows[0].password;
-		cache.set(req.user.id, user.rows[0], 3600);
+		cache.set(req.user.id, user.rows[0], ttl);
 
 		res.json({ user: user.rows[0] });
 	} catch (e) {
@@ -48,7 +48,7 @@ userRouter.post('/register', validateUser, async (req, res) => {
 
 		const accessToken = generateAccessToken({ id: newUser.rows[0].id });
 
-		cache.set(newUser.rows[0].id, newUser.rows[0], 3600);
+		cache.set(newUser.rows[0].id, newUser.rows[0], ttl);
 
 		res.json({ accessToken, user: newUser.rows[0], veriCode });
 	} catch (e) {
@@ -96,7 +96,7 @@ userRouter.post('/login', validateUser, async (req, res) => {
 
 			if (cachedUser) return res.json({ accessToken, user: cachedUser });
 
-			cache.set(user.rows[0].id, user.rows[0], 3600);
+			cache.set(user.rows[0].id, user.rows[0], ttl);
 			res.json({ accessToken, user: user.rows[0] });
 		});
 	} catch (e) {
@@ -120,7 +120,7 @@ userRouter.patch('/user', authenticateToken, async (req, res) => {
 
 		let cachedUser = cache.get(id);
 		if (cachedUser) {
-			cache.set(id, { ...cachedUser, ...req.body }, 3600);
+			cache.set(id, { ...cachedUser, ...req.body }, ttl);
 			cachedUser = cache.get(id);
 			return res.json({ user: cachedUser });
 		}

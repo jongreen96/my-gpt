@@ -24,21 +24,15 @@ cache.on('del', async (key, value) => {
 	}
 });
 
-cache.on('flush', async () => {
-	try {
-		const keys = cache.keys();
-		console.log('Saving cache to db');
-		for (const key of keys) {
+setInterval(() => {
+	cache.keys().forEach(async (key) => {
+		try {
 			const value = cache.get(key);
-			if (value !== undefined) {
-				console.log('Saving', key);
-				await userQueries.saveCachedUser(key, value);
-			}
+			if (value) await userQueries.saveCachedUser(key, value);
+		} catch (e) {
+			console.log(e);
 		}
-		console.log('Done saving cache to db');
-	} catch (e) {
-		console.log(e);
-	}
-});
+	});
+}, ttl * 1000);
 
 export default cache;

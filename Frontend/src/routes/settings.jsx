@@ -45,28 +45,6 @@ export default function Settings() {
                     </div>
 
                     <div className='flex w-full justify-between rounded-lg border border-bg-light bg-bg-regular p-2'>
-                        <p>Dark mode</p>
-                        <button
-                            onClick={() => {
-                                const updatedUser = { ...user };
-                                updatedUser.settings.darkmode =
-                                    !updatedUser.settings.darkmode;
-                                setUser(updatedUser);
-                                api.patch('/user', {
-                                    settings: updatedUser.settings,
-                                });
-                            }}
-                            className='pr-5 sm:pr-0'
-                        >
-                            {user.settings.darkmode ? (
-                                <CheckboxChecked />
-                            ) : (
-                                <CheckboxUnchecked />
-                            )}
-                        </button>
-                    </div>
-
-                    <div className='flex w-full justify-between rounded-lg border border-bg-light bg-bg-regular p-2'>
                         <p>Timestamp messages</p>
                         <button
                             onClick={() => {

@@ -1,6 +1,6 @@
 export default function SignUp() {
   return (
-    <div className='flex h-full flex-col items-center justify-center gap-2'>
+    <section className='flex h-full flex-col items-center justify-center gap-2'>
       <h1 className='text-2xl font-semibold'>Sign Up</h1>
       <form className='flex w-64 flex-col gap-2'>
         <input
@@ -25,6 +25,6 @@ export default function SignUp() {
           Sign Up
         </button>
       </form>
-    </div>
+    </section>
   );
 }

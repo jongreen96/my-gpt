@@ -1,6 +1,6 @@
 export default function SignIn() {
   return (
-    <div className='flex h-full flex-col items-center justify-center gap-2'>
+    <section className='flex h-full flex-col items-center justify-center gap-2'>
       <h1 className='text-2xl font-semibold'>Sign In</h1>
       <form className='flex w-64 flex-col gap-2'>
         <input
@@ -20,6 +20,6 @@ export default function SignIn() {
           Sign In
         </button>
       </form>
-    </div>
+    </section>
   );
 }

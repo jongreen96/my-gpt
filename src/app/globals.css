@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 body {
-	background-color: #1a1a1a;
-	color: #e6e6e6;
+  background-color: #1a1a1a;
+  color: #e6e6e6;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #666666;
+  outline-offset: -2px;
 }

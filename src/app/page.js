@@ -14,7 +14,7 @@ export default function Home() {
           </h1>
 
           <p>
-            Experience the power of OpenAI's latest GPT models without the
+            Experience the power of OpenAI&apos;s latest GPT models without the
             monthly subscription or waitlist.
           </p>
 
@@ -56,7 +56,7 @@ export default function Home() {
           <h3 className='text-3xl font-semibold'>Instant Access</h3>
 
           <p className='text-sm'>
-            Get straight into using all of OpenAI's GPT models without the
+            Get straight into using all of OpenAI&apos;s GPT models without the
             waitlist or monthly subscription. Simply pay for what you use.
           </p>
         </div>
@@ -104,7 +104,7 @@ export default function Home() {
         </div>
         <p className='flex-1 text-sm'>
           Embark on a limitless journey of creativity and intelligence with
-          OpenAI's cutting-edge models! No more waiting lists or monthly
+          OpenAI&apos;s cutting-edge models! No more waiting lists or monthly
           subscriptions - experience the power of AI like never before. From
           improved instruction following to jaw-dropping image generation with
           DALL·E, GPT-4 offers unrivaled capabilities. Unleash the potential,

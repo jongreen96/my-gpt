@@ -8,7 +8,7 @@ import expandArrow from '../../public/expand-arrow.svg';
 import userSolid from '../../public/user-solid.svg';
 import userRegular from '../../public/user-regular.svg';
 
-const roboto = Roboto_Flex();
+const roboto = Roboto_Flex({ subsets: ['latin'] });
 
 export const metadata = {
   title: {
@@ -56,7 +56,7 @@ export default function RootLayout({ children }) {
 
             <Link
               href='/sign-up'
-              className='hover:bg-gray-250 flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-gray-300 p-2 font-semibold'
+              className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-gray-300 p-2 font-semibold hover:bg-gray-250'
             >
               <Image src={userRegular} alt='My-GPT Logo' width={15} />
               <p className='hidden text-sm group-hover:block'>Sign up</p>

@@ -20,14 +20,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className={`${roboto.className}Rh-svh bg-gray-100`}>
-        <nav className='group fixed left-0 max-h-[75svh] w-full border-b-2 border-gray-300 bg-gray-200'>
+      <body className={`${roboto.className} h-svh bg-gray-100`}>
+        <nav className='group fixed left-0 h-14 max-h-[75svh] w-full overflow-hidden border-b-2 border-gray-300 bg-gray-200 hover:h-fit sm:h-full sm:max-h-none sm:w-14 sm:border-b-0 sm:border-r-2 sm:hover:h-full sm:hover:w-fit'>
           <div className='flex justify-between p-2'>
             <Link href='/' className='flex items-center gap-2'>
               <Image src={logo} alt='My-GPT Logo' width={40} height={40} />
-              <p className='-mt-1 whitespace-nowrap text-4xl font-semibold'>
-                My-GPT
-              </p>
+              <p className='whitespace-nowrap text-4xl font-semibold'>My-GPT</p>
             </Link>
 
             <section className='flex items-center gap-2'>
@@ -46,7 +44,7 @@ export default function RootLayout({ children }) {
           <section></section>
         </nav>
 
-        <main>{children}</main>
+        <main className='h-full pt-14 sm:pl-14 sm:pt-0'>{children}</main>
       </body>
     </html>
   );

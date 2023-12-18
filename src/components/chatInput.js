@@ -11,7 +11,7 @@ export default function ChatInput() {
       <TextAreaAutoSize
         autoFocus
         maxRows={15}
-        className='w-full resize-none rounded-md border-2 border-gray-200 bg-gray-200 p-2'
+        className='h-11 w-full resize-none rounded-md border-2 border-gray-200 bg-gray-200 p-2'
       />
       <button type='submit' className='mb-2 self-end'>
         <Image src={Send} alt='Send' width={30} height={30} />

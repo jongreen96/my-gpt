@@ -1,10 +1,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
+import { auth } from '@/auth';
 
 import DogFalling from '../../public/dog-falling.gif';
 import OpenAI from '../../public/openai.svg';
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+
+  if (session) {
+    redirect('/chat');
+  }
+
   return (
     <div className='my-20 flex flex-col gap-24 p-2'>
       <section className='flex flex-col gap-8 sm:flex-row sm:p-8'>
@@ -20,7 +28,7 @@ export default function Home() {
 
           <div className='flex w-full justify-center gap-2 sm:justify-start'>
             <Link
-              href='/sign-up'
+              href='/api/auth/signin'
               className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-blue-900 p-2 font-semibold hover:bg-blue-800'
             >
               <p className='group-hover:block'>Try For Free</p>

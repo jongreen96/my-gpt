@@ -1,10 +1,18 @@
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
+import ChatInput from '@/components/chatInput';
+
 export const metadata = {
   title: 'Chat',
 };
 
-import ChatInput from '@/components/chatInput';
+export default async function ChatLayout({ children }) {
+  const session = await auth();
 
-export default function ChatLayout({ children }) {
+  if (!session) {
+    redirect('/');
+  }
+
   return (
     <>
       <section className='flex h-full w-full flex-col justify-end p-2'>

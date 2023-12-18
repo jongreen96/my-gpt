@@ -47,19 +47,11 @@ export default function RootLayout({ children }) {
 
           <section className='flex flex-col gap-2'>
             <Link
-              href='/sign-in'
+              href='/api/auth/signin'
               className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-blue-900 p-2 font-semibold hover:bg-blue-800'
             >
               <Image src={userSolid} alt='My-GPT Logo' width={15} />
               <p className='hidden text-sm group-hover:block'>Sign in</p>
-            </Link>
-
-            <Link
-              href='/sign-up'
-              className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-gray-300 p-2 font-semibold hover:bg-gray-250'
-            >
-              <Image src={userRegular} alt='My-GPT Logo' width={15} />
-              <p className='hidden text-sm group-hover:block'>Sign up</p>
             </Link>
           </section>
 

@@ -1,3 +1,6 @@
-export default function Chat() {
-  return <h1 className='self-center text-3xl font-bold'>Chat</h1>;
+import { auth } from '@/auth';
+
+export default async function Chat() {
+  const session = await auth();
+  return <pre>{JSON.stringify(session, null, 2)}</pre>;
 }

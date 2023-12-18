@@ -1,3 +1,7 @@
+export const metadata = {
+  title: 'Chat',
+};
+
 import ChatInput from '@/components/chatInput';
 
 export default function Chat() {

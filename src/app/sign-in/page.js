@@ -1,3 +1,7 @@
+export const metadata = {
+  title: 'Sign In',
+};
+
 export default function SignIn() {
   return (
     <section className='flex h-full flex-col items-center justify-center gap-2'>

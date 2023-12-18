@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
                 alt='Expand Arrow'
                 width={40}
                 height={40}
-                className='rotate-90 group-hover:hidden'
+                className='hidden rotate-90 group-hover:hidden sm:block'
               />
 
               {/* Settings button depending on user */}

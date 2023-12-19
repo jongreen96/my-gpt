@@ -2,11 +2,13 @@ import './globals.css';
 import { Roboto_Flex } from 'next/font/google';
 import Link from 'next/link';
 import Image from 'next/image';
+import { auth } from '@/auth';
 
 import logo from '../../public/openai.svg';
 import expandArrow from '../../public/expand-arrow.svg';
 import userSolid from '../../public/user-solid.svg';
 import userRegular from '../../public/user-regular.svg';
+import settingsIcon from '../../public/settings.svg';
 
 const roboto = Roboto_Flex({ subsets: ['latin'] });
 
@@ -19,7 +21,9 @@ export const metadata = {
     'Developed with the goal of enabling individuals to harness powerful features like GPT-4 without the commitment of a fixed monthly fee, My-GPT provides a pay-as-you-go approach to OpenAI usage.',
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const session = await auth();
+
   return (
     <html lang='en'>
       <body
@@ -38,24 +42,38 @@ export default function RootLayout({ children }) {
                 alt='Expand Arrow'
                 width={40}
                 height={40}
-                className='hidden rotate-90 group-hover:hidden sm:block'
+                className='rotate-90 group-hover:hidden sm:hidden'
               />
 
-              {/* Settings button depending on user */}
+              {session && (
+                <Link
+                  href='/settings'
+                  className='flex items-center gap-2 rounded-lg bg-gray-300 p-2 hover:bg-gray-250 sm:hidden'
+                >
+                  <Image
+                    src={settingsIcon}
+                    alt='settings'
+                    width={25}
+                    height={25}
+                  />
+                </Link>
+              )}
             </section>
           </div>
 
-          <section className='flex flex-col gap-2'>
-            <Link
-              href='/api/auth/signin'
-              className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-blue-900 p-2 font-semibold hover:bg-blue-800'
-            >
-              <Image src={userSolid} alt='My-GPT Logo' width={15} />
-              <p className='hidden text-sm group-hover:block'>Sign in</p>
-            </Link>
-          </section>
+          {!session && (
+            <section className='flex flex-col gap-2'>
+              <Link
+                href='/api/auth/signin'
+                className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-blue-900 p-2 font-semibold hover:bg-blue-800'
+              >
+                <Image src={userSolid} alt='My-GPT Logo' width={15} />
+                <p className='hidden text-sm group-hover:block'>Sign in</p>
+              </Link>
+            </section>
+          )}
 
-          <section className='bottom-2 mt-auto hidden items-center gap-2 sm:flex'>
+          <section className='bottom-2 mt-auto hidden flex-col items-center gap-2 sm:flex'>
             <Image
               src={expandArrow}
               alt='Expand Arrow'
@@ -64,7 +82,22 @@ export default function RootLayout({ children }) {
               className='group-hover:hidden'
             />
 
-            {/* Settings button depending on user */}
+            {session && (
+              <Link
+                href='/settings'
+                className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-gray-300 p-2 font-semibold hover:bg-gray-250'
+              >
+                <Image
+                  src={settingsIcon}
+                  alt='settings'
+                  width={25}
+                  height={25}
+                />
+                <p className='hidden text-sm font-semibold group-hover:block'>
+                  Settings
+                </p>
+              </Link>
+            )}
           </section>
         </nav>
 

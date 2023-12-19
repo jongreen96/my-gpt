@@ -48,7 +48,7 @@ export default async function RootLayout({ children }) {
               {session && (
                 <Link
                   href='/settings'
-                  className='flex items-center gap-2 rounded-lg bg-gray-300 p-2 hover:bg-gray-250 sm:hidden'
+                  className='flex items-center gap-2 self-end rounded-lg bg-gray-300 p-2 hover:bg-gray-250 sm:hidden'
                 >
                   <Image
                     src={settingsIcon}

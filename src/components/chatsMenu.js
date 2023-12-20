@@ -7,7 +7,7 @@ export default async function ChatsMenu() {
   return (
     <Link
       href='/chat'
-      className='flex h-10 w-full items-center gap-2 rounded-lg bg-blue-900 px-[9px] hover:bg-blue-800'
+      className='hidden h-10 w-full items-center gap-2 rounded-lg bg-blue-900 px-[9px] hover:bg-blue-800 group-hover:flex sm:flex'
     >
       <Image src={chatSolid} alt='My-GPT Logo' width={20} />
       <p className='hidden font-semibold group-hover:block'>New Chat</p>

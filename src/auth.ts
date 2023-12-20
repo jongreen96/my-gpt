@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import NextAuth, { type DefaultSession } from 'next-auth';
 import GitHub from 'next-auth/providers/github';
 import Google from 'next-auth/providers/google';
 import PostgresAdapter from '@auth/pg-adapter';
@@ -11,6 +11,14 @@ const pool = new Pool({
   },
 });
 
+declare module 'next-auth' {
+  interface Session {
+    user: {
+      id: number;
+    } & DefaultSession['user'];
+  }
+}
+
 export const authConfig = {
   adapter: PostgresAdapter(pool),
   providers: [GitHub, Google],
@@ -19,6 +27,9 @@ export const authConfig = {
       session.user.id = user.id;
       return session;
     },
+  },
+  pages: {
+    signIn: '/sign-in',
   },
 };
 

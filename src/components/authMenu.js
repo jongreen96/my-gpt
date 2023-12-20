@@ -11,7 +11,7 @@ export default async function AuthMenu() {
     return (
       <section className='hidden flex-col gap-2 group-hover:flex sm:flex'>
         <Link
-          href='/api/auth/signin'
+          href='/sign-in'
           className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-blue-900 p-2 font-semibold hover:bg-blue-800'
         >
           <Image src={userSolid} alt='My-GPT Logo' width={15} />

@@ -28,7 +28,7 @@ export default async function Home() {
 
           <div className='flex w-full justify-center gap-2 sm:justify-start'>
             <Link
-              href='/api/auth/signin'
+              href='/sign-up'
               className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-blue-900 p-2 font-semibold hover:bg-blue-800'
             >
               <p className='group-hover:block'>Try For Free</p>

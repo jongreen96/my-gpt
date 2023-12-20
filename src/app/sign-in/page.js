@@ -1,3 +1,5 @@
+import { LoginProviders } from '@/components/loginProviders';
+
 export const metadata = {
   title: 'Sign In',
 };
@@ -6,6 +8,8 @@ export default function SignIn() {
   return (
     <section className='flex h-full flex-col items-center justify-center gap-2'>
       <h1 className='text-2xl font-semibold'>Sign In</h1>
+      <LoginProviders />
+      {/* <p>or</p>
       <form className='flex w-64 flex-col gap-2'>
         <input
           type='text'
@@ -23,7 +27,7 @@ export default function SignIn() {
         >
           Sign In
         </button>
-      </form>
+      </form> */}
     </section>
   );
 }

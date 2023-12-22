@@ -5,7 +5,7 @@ import { signOut } from 'next-auth/react';
 
 import userRegular from '../../../public/user-regular.svg';
 
-export default function Settings() {
+export default function Account() {
   return (
     <div className='flex h-full flex-col items-center justify-center p-2'>
       <button

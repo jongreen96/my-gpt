@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { auth } from '@/auth';
 
 import expandArrow from '../../public/expand-arrow.svg';
-import settingsIcon from '../../public/settings.svg';
+import userSolid from '../../public/user-solid.svg';
 
 export async function MobileNavMenu() {
   const session = await auth();
@@ -20,10 +20,30 @@ export async function MobileNavMenu() {
 
       {session && (
         <Link
-          href='/settings'
-          className='flex aspect-square h-full items-center justify-center gap-2 self-end rounded-lg bg-gray-300 hover:bg-gray-250'
+          href='/account'
+          className='flex aspect-square h-full items-center self-end'
         >
-          <Image src={settingsIcon} alt='settings' width={20} height={20} />
+          {session.user.image ? (
+            <>
+              <Image
+                src={session.user.image}
+                alt='User Profile'
+                width={38}
+                height={38}
+                className='fixed rounded-full'
+              />
+            </>
+          ) : (
+            <>
+              <Image
+                src={userSolid}
+                alt='account'
+                width={38}
+                height={38}
+                className='fixed p-2'
+              />
+            </>
+          )}
         </Link>
       )}
     </section>
@@ -45,13 +65,36 @@ export async function NavMenu() {
 
       {session && (
         <Link
-          href='/settings'
-          className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-gray-300 p-2 font-semibold hover:bg-gray-250'
+          href='/account'
+          className='flex h-10 w-full items-center gap-2 overflow-hidden rounded-3xl group-hover:rounded-r-lg group-hover:bg-gray-300 group-hover:hover:bg-gray-250'
         >
-          <Image src={settingsIcon} alt='settings' width={20} height={20} />
-          <p className='hidden text-sm font-semibold group-hover:block'>
-            Settings
-          </p>
+          {session.user.image ? (
+            <>
+              <Image
+                src={session.user.image}
+                alt='User Profile'
+                width={38}
+                height={38}
+                className='fixed rounded-full'
+              />
+              <p className='mx-auto hidden font-semibold group-hover:block'>
+                Account
+              </p>
+            </>
+          ) : (
+            <>
+              <Image
+                src={userSolid}
+                alt='account'
+                width={38}
+                height={38}
+                className='fixed p-2'
+              />
+              <p className='mx-auto hidden font-semibold group-hover:block'>
+                Account
+              </p>
+            </>
+          )}
         </Link>
       )}
     </section>

@@ -12,6 +12,7 @@
     "@auth/pg-adapter": "^0.2.9",
     "@vercel/postgres": "^0.5.1",
     "ai": "^2.2.30",
+    "nanoid": "^5.0.4",
     "next": "14.0.4",
     "next-auth": "^5.0.0-beta.4",
     "openai": "^4.24.1",

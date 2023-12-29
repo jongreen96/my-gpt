@@ -1,6 +1,5 @@
-import { auth } from '@/auth';
+import Chat from '@/components/chat';
 
 export default async function Chat() {
-  const session = await auth();
-  return null;
+  return <Chat />;
 }

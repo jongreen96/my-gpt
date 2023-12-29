@@ -5,12 +5,14 @@ import Image from 'next/image';
 
 import Send from '@/../public/send.svg';
 
-export default function ChatInput() {
+export default function ChatInput({ input, handleInputChange, handleSubmit }) {
   return (
-    <form className='mt-auto flex gap-2'>
+    <form onSubmit={handleSubmit} className='flex gap-2 p-2'>
       <TextAreaAutoSize
         autoFocus
         maxRows={15}
+        value={input}
+        onChange={handleInputChange}
         className='h-11 w-full resize-none rounded-md border-2 border-gray-200 bg-gray-200 p-2'
       />
       <button type='submit' className='mb-2 self-end'>

@@ -1,4 +1,4 @@
-import Chat from '@/components/chat';
+import ChatComp from '@/components/chat';
 import { redirect } from 'next/navigation';
 
 export default async function Chat({ params }) {
@@ -19,5 +19,5 @@ export default async function Chat({ params }) {
     }
   }
 
-  return <Chat initialMessages={initialMessages} />;
+  return <ChatComp initialMessages={initialMessages} />;
 }

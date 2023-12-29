@@ -3,8 +3,8 @@ import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { auth } from '@/auth';
 
-import DogFalling from '../../public/dog-falling.gif';
-import OpenAI from '../../public/openai.svg';
+import DogFalling from '@/../public/dog-falling.gif';
+import OpenAI from '@/../public/openai.svg';
 
 export default async function Home() {
   const session = await auth();

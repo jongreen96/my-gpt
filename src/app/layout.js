@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { MobileNavMenu, NavMenu } from '@/components/navMenu';
 import AuthMenu from '@/components/authMenu';
 import ChatsMenu from '@/components/chatsMenu';
-import logo from '../../public/openai.svg';
+import logo from '@/../public/openai.svg';
 
 const roboto = Roboto_Flex({ subsets: ['latin'] });
 

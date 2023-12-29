@@ -2,7 +2,7 @@ import { auth } from '@/auth';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import userSolid from '../../public/user-solid.svg';
+import userSolid from '@/../public/user-solid.svg';
 
 export default async function AuthMenu() {
   const session = await auth();

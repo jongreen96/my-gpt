@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import dogFalling from '../../public/dog-falling.gif';
+import dogFalling from '@/../public/dog-falling.gif';
 
 export default function NotFound() {
   return (

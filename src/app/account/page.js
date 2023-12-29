@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { signOut } from 'next-auth/react';
 
-import userRegular from '../../../public/user-regular.svg';
+import userRegular from '@/../public/user-regular.svg';
 
 export default function Account() {
   return (

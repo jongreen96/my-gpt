@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { auth } from '@/auth';
 
-import chatSolid from '../../public/message-solid.svg';
+import chatSolid from '@/../public/message-solid.svg';
 
 export default async function ChatsMenu() {
   const session = await auth();

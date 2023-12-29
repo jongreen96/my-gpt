@@ -1,7 +1,7 @@
-import LoginButton from '../components/loginButton';
+import LoginButton from '@/components/loginButton';
 
-import github from '../../public/github-logo.svg';
-import google from '../../public/google-logo.svg';
+import github from '@/../public/github-logo.svg';
+import google from '@/../public/google-logo.svg';
 
 const providers = [
   {

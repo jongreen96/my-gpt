@@ -3,11 +3,11 @@
 import TextAreaAutoSize from 'react-textarea-autosize';
 import Image from 'next/image';
 
-import Send from '../../public/send.svg';
+import Send from '@/../public/send.svg';
 
 export default function ChatInput() {
   return (
-    <form className='mt-auto flex gap-2 p-2'>
+    <form className='mt-auto flex gap-2'>
       <TextAreaAutoSize
         autoFocus
         maxRows={15}

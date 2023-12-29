@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { auth } from '@/auth';
 
-import expandArrow from '../../public/expand-arrow.svg';
-import userSolid from '../../public/user-solid.svg';
+import expandArrow from '@/../public/expand-arrow.svg';
+import userSolid from '@/../public/user-solid.svg';
 
 export async function MobileNavMenu() {
   const session = await auth();

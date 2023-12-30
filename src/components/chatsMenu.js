@@ -12,7 +12,7 @@ export default async function ChatsMenu() {
   const conversations = await getConversations(session.user.id);
 
   return (
-    <>
+    <div className='flex flex-col gap-1'>
       <Link
         href='/chat'
         className='hidden h-10 w-full items-center gap-2 rounded-lg bg-blue-900 px-[9px] hover:bg-blue-800 group-hover:flex sm:flex'
@@ -33,7 +33,7 @@ export default async function ChatsMenu() {
           </p>
         </Link>
       ))}
-    </>
+    </div>
   );
 }
 

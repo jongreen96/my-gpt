@@ -2,15 +2,25 @@
 
 import { useChat } from 'ai/react';
 import ChatInput from './chatInput';
+import { useRouter, usePathname } from 'next/navigation';
 
-export default function Chat({ initialMessages }) {
+export default function Chat({ initialMessages, id, userId }) {
+  const router = useRouter();
+  const pathname = usePathname();
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     initialMessages,
+    body: {
+      id,
+      userId,
+    },
+    onFinish: () => {
+      if (pathname !== `/chat/${id}`) router.push(`/chat/${id}`);
+    },
   });
 
   return (
     <>
-      <section className='flex h-full w-full flex-col justify-end gap-2 p-2'>
+      <section className='no-horizontal-scrollbar flex w-full flex-grow flex-col gap-2 overflow-scroll p-2'>
         {messages.map((message) =>
           message.role === 'user' ? (
             <div

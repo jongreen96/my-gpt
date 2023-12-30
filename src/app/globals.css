@@ -35,3 +35,8 @@ textarea:focus-visible {
   border-radius: 5px;
   border: 0px none #ffffff;
 }
+
+.no-horizontal-scrollbar::-webkit-scrollbar {
+  height: 0px;
+  background-color: transparent;
+}

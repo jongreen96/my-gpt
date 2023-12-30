@@ -6,10 +6,10 @@ import { sql } from '@vercel/postgres';
 import chatSolid from '@/../public/message-solid.svg';
 
 export default async function ChatsMenu() {
-  const { user } = await auth();
-  if (!user) return null;
+  const session = await auth();
+  if (!session) return null;
 
-  const conversations = await getConversations(user.id);
+  const conversations = await getConversations(session.user.id);
 
   return (
     <>

@@ -1,19 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { auth } from '@/auth';
+import { sql } from '@vercel/postgres';
 
 import chatSolid from '@/../public/message-solid.svg';
 
 export default async function ChatsMenu() {
-  const session = await auth();
-  if (!session) return null;
+  const { user } = await auth();
+  if (!user) return null;
 
-  const chats = await fetch(`${process.env.BASE_URL}/api/chats`, {
-    headers: {
-      Authorization: session.user.id,
-    },
-  });
-  const chatsJson = await chats.json();
+  const conversations = await getConversations(user.id);
 
   return (
     <>
@@ -25,7 +21,7 @@ export default async function ChatsMenu() {
         <p className='hidden font-semibold group-hover:block'>New Chat</p>
       </Link>
 
-      {chatsJson.map((chat) => (
+      {conversations.map((chat) => (
         <Link
           href={`/chat/${chat.id}`}
           key={chat.id}
@@ -39,4 +35,12 @@ export default async function ChatsMenu() {
       ))}
     </>
   );
+}
+
+async function getConversations(id) {
+  const conversations = await sql`
+    SELECT * FROM conversations
+    WHERE user_id = ${id}
+  `;
+  return conversations.rows;
 }

@@ -1,23 +1,18 @@
-import ChatComp from '@/components/chat';
+import Chat from '@/components/chat';
+import { sql } from '@vercel/postgres';
 import { redirect } from 'next/navigation';
 
-export default async function Chat({ params }) {
-  let initialMessages = [];
+export default async function ChatPage({ params }) {
+  const initialMessages = await getInitialMessages(params.id);
+  if (!initialMessages.length) redirect('/chat');
 
-  if (params.id) {
-    const response = await fetch(
-      `${process.env.BASE_URL}/api/chats/${params.id}`,
-      { cache: 'no-store' },
-    );
+  return <Chat initialMessages={initialMessages} />;
+}
 
-    const json = await response.json();
-
-    if (!json.length) {
-      redirect('/chat');
-    } else {
-      initialMessages = json;
-    }
-  }
-
-  return <ChatComp initialMessages={initialMessages} />;
+async function getInitialMessages(id) {
+  const messages = await sql`
+    SELECT * FROM messages
+    WHERE conversation_id = ${id}
+  `;
+  return messages.rows;
 }

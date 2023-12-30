@@ -20,7 +20,7 @@ export default function Chat({ initialMessages, id, userId }) {
 
   return (
     <>
-      <section className='no-horizontal-scrollbar flex w-full flex-grow flex-col gap-2 overflow-scroll p-2'>
+      <section className='no-scrollbar flex w-full flex-grow flex-col gap-2 overflow-scroll p-2'>
         {messages.map((message) =>
           message.role === 'user' ? (
             <div

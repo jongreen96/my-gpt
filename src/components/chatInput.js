@@ -13,6 +13,12 @@ export default function ChatInput({ input, handleInputChange, handleSubmit }) {
         maxRows={15}
         value={input}
         onChange={handleInputChange}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSubmit(e);
+          }
+        }}
         className='h-11 w-full resize-none rounded-md border-2 border-gray-200 bg-gray-200 p-2'
       />
       <button type='submit' className='mb-2 self-end'>
